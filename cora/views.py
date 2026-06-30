@@ -224,16 +224,24 @@ def application_import(request):
     if request.method != 'POST':
         err_msg = "Method not allowed"
         if wants_json:
-            return JsonResponse({"success": False, "reason": err_msg}, status=405)
-        return HttpResponse(f"<h1>405 {err_msg}</h1>", status=405)
+            return JsonResponse({"success": False, "reason": err_msg, "failing_field": "method", "details": err_msg}, status=405)
+        return render(request, 'cora/import_error.html', {
+            "status": 405,
+            "reason": "Method Not Allowed",
+            "details": err_msg
+        }, status=405)
 
     # For POST, ensure Content-Type is multipart/form-data
     content_type = request.content_type or ''
     if 'multipart/form-data' not in content_type:
         err_msg = "Unsupported media type. Must be multipart/form-data"
         if wants_json:
-            return JsonResponse({"success": False, "reason": "unsupported_media_type", "details": err_msg}, status=415)
-        return HttpResponse(f"<h1>415 {err_msg}</h1>", status=415)
+            return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": "content_type", "details": err_msg}, status=415)
+        return render(request, 'cora/import_error.html', {
+            "status": 415,
+            "reason": "Unsupported Media Type",
+            "details": err_msg
+        }, status=415)
 
     # Use TemporaryFileUploadHandler for streaming large uploads cleanly
     request.upload_handlers = [TemporaryFileUploadHandler(request)]
@@ -243,25 +251,39 @@ def application_import(request):
     if not payload_str:
         err_msg = "Missing 'payload' text field"
         if wants_json:
-            return JsonResponse({"success": False, "reason": "missing_payload", "details": err_msg}, status=400)
-        return HttpResponse(f"<h1>400 Bad Request</h1><p>{err_msg}</p>", status=400)
+            return JsonResponse({"success": False, "reason": "missing_payload", "failing_field": "payload", "details": err_msg}, status=400)
+        return render(request, 'cora/import_error.html', {
+            "status": 400,
+            "reason": "Missing Payload",
+            "details": err_msg
+        }, status=400)
 
     try:
         data = json.loads(payload_str)
     except json.JSONDecodeError as e:
         err_msg = f"Invalid JSON in 'payload': {str(e)}"
         if wants_json:
-            return JsonResponse({"success": False, "reason": "invalid_json", "details": err_msg}, status=400)
-        return HttpResponse(f"<h1>400 Bad Request</h1><p>{err_msg}</p>", status=400)
+            return JsonResponse({"success": False, "reason": "invalid_json", "failing_field": "payload", "details": err_msg}, status=400)
+        return render(request, 'cora/import_error.html', {
+            "status": 400,
+            "reason": "Invalid JSON",
+            "details": err_msg
+        }, status=400)
 
     # 2. Validate against schema
     try:
         jsonschema.validate(instance=data, schema=IMPORT_PAYLOAD_SCHEMA)
     except jsonschema.ValidationError as e:
-        err_msg = f"Validation failed: {e.message}"
+        # Include the failing field path for easier debugging
+        field_path = ".".join(str(p) for p in e.path) if e.path else "unknown"
+        err_msg = f"Validation failed on field '{field_path}': {e.message}"
         if wants_json:
-            return JsonResponse({"success": False, "reason": "validation_failed", "details": err_msg}, status=422)
-        return HttpResponse(f"<h1>422 Unprocessable Entity</h1><p>{err_msg}</p>", status=422)
+            return JsonResponse({"success": False, "reason": "validation_failed", "failing_field": field_path, "details": err_msg}, status=422)
+        return render(request, 'cora/import_error.html', {
+            "status": 422,
+            "reason": f"Validation Failed on '{field_path}'",
+            "details": err_msg
+        }, status=422)
 
     cola_app_data = data['cola_application']
     ttb_id = cola_app_data['ttb_id']
@@ -283,13 +305,13 @@ def application_import(request):
                 "is_idempotent": True
             })
         else:
-            err_msg = "duplicate"
+            err_msg = f"An application with TTB ID '{ttb_id}' already exists and the submitted data does not match exactly."
             if wants_json:
-                return JsonResponse({"success": False, "reason": err_msg}, status=409)
+                return JsonResponse({"success": False, "reason": "duplicate", "failing_field": "ttb_id", "details": err_msg}, status=409)
             return render(request, 'cora/import_error.html', {
                 "status": 409,
                 "reason": "Duplicate Record Found",
-                "details": f"An application with TTB ID '{ttb_id}' already exists and the submitted data does not match exactly."
+                "details": err_msg
             }, status=409)
 
     # 4. Perform image file validation checks before starting transaction
@@ -307,15 +329,23 @@ def application_import(request):
         if not uploaded_file:
             err_msg = f"Missing uploaded file for filename '{file_name}'"
             if wants_json:
-                return JsonResponse({"success": False, "reason": "missing_file", "details": err_msg}, status=422)
-            return HttpResponse(f"<h1>422 Unprocessable Entity</h1><p>{err_msg}</p>", status=422)
+                return JsonResponse({"success": False, "reason": "missing_file", "failing_field": "label_images", "details": err_msg}, status=422)
+            return render(request, 'cora/import_error.html', {
+                "status": 422,
+                "reason": "Missing File",
+                "details": err_msg
+            }, status=422)
 
         # Validate file size (max 1.5MB = 1572864 bytes)
         if uploaded_file.size > 1.5 * 1024 * 1024:
             err_msg = f"File {file_name} exceeds 1.5MB limit"
             if wants_json:
-                return JsonResponse({"success": False, "reason": "payload_too_large", "details": err_msg}, status=413)
-            return HttpResponse(f"<h1>413 Payload Too Large</h1><p>{err_msg}</p>", status=413)
+                return JsonResponse({"success": False, "reason": "payload_too_large", "failing_field": "label_images", "details": err_msg}, status=413)
+            return render(request, 'cora/import_error.html', {
+                "status": 413,
+                "reason": "File Too Large",
+                "details": err_msg
+            }, status=413)
 
         # Validate image format using Pillow
         try:
@@ -324,8 +354,12 @@ def application_import(request):
             if img_format not in ['PNG', 'JPEG', 'JPG']:
                 err_msg = f"Unsupported image format: {img_format}. Allowed: PNG, JPEG, JPG"
                 if wants_json:
-                    return JsonResponse({"success": False, "reason": "unsupported_media_type", "details": err_msg}, status=415)
-                return HttpResponse(f"<h1>415 Unsupported Media Type</h1><p>{err_msg}</p>", status=415)
+                    return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=415)
+                return render(request, 'cora/import_error.html', {
+                    "status": 415,
+                    "reason": "Unsupported Media Type",
+                    "details": err_msg
+                }, status=415)
             
             width, height = img.size
             # Reset seek position of the file stream so Django can save it
@@ -333,8 +367,12 @@ def application_import(request):
         except Exception as e:
             err_msg = f"Invalid image file {file_name}: {str(e)}"
             if wants_json:
-                return JsonResponse({"success": False, "reason": "invalid_image", "details": err_msg}, status=422)
-            return HttpResponse(f"<h1>422 Unprocessable Entity</h1><p>{err_msg}</p>", status=422)
+                return JsonResponse({"success": False, "reason": "invalid_image", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=422)
+            return render(request, 'cora/import_error.html', {
+                "status": 422,
+                "reason": "Invalid Image",
+                "details": err_msg
+            }, status=422)
 
         matched_files.append((img_meta, uploaded_file, width, height, img_format))
 

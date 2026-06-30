@@ -46,6 +46,10 @@ CORA is a Django-based internal system for managing COLA (Certificate of Label A
 ### 4.3 Container Connectivity
 - **Fixed `docker-compose.yml`** to set `POSTGRES_HOST=postgres` so the `web` service connects to the `postgres` container instead of falling back to SQLite
 
+### 4.4 Error Response Enhancements
+- **Added `failing_field` property** to all JSON error responses for easier client-side debugging
+- **Converted HTML error responses** to use styled `import_error.html` template instead of raw HttpResponse
+
 ## 5. Security & Compliance Notes
 - No secrets in code; `.env` remains uncommitted.
 - Release workflow must be tied to reviewer identity and lock acquisition.
