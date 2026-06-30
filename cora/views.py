@@ -21,7 +21,6 @@ from django.utils import timezone
 
 
 
-
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -132,7 +131,10 @@ def ping(request):
 <body>
   <main>
     <h1>ping</h1>
-    <pre>{\n  <span class="key">"current_date"</span>: <span class="str">"$(now.strftime('%Y-%m-%d'))"</span>,\n  <span class="key">"current_time"</span>: <span class="str">"$(now.strftime('%H:%M:%S'))"</span>\n}</pre>
+    <pre>{
+"  <span class="key">"current_date"</span>: <span class="str">"</span>$(now.strftime('%Y-%m-%d'))<span class="str">"</span>,
+  <span class="key">"current_time"</span>: <span class="str">"</span>$(now.strftime('%H:%M:%S'))<span class="str">"</span>
+}</pre>
     <p class="label">rendered HTML from Accept: text/html</p>
   </main>
 </body>
@@ -210,17 +212,150 @@ def run_task_async(app_id):
     thread.daemon = True
     thread.start()
 
+
 @csrf_exempt
-def application_import(request):
-    # Content negotiation helper
-    accept_header = request.headers.get('Accept', '')
-    wants_json = 'application/json' in accept_header
+def application_list(request):
+    """Handles:
+    GET /application?schema=1 with Accept: application/json -> return import schema
+    GET /application with Accept: application/json (no params) -> return import schema
+    GET /application with Accept: text/html (no params) -> return import form
+    GET /application?list=1 with Accept: text/html -> list applications
+    GET /application?q=... or other params -> list applications
+    POST /application -> import application
+    """
+    wants_json = 'application/json' in request.headers.get('Accept', '')
+    is_htmx = request.headers.get('HX-Request') == 'true'
 
+    # GET method handling
     if request.method == 'GET':
-        if wants_json:
+        # Import schema endpoint (?schema=1 or no query params with JSON Accept)
+        if request.GET.get('schema') == '1' or (wants_json and not request.GET):
             return JsonResponse(IMPORT_PAYLOAD_SCHEMA, safe=False)
-        return render(request, 'cora/import.html')
+        # HTML form for frontend (only when no query params)
+        if 'text/html' in request.headers.get('Accept', '') and not request.GET:
+            return render(request, 'cora/import.html')
 
+    # POST method: handle import
+    if request.method == 'POST':
+        return _handle_application_import(request, wants_json)
+
+    # GET method: list applications (with query params like ?list=1, ?q=, etc)
+    return _handle_application_list(request, wants_json, is_htmx)
+
+
+@csrf_exempt
+def _handle_application_list(request, wants_json, is_htmx):
+    """Handles GET /application - Search, filter, paginate."""
+    # --- Parameter extraction & sanitization --------------------------------
+    q = (request.GET.get('q') or '').strip()[:200]
+    raw_status = request.GET.get('status', '')
+    raw_type = request.GET.get('product_type', '')
+    raw_sort = request.GET.get('sort_by', 'date_of_application')
+    raw_order = request.GET.get('order', 'desc')
+
+    status = raw_status if raw_status in ALLOWED_STATUSES else ''
+    product_type = raw_type if raw_type in ALLOWED_PRODUCT_TYPES else ''
+    sort_by = raw_sort if raw_sort in ALLOWED_SORT_FIELDS else 'date_of_application'
+    order = raw_order if raw_order in ('asc', 'desc') else 'desc'
+
+    try:
+        page = max(1, int(request.GET.get('page', 1)))
+    except (ValueError, TypeError):
+        page = 1
+    try:
+        limit = min(100, max(1, int(request.GET.get('limit', 20))))
+    except (ValueError, TypeError):
+        limit = 20
+
+    # --- ORM query ----------------------------------------------------------
+    lock_cutoff = timezone.now() - timedelta(minutes=LOCK_TIMEOUT_MINUTES)
+
+    queryset = ColaApplication.objects.all()
+
+    if q:
+        queryset = queryset.filter(
+            Q(brand_name__icontains=q)     |
+            Q(fanciful_name__icontains=q)  |
+            Q(applicant_name__icontains=q) |
+            Q(ttb_id__icontains=q)
+        )
+    if status:
+        queryset = queryset.filter(status=status)
+    if product_type:
+        queryset = queryset.filter(product_type=product_type)
+
+    order_prefix = '-' if order == 'desc' else ''
+    queryset = queryset.order_by(f'{order_prefix}{sort_by}')
+
+    # --- Pagination ---------------------------------------------------------
+    total = queryset.count()
+    offset = (page - 1) * limit
+    results = list(queryset[offset: offset + limit])
+
+    # Build next/previous URLs
+    def build_url(p):
+        params = request.GET.copy()
+        params['page'] = p
+        return f"/application?{params.urlencode()}"
+
+    next_url = build_url(page + 1) if offset + limit < total else None
+    previous_url = build_url(page - 1) if page > 1 else None
+    allowed_product_types = [{
+            "value": t,  "label": t.replace("_", " ").title(),
+        } for t in sorted(ALLOWED_PRODUCT_TYPES)
+    ]
+    # Also expose lock_cutoff to template so stale locks render distinctly
+    context = {
+        'applications': results,
+        'total':         total,
+        'page':          page,
+        'limit':         limit,
+        'q':             q,
+        'status':        status,
+        'product_type':  product_type,
+        'sort_by':       sort_by,
+        'order':         order,
+        'next_url':      next_url,
+        'previous_url':  previous_url,
+        'lock_cutoff':   lock_cutoff,
+        'allowed_statuses':      sorted(ALLOWED_STATUSES),
+        'allowed_product_types': allowed_product_types,
+    }
+
+    # --- Response -----------------------------------------------------------
+    if wants_json:
+        return JsonResponse({
+            'success':  True,
+            'count':    total,
+            'next':     next_url,
+            'previous': previous_url,
+            'results': [
+                {
+                    'id':                  app.id,
+                    'cola_application_id': app.cola_application_id,
+                    'ttb_id':              app.ttb_id,
+                    'applicant_name':      app.applicant_name,
+                    'product_type':        app.product_type,
+                    'brand_name':          app.brand_name,
+                    'fanciful_name':       app.fanciful_name,
+                    'status':              app.status,
+                    'date_of_application': str(app.date_of_application) if app.date_of_application else None,
+                }
+                for app in results
+            ],
+        })
+
+    # HTMX partial — return only the tbody fragment
+    if is_htmx:
+        return render(request, 'cora/partials/application_table.html', context)
+
+    # Full page
+    return render(request, 'cora/application_list.html', context)
+
+
+@csrf_exempt
+def _handle_application_import(request, wants_json):
+    """Handles POST /application - Import a new application."""
     if request.method != 'POST':
         err_msg = "Method not allowed"
         if wants_json:
@@ -453,8 +588,6 @@ def application_import(request):
         return HttpResponse(f"<h1>500 Internal Server Error</h1><p>{err_msg}</p>", status=500)
 
 
-
-
 def application_detail(request, id):
     """Handles GET /application/{id} - application detail view using a state machine."""
     now = timezone.now()
@@ -544,117 +677,3 @@ def application_release(request, id):
     except Exception as e:
         logger.error(f"Error releasing application {id}: {e}")
         return JsonResponse({"success": False, "reason": "server_error", "details": str(e)}, status=500);
-
-# ---------------------------------------------------------------------------
-# GET /application  —  Search, filter, paginate
-# ---------------------------------------------------------------------------
-def application_list(request):
-    wants_json  = 'application/json' in request.headers.get('Accept', '')
-    is_htmx     = request.headers.get('HX-Request') == 'true'
-
-    # --- Parameter extraction & sanitization --------------------------------
-    q            = (request.GET.get('q') or '').strip()[:200]
-    raw_status   = request.GET.get('status', '')
-    raw_type     = request.GET.get('product_type', '')
-    raw_sort     = request.GET.get('sort_by', 'date_of_application')
-    raw_order    = request.GET.get('order', 'desc')
-
-    status       = raw_status   if raw_status   in ALLOWED_STATUSES      else ''
-    product_type = raw_type     if raw_type     in ALLOWED_PRODUCT_TYPES  else ''
-    sort_by      = raw_sort     if raw_sort     in ALLOWED_SORT_FIELDS    else 'date_of_application'
-    order        = raw_order    if raw_order    in ('asc', 'desc')        else 'desc'
-
-    try:
-        page  = max(1, int(request.GET.get('page', 1)))
-    except (ValueError, TypeError):
-        page  = 1
-    try:
-        limit = min(100, max(1, int(request.GET.get('limit', 20))))
-    except (ValueError, TypeError):
-        limit = 20
-
-    # --- ORM query ----------------------------------------------------------
-    lock_cutoff = timezone.now() - timedelta(minutes=LOCK_TIMEOUT_MINUTES)
-
-    queryset = ColaApplication.objects.all()
-
-    if q:
-        queryset = queryset.filter(
-            Q(brand_name__icontains=q)     |
-            Q(fanciful_name__icontains=q)  |
-            Q(applicant_name__icontains=q) |
-            Q(ttb_id__icontains=q)
-        )
-    if status:
-        queryset = queryset.filter(status=status)
-    if product_type:
-        queryset = queryset.filter(product_type=product_type)
-
-    order_prefix = '-' if order == 'desc' else ''
-    queryset = queryset.order_by(f'{order_prefix}{sort_by}')
-
-    # --- Pagination ---------------------------------------------------------
-    total   = queryset.count()
-    offset  = (page - 1) * limit
-    results = list(queryset[offset: offset + limit])
-
-    # Build next/previous URLs
-    def build_url(p):
-        params = request.GET.copy()
-        params['page'] = p
-        return f"/application?{params.urlencode()}"
-
-    next_url     = build_url(page + 1) if offset + limit < total else None
-    previous_url = build_url(page - 1) if page > 1 else None
-    allowed_product_types = [{
-            "value": t,  "label": t.replace("_", " ").title(),
-        } for t in sorted(ALLOWED_PRODUCT_TYPES)
-    ]
-    # Also expose lock_cutoff to template so stale locks render distinctly
-    context = {
-        'applications': results,
-        'total':         total,
-        'page':          page,
-        'limit':         limit,
-        'q':             q,
-        'status':        status,
-        'product_type':  product_type,
-        'sort_by':       sort_by,
-        'order':         order,
-        'next_url':      next_url,
-        'previous_url':  previous_url,
-        'lock_cutoff':   lock_cutoff,
-        'allowed_statuses':      sorted(ALLOWED_STATUSES),
-        'allowed_product_types': allowed_product_types,
-    }
-
-    # --- Response -----------------------------------------------------------
-    if wants_json:
-        return JsonResponse({
-            'success':  True,
-            'count':    total,
-            'next':     next_url,
-            'previous': previous_url,
-            'results': [
-                {
-                    'id':                  app.id,
-                    'cola_application_id': app.cola_application_id,
-                    'ttb_id':              app.ttb_id,
-                    'applicant_name':      app.applicant_name,
-                    'product_type':        app.product_type,
-                    'brand_name':          app.brand_name,
-                    'fanciful_name':       app.fanciful_name,
-                    'status':              app.status,
-                    'date_of_application': str(app.date_of_application) if app.date_of_application else None,
-                }
-                for app in results
-            ],
-        })
-
-    # HTMX partial — return only the tbody fragment
-    if is_htmx:
-        return render(request, 'cora/partials/application_table.html', context)
-
-    # Full page
-    return render(request, 'cora/application_list.html', context)
-

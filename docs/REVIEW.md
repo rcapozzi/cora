@@ -46,9 +46,18 @@ CORA is a Django-based internal system for managing COLA (Certificate of Label A
 ### 4.3 Container Connectivity
 - **Fixed `docker-compose.yml`** to set `POSTGRES_HOST=postgres` so the `web` service connects to the `postgres` container instead of falling back to SQLite
 
-### 4.4 Error Response Enhancements
+### 4.5 URL Refactor: POST /application/import → POST /application
+- Consolidated `application_import` view into `application_list` function
+- Removed `path('application/import/', ...)` from urls.py
+- `/application` now handles: GET (schema/form/list), POST (import)
+- Updated tests to use `reverse("application_list")` instead of `reverse("application_import")`
+- Updated `import_success.html` template to link to `application_list`
 - **Added `failing_field` property** to all JSON error responses for easier client-side debugging
 - **Converted HTML error responses** to use styled `import_error.html` template instead of raw HttpResponse
+
+### 4.6 Landing Page Navigation
+- **"View Applications"** button now links to `/application?list=1` to trigger `_handle_application_list()`
+- **"Import Application"** button continues to link to `/application` (displays import form)
 
 ## 5. Security & Compliance Notes
 - No secrets in code; `.env` remains uncommitted.

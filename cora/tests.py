@@ -31,7 +31,7 @@ class PingEndpointTests(TestCase):
 @override_settings(ROOT_URLCONF='cora.urls')
 class ApplicationImportEndpointTests(TestCase):
     def setUp(self):
-        self.import_url = reverse("application_import")
+        self.import_url = reverse("application_list")
         self.valid_payload = {
             "cola_application": {
                 "ttb_id": "COLA-2026-004587",
@@ -63,7 +63,7 @@ class ApplicationImportEndpointTests(TestCase):
         self.assertContains(response, "<form")
 
     def test_get_json_schema(self):
-        response = self.client.get(self.import_url, HTTP_ACCEPT="application/json")
+        response = self.client.get(self.import_url + "?schema=1", HTTP_ACCEPT="application/json")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         schema = json.loads(response.content.decode())
@@ -208,7 +208,7 @@ class ApplicationImportEndpointTests(TestCase):
 @override_settings(ROOT_URLCONF='cora.urls')
 class ApplicationImportValidationTests(TestCase):
     def setUp(self):
-        self.import_url = reverse("application_import")
+        self.import_url = reverse("application_list")
 
     def test_missing_payload(self):
         response = self.client.post(self.import_url, {}, HTTP_ACCEPT="application/json")
@@ -252,7 +252,7 @@ class ApplicationListEndpointTests(TestCase):
             )
 
     def test_default_list_returns_results(self):
-        response = self.client.get(reverse("application_list"), HTTP_ACCEPT="application/json")
+        response = self.client.get(reverse("application_list") + "?page=1", HTTP_ACCEPT="application/json")
         self.assertEqual(response.status_code, 200)
         body = json.loads(response.content.decode())
         self.assertIn("results", body)
