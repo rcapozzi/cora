@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORA — Import Successful</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0d10;
+            --card-bg: rgba(21, 26, 35, 0.8);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary: #6366f1;
+            --accent: #14b8a6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-success: #10b981;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid var(--text-success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            color: var(--text-success);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .details-list {
+            text-align: left;
+            background: rgba(10, 12, 16, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .detail-val {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="success-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            
+            {% if is_idempotent %}
+            <h1>Idempotent Import</h1>
+            <p class="subtitle">An identical application has already been imported.</p>
+            {% else %}
+            <h1>Import Successful</h1>
+            <p class="subtitle">The application registry has been created and background OCR processing has been scheduled.</p>
+            {% endif %}
+
+            <div class="details-list">
+                <div class="detail-row">
+                    <span class="detail-label">TTB ID:</span>
+                    <span class="detail-val">{{ application.ttb_id }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Brand Name:</span>
+                    <span class="detail-val">{{ application.brand_name }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Fanciful Name:</span>
+                    <span class="detail-val">{{ application.fanciful_name|default:"-" }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Applicant:</span>
+                    <span class="detail-val">{{ application.applicant_name }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Product Type:</span>
+                    <span class="detail-val">{{ application.product_type }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Database ID:</span>
+                    <span class="detail-val">{{ application.id }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-val" style="color: var(--text-success);">{{ application.status }}</span>
+                </div>
+            </div>
+
+            <a href="{% url 'application_import' %}" class="btn-back">Import Another</a>
+        </div>
+    </div>
+</body>
+</html>

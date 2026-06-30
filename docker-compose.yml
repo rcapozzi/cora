@@ -1,0 +1,58 @@
+services:
+  # 1. Database Service running Postgres + PGMQ ghcr.io/pgmq/pg18-pgmq:latest
+  postgres:
+    image: ghcr.io/pgmq/pg18-pgmq:latest
+    restart: always
+    container_name: cora_postgres
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data18
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cora -d cora_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Django Web Application Service (Handles the 'submission/import' POST)
+  web:
+    build:
+      context: . # Looks for the Dockerfile in ~/src/cora
+    container_name: cora_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app # Mounts local source code for live-reloading during development
+      - ~/var/media:/app/media # Maps your local host media dir to the container
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    depends_on:
+      postgres:
+        condition: service_healthy # Ensures Django doesn't boot until DB is fully ready
+
+  # 3. Django Background Worker Service (Handles the image processing)
+  worker:
+    build:
+      context: .
+    container_name: cora_worker
+    # Replace this command with your specific worker run script (e.g., python manage.py qcluster)
+    command: python manage.py run_worker 
+    volumes:
+      - .:/app # Mounts local source code so worker picks up code changes instantly
+      - ~/var/media:/app/media # MUST match the web service exactly for the Claim Check pattern
+    env_file:
+      - .env
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    depends_on:
+      postgres:
+        condition: service_healthy
+volumes:
+  pgdata:

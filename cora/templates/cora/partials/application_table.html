@@ -1,0 +1,77 @@
+<div class="results-card">
+    <table>
+        <thead>
+            <tr>
+                <th>TTB ID</th>
+                <th>Brand</th>
+                <th>Fanciful Name</th>
+                <th>Applicant</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Applied</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if applications %}
+                {% for app in applications %}
+                    <tr onclick="window.location.href='{% url 'application_detail' app.id %}'" style="cursor:pointer;">
+                        <td class="td-muted">{{ app.ttb_id }}</td>
+                        <td>{{ app.brand_name }}</td>
+                        <td>{{ app.fanciful_name|default:'—' }}</td>
+                        <td>{{ app.applicant_name }}</td>
+                        <td>
+                            {% if app.product_type == 'DISTILLED_SPIRITS' %}
+                                Distilled Spirits
+                            {% elif app.product_type == 'MALT_BEVERAGES' %}
+                                Malt Beverages
+                            {% else %}
+                                {{ app.product_type|title }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge badge-{{ app.status }}">
+                                {% if app.status == 'IN_REVIEW' and app.review_started_at and app.review_started_at < lock_cutoff %}
+                                    IN_REVIEW (stale)
+                                {% else %}
+                                    {% if app.status == 'IN_REVIEW' %}
+                                        In Review
+                                    {% elif app.status == 'NEEDS_CORRECTION' %}
+                                        Needs Correction
+                                    {% elif app.status == 'CONDITIONALLY_APPROVED' %}
+                                        Conditionally Approved
+                                    {% else %}
+                                        {{ app.status|title }}
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td class="td-muted">{{ app.date_of_application|date:'Y-m-d'|default:'—' }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">
+                        <div class="empty-state">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 7h16M4 12h16M4 17h16"/>
+                            </svg>
+                            <p>No applications match your current filters. Try clearing the search or adjusting the status/type filters.</p>
+                        </div>
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <div>{{ total }} applications</div>
+        <div class="pagination-links">
+            {% if previous_url %}
+                <a href="{{ previous_url }}" hx-get="{{ previous_url }}" hx-target="#results-section" hx-indicator="#spinner">Previous</a>
+            {% endif %}
+            {% if next_url %}
+                <a href="{{ next_url }}" hx-get="{{ next_url }}" hx-target="#results-section" hx-indicator="#spinner">Next</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

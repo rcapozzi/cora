@@ -1,0 +1,4106 @@
+U.S. Department of the Treasury 
+Alcohol and Tobacco Tax and Trade Bureau (TTB) 
+1310 G Street NW., Box 12 
+Washington, D.C. 20005 
+ 
+COLAs Online 3.11.3 Online Industry Member User 
+Manual 
+ 
+ 
+Prepared by: 
+Office of the Chief Information Officer 
+TTB RFC# TTB-2015-0124-MOD1 
+ 
+FOR OFFICIAL USE ONLY 
+Dated:  June 11, 2015 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+ 
+Revision History 
+ 
+Version Number 
+Date 
+Author 
+Description 
+1.0 
+08/03/2010 
+A. Sharifi 
+Initial Version 
+1.1 
+08/17/2010 
+A. Sharifi 
+Performed minor format and edit 
+1.2 
+08/23/2010 
+A. Sharifi 
+Added TTB Security Warning 
+1.3 
+08/31/2010 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+1.4 
+09/03/2010 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+1.5 
+09/10/2010 
+A. Sharifi 
+Performed minor format and edit 
+1.6 
+09/13/2010 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+1.7 
+11/02/2010 
+A. Sharifi 
+Performed minor format and edit 
+1.8 
+01/14/2011 
+A. Sharifi 
+Updated based on fixes to COLAs 
+Online 
+1.9 
+01/27/2011 
+A. Sharifi 
+Performed minor format and edit 
+2.0 
+06/07/2011 
+A. Sharifi 
+Updated for COLAs Online 3.5 
+2.1 
+06/10/2011 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+2.2 
+06/24/2011 
+A. Sharifi 
+Updated What’s New in 3.5 
+3.0 
+03/02/2012 
+A. Sharifi 
+Updated for COLAs Online 3.6 
+4.0 
+06/12/2012 
+A. Sharifi 
+Updated for COLAs Online 3.7 
+4.1 
+06/15/2012 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+5.0 
+10/05/2012 
+A. Sharifi 
+Updated for COLAs Online 3.8 
+5.1 
+10/11/2012 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+5.2 
+10/12/2012 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+5.3 
+10/23/2012 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+6.0 
+04/04/2013 
+A. Sharifi 
+Updated for COLAs Online 3.9 
+6.1 
+04/11/2013 
+A. Sharifi 
+Performed minor format and edit 
+6.2 
+05/03/2013 
+A. Sharifi 
+Performed minor format and edit 
+6.3 
+07/29/2013 
+A. Sharifi 
+Performed minor format and edit 
+7.0 
+08/16/2013 
+A. Sharifi 
+Updated for COLAs Online 3.10 
+7.1 
+08/20/2013 
+A. Sharifi 
+Performed minor format and edit 
+7.2 
+09/05/2013 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+7.3 
+09/23/2013 
+A. Sharifi 
+Performed minor format and edit 
+Office of the Chief Information Officer 
+Page i 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Version Number 
+Date 
+Author 
+Description 
+8.0 
+10/21/2013 
+A. Sharifi 
+Updated for COLAs Online 3.10.1 
+8.1 
+11/01/2013 
+A. Sharifi 
+Updated for TTB Portal changes 
+8.2 
+11/14/2013 
+A. Sharifi 
+Updated for TTB Contact Us 
+changes 
+8.3 
+12/13/2013 
+A. Sharifi 
+Updated for TTB Contact Us 
+changes 
+9.0 
+05/16/2014 
+A. Sharifi 
+Updated for COLAs Online 3.10.1 
+10.0 
+06/09/2014 
+A. Sharifi 
+Updated for COLAs Online 3.11 
+10.1 
+06/23/2014 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+10.2 
+06/25/2014 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+10.3 
+07/03/2014 
+A. Sharifi 
+Performed minor format and edit 
+11.0 
+06/05/2015 
+A. Sharifi 
+Updated for COLAs Online 3.11.3 
+11.1 
+06/11/2015 
+A. Sharifi 
+Incorporated comments from internal 
+review 
+Office of the Chief Information Officer 
+Page ii 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Table of Contents 
+1 
+INTRODUCTION ................................................................................................................. 1 
+1.1 
+BACKGROUND ............................................................................................................... 1 
+1.2 
+PURPOSE AND SCOPE ................................................................................................... 1 
+1.3 
+ORGANIZATION OF THE USER MANUAL ........................................................................... 2 
+1.3.1 
+Conventions of the User Manual ........................................................................... 2 
+1.4 
+GLOSSARY .................................................................................................................... 2 
+2 
+SYSTEM CAPABILITIES .................................................................................................... 4 
+2.1 
+GENERAL DESCRIPTION ................................................................................................. 4 
+2.1.1 
+What’s New in 3.11.3 ............................................................................................ 4 
+2.2 
+PRIVACY ACT CONSIDERATIONS ..................................................................................... 5 
+3 
+SYSTEM FUNCTIONS ........................................................................................................ 8 
+3.1 
+SYSTEM BASICS ............................................................................................................ 8 
+3.2 
+GETTING STARTED – USING THE TTB ONLINE PORTAL PAGE ........................................... 9 
+3.2.1 
+Access COLAs Online through the TTB Portal Page............................................11 
+3.3 
+USER REGISTRATION ....................................................................................................12 
+3.3.1 
+How Do I Register? ..............................................................................................12 
+3.3.2 
+Create a New User Registration ..........................................................................13 
+3.3.3 
+Activate a User ID ................................................................................................30 
+3.3.4 
+Modify a User Registration ...................................................................................34 
+3.4 
+COLAS ONLINE MENU OPTIONS ....................................................................................45 
+3.4.1 
+Formulas Online ..................................................................................................45 
+3.4.2 
+Home: My eApplications ......................................................................................45 
+3.4.3 
+Create an eApplication .........................................................................................45 
+3.4.4 
+Search for eApplications ......................................................................................45 
+3.4.5 
+My Profile .............................................................................................................46 
+3.4.6 
+Contact Us ...........................................................................................................46 
+3.4.7 
+Instructions ..........................................................................................................46 
+3.4.8 
+Log Off .................................................................................................................46 
+3.5 
+HOME: MY EAPPLICATIONS ...........................................................................................47 
+3.5.1 
+View My eApplications .........................................................................................47 
+3.6 
+SUBMIT APPLICATION ....................................................................................................49 
+3.6.1 
+Create Application ...............................................................................................49 
+3.6.1.1 
+Allowable Changes to Approved Labels Acknowledgement ..........................50 
+3.6.1.2 
+Step 1 of 3: Application Type ........................................................................52 
+3.6.1.3 
+Step 2 of 3: COLA Information ......................................................................55 
+3.6.1.4 
+Step 3 of 3: Upload Labels ............................................................................60 
+3.6.2 
+Upload Attachments.............................................................................................62 
+3.6.2.1 
+Upload Label Images ....................................................................................62 
+3.6.2.2 
+Upload Other Attachments ............................................................................65 
+3.6.3 
+Verify Application .................................................................................................67 
+3.6.4 
+Application Submitted ..........................................................................................71 
+3.7 
+VIEW APPLICATION .......................................................................................................73 
+3.7.1 
+Search for eApplications ......................................................................................73 
+3.7.2 
+Search Results: eApplications .............................................................................76 
+3.7.3 
+Application Detail .................................................................................................78 
+3.7.4 
+Printable Version of COLA ...................................................................................82 
+3.7.4.1 
+Printable E-filed COLA ..................................................................................82 
+3.7.4.2 
+Printable Paper Filed COLA ..........................................................................84 
+Office of the Chief Information Officer 
+Page iii 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.8 
+SURRENDER COLA ......................................................................................................86 
+3.8.1 
+Request to Surrender COLA ................................................................................86 
+3.8.2 
+Surrender COLA Confirmation .............................................................................88 
+3.9 
+WITHDRAW APPLICATION ..............................................................................................89 
+3.9.1 
+Request to Withdraw Application .........................................................................89 
+3.9.2 
+Withdraw Application Confirmation ......................................................................91 
+3.10 
+APPLICATION NEEDS CORRECTION ................................................................................92 
+3.11 
+MY PROFILE .................................................................................................................94 
+3.11.1 
+Update My Profile ................................................................................................94 
+3.11.2 
+Profile Update Confirmation .................................................................................96 
+3.12 
+CHANGE PASSWORD ....................................................................................................97 
+3.12.1 
+Change Your Password .......................................................................................99 
+3.12.2 
+Reset Your Forgotten Password ........................................................................ 103 
+3.12.3 
+Reset Your Expired Password ........................................................................... 106 
+3.12.4 
+Unlock Your Locked Account ............................................................................. 109 
+3.13 
+CONTACT US .............................................................................................................. 112 
+3.13.1 
+Report Problems with COLAs Online ................................................................. 112 
+3.14 
+INSTRUCTIONS............................................................................................................ 114 
+3.14.1 
+Online Industry Member Manual ........................................................................ 116 
+3.14.2 
+Download Online Industry Member Manual ....................................................... 117 
+3.14.3 
+Web Site Privacy and Security Act Notice .......................................................... 118 
+3.14.4 
+Definition of Terms ............................................................................................. 119 
+3.14.5 
+COLAs FAQs ..................................................................................................... 120 
+3.14.6 
+Application for and Certification/Exemption of Label/Bottle Approval TTB Form 
+5100.31  .......................................................................................................................... 121 
+3.14.7 
+Allowable Revisions to Approved Labels ............................................................ 123 
+3.14.8 
+Paperwork Reduction Act Notice........................................................................ 124 
+3.14.9 
+COLA Form Privacy Act Statement .................................................................... 125 
+3.15 
+LOG OFF .................................................................................................................... 126 
+4 
+HELP FACILITIES ........................................................................................................... 127 
+4.1 
+FIELD LEVEL TOOL TIPS .............................................................................................. 127 
+4.2 
+COLAS ONLINE INDUSTRY MEMBER ONLINE HELP ....................................................... 127 
+4.3 
+COLAS ONLINE INDUSTRY MEMBER USER MANUAL ..................................................... 127 
+4.4 
+ALFD CUSTOMER SERVICE ......................................................................................... 127 
+4.5 
+DEFINITION OF TERMS ................................................................................................ 127 
+APPENDIX A 
+DEFINITION OF TERMS ............................................................................ 128 
+INDEX .......................................................................................................................................... I 
+List of Figures 
+Figure 1: Privacy Policy .............................................................................................................. 5 
+Figure 2: Privacy Impact Assessments ...................................................................................... 6 
+Figure 3: Privacy Impact Assessments (COLAs Online) ............................................................. 7 
+Figure 4: TTB Online Portal........................................................................................................ 9 
+Figure 5: TTB Security Warning ................................................................................................10 
+Figure 6: Home: My eApplications.............................................................................................10 
+Figure 7: COLAs and Formulas Online FAQs ...........................................................................12 
+Figure 8: COLAs/FONL User Registration Confirmation ............................................................13 
+Figure 9: User Registration – Main Tab .....................................................................................14 
+Office of the Chief Information Officer 
+Page iv 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 10: User Registration – Reactivating Inactive Account ...................................................14 
+Figure 11: User Registration – New Application ........................................................................14 
+Figure 12: User Registration – Personal Information (USPS Domestic) ....................................15 
+Figure 13: User Registration – Personal Information (Foreign Address) ....................................15 
+Figure 14: User Registration – Business E-mail Addresses ......................................................15 
+Figure 15: User Registration – Authentication Questions ..........................................................16 
+Figure 16: User Registration – Company Tab ...........................................................................16 
+Figure 17: User Registration – Company (System Information – COLAs Online) ......................17 
+Figure 18: User Registration – Company (System Information – Formulas Online) ...................17 
+Figure 19: User Registration – Company (Company Information – Domestic) ...........................18 
+Figure 20: User Registration – Company (Company Information – Foreign) .............................19 
+Figure 21: User Registration – Company (Individual Information – Preparer/Reviewer) ............20 
+Figure 22: User Registration – Company (Individual Information – Submitter) ..........................20 
+Figure 23: User Registration – Company (Individual Information – SA/POA Selected, Beverage)
+ ..........................................................................................................................................20 
+Figure 24: User Registration – Company (Individual Information – SA/POA Selected, 
+Nonbeverage) ....................................................................................................................20 
+Figure 25: User Registration – Action Bar .................................................................................21 
+Figure 26: User Registration – Approver Information ................................................................21 
+Figure 27: User Registration – Company Tab with Company Added .........................................22 
+Figure 28: User Registration – Delete Company Confirmation ..................................................22 
+Figure 29: User Registration – Docs/Links Tab .........................................................................23 
+Figure 30: User Registration – Attachment Modal Window .......................................................23 
+Figure 31: User Registration – Docs/Links Tab with Attachment Uploaded ...............................24 
+Figure 32: User Registration – Delete Attachment Confirmation ...............................................25 
+Figure 33: User Registration – Comments Tab .........................................................................25 
+Figure 34: User Registration – Comments Modal Window ........................................................26 
+Figure 35: User Registration – Comments Tab with Comment Added .......................................26 
+Figure 36: User Registration – Delete Comment Confirmation ..................................................27 
+Figure 37: User Registration – Unsuccessful Validation Message .............................................27 
+Figure 38: User Registration – Successful Validation Message .................................................27 
+Figure 39: User Registration – Perjury Statement .....................................................................28 
+Figure 40: User Registration – Submission Confirmation ..........................................................28 
+Figure 41: User Registration – Exit Link ....................................................................................28 
+Figure 42: User Registration – Exit Confirmation .......................................................................29 
+Figure 43: Activate User ID – Password Change Utility Login ...................................................31 
+Figure 44: Activate User ID – Password Change Utility Main Page ...........................................32 
+Figure 45: Activate User ID – Password Change Successful ....................................................33 
+Figure 46: Modify User Registration – My Profile (Top) .............................................................34 
+Figure 47: Modify User Registration – My Profile (Bottom) ........................................................35 
+Figure 48: Modify User Registration – Company Tab ................................................................36 
+Figure 49: Modify User Registration – Company Modal Window ...............................................37 
+Figure 50: Modify User Registration – Company Tab with Changes ..........................................38 
+Figure 51: Modify User Registration – Delete Company Confirmation .......................................38 
+Figure 52: Modify User Registration – Docs/Links Tab ..............................................................39 
+Figure 53: Modify User Registration – Attachment Modal Window ............................................40 
+Figure 54: Modify User Registration – Docs/Links Tab with Attachment Uploaded ....................41 
+Figure 55: Modify User Registration – Delete Attachment Confirmation ....................................41 
+Figure 56: Modify User Registration – Comments Tab ..............................................................42 
+Figure 57: Modify User Registration – Comments Modal Window .............................................42 
+Figure 58: Modify User Registration – Comments Tab with Comment Added ...........................43 
+Office of the Chief Information Officer 
+Page v 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 59: Modify User Registration – Delete Comment Confirmation .......................................43 
+Figure 60: Modify User Registration – Unsuccessful Validation Message .................................44 
+Figure 61: Modify User Registration – Successful Validation Message .....................................44 
+Figure 62: Modify User Registration – Perjury Statement ..........................................................44 
+Figure 63: Modify User Registration – Submission Confirmation ...............................................44 
+Figure 64: COLAs Online Menu Options ...................................................................................45 
+Figure 65: Home: My eApplications ...........................................................................................47 
+Figure 66: Allowable Changes to Approved Labels Acknowledgement .....................................50 
+Figure 67: Create Application Step 1 of 3: Application Type (Top) ............................................52 
+Figure 68: Create Application Step 1 of 3: Application Type (Bottom) .......................................53 
+Figure 69: Create Application Step 2 of 3: COLA Information (Top) ..........................................55 
+Figure 70: Create Application Step 2 of 3: COLA Information (DSP – Top) ...............................55 
+Figure 71: Create Application Step 2 of 3: COLA Information (Middle) ......................................56 
+Figure 72: Create Application Step 2 of 3: COLA Information (Bottom) .....................................57 
+Figure 73: Create Application Step 3 of 3: Upload Labels (Top) ................................................60 
+Figure 74: Create Application Step 3 of 3: Upload Labels (Bottom) ...........................................61 
+Figure 75: Upload Label Images (Top) ......................................................................................62 
+Figure 76: Upload Label Images (Bottom) .................................................................................63 
+Figure 77: Upload Other Attachments .......................................................................................65 
+Figure 78: Verify Application (Top) ............................................................................................67 
+Figure 79: Verify Application (Middle) ........................................................................................68 
+Figure 80: Verify Application (Bottom) .......................................................................................69 
+Figure 81: Application Submitted ..............................................................................................71 
+Figure 82: Search for eApplications (Top) .................................................................................73 
+Figure 83: Search for eApplications (Bottom) ............................................................................74 
+Figure 84: Search Results: eApplications ..................................................................................76 
+Figure 85: Application Detail (Top) ............................................................................................78 
+Figure 86: Application Detail (Middle) ........................................................................................79 
+Figure 87: Application Detail (Bottom) .......................................................................................80 
+Figure 88: Printable E-filed COLA (Top) ....................................................................................82 
+Figure 89: Printable E-filed COLA (Bottom) ...............................................................................83 
+Figure 90: Printable Paper Filed COLA .....................................................................................84 
+Figure 91: Request to Surrender COLA ....................................................................................86 
+Figure 92: Surrender COLA Confirmation .................................................................................88 
+Figure 93: Request to Withdraw Application ..............................................................................89 
+Figure 94: Withdraw Application Confirmation ...........................................................................91 
+Figure 95: Application Needs Correction ...................................................................................92 
+Figure 96: My Profile (Top) .......................................................................................................94 
+Figure 97: My Profile (Bottom) ..................................................................................................95 
+Figure 98: Profile Update Confirmation .....................................................................................96 
+Figure 99: Change Password Reminder Confirmation...............................................................97 
+Figure 100: Expired Password Error Message ..........................................................................98 
+Figure 101: Locked Account Error Message .............................................................................99 
+Figure 102: Change Password – Change Password Logout Confirmation .............................. 100 
+Figure 103: Change Password – Password Change Utility Login ............................................ 100 
+Figure 104: Change Password – Password Change Utility Main Page .................................... 101 
+Figure 105: Change Password – Password Change Successful ............................................. 102 
+Figure 106: Reset Forgotten Password – Password Change Utility Login ............................... 103 
+Figure 107: Reset Forgotten Password – Password Change Utility Main Page ....................... 104 
+Figure 108: Reset Forgotten Password – Password Change Successful ................................ 105 
+Figure 109: Reset Expired Password – Password Change Utility Login .................................. 106 
+Office of the Chief Information Officer 
+Page vi 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 110: Reset Expired Password – Password Change Utility Main Page .......................... 107 
+Figure 111: Reset Expired Password – Password Change Successful ................................... 108 
+Figure 112: Unlock Locked Account – Password Change Utility Login .................................... 109 
+Figure 113: Unlock Locked Account – Password Change Utility Main Page ............................ 110 
+Figure 114: Unlock Locked Account – Password Change Successful ..................................... 111 
+Figure 115: Contact Us ........................................................................................................... 112 
+Figure 116: Instructions ........................................................................................................... 114 
+Figure 117: COLAs Online Industry Member Online Help ....................................................... 116 
+Figure 118: COLAs Online Industry Member User Manual ...................................................... 117 
+Figure 119: Privacy Policy ....................................................................................................... 118 
+Figure 120: Definition of Terms ............................................................................................... 119 
+Figure 121: COLAs Online FAQs ............................................................................................ 120 
+Figure 122: Application for and Certification/Exemption of Label/Bottle Approval TTB Form 
+5100.31 ............................................................................................................................ 121 
+Figure 123: TTB Form 5100.31 Download Confirmation ......................................................... 122 
+Figure 124: Allowable Revisions to Approved Labels .............................................................. 123 
+Figure 125: TTB Form 5100.31 Download Confirmation ......................................................... 123 
+Figure 126: Paperwork Reduction Act Notice .......................................................................... 124 
+Figure 127: COLA Form Privacy Act Statement ...................................................................... 125 
+List of Tables 
+Table 1: Manual Organization .................................................................................................... 2 
+Table 2: Manual Conventions ..................................................................................................... 2 
+Table 3: Acronyms and Terms ................................................................................................... 2 
+ 
+Office of the Chief Information Officer 
+Page vii 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+1 
+INTRODUCTION 
+This COLAs Online Industry Member User Manual provides information on how to operate the 
+COLAs Online system for authenticated users.  The COLAs Online system allows for the 
+submission and tracking of Applications for and Certification/Exemption of Bottle/Label Approval 
+via TTB F 5100.31.  This document is written on behalf of the Advertising, Labeling and 
+Formulation Division (ALFD), Office of the Chief Information Officer (OCIO), Alcohol and 
+Tobacco Tax and Trade Bureau (TTB). 
+ 
+This section provides information on the project background, project objectives, and points of 
+contact, as well as the document organization and conventions. 
+1.1 
+BACKGROUND 
+The TTB mission is to: 
+ 
+• 
+Collect alcohol, tobacco, firearms, and ammunition taxes 
+• 
+Ensure that alcohol beverages are labeled, advertised and marketed in accordance with 
+the law 
+• 
+Administer the laws and regulations in a manner that protects the revenue, protects the 
+consumer, and promotes voluntary compliance 
+ 
+The ALFD mission is to: 
+ 
+• 
+Ensure the proper tax classification of alcohol beverages 
+• 
+Ensure that formulas, labels, and advertisements for alcohol beverages are in 
+compliance with Federal laws and regulations 
+• 
+Ensure that labels provide consumers with adequate information on the identity and 
+quality of alcohol beverage products 
+• 
+Prevent consumer deception 
+• 
+Educate and provide guidance to industry and the public on laws, regulations, and 
+activities regarding ALFD's mission and functions 
+1.2 
+PURPOSE AND SCOPE 
+The purpose of the COLAs Online Industry Member User Manual is to provide a brief 
+understanding of how to operate and navigate through the COLAs Online system. 
+The COLAs Online system is the authenticated system requiring username and password to 
+submit applications, search for applications or change profile information. 
+This manual discusses who should use this manual and reviews the menu options, screens 
+available and step-by-step procedures for the system interfaces. 
+ 
+This manual is intended to provide information on how to use the system for external 
+authenticated users of COLAs Online (registration required).  There are two types of external 
+authenticated users: 
+ 
+• 
+External User – The registered industry member (IM) submits the COLA application 
+electronically and views the status of the application. 
+Office of the Chief Information Officer 
+Page 1 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+• 
+External Preparer/Reviewer User – The user with this classification is responsible for 
+creating COLA applications, but does not have the ability to submit, withdraw, or 
+surrender an application. 
+1.3 
+ORGANIZATION OF THE USER MANUAL 
+Table 1 lists the details of the organization of the User Manual.   
+ 
+Table 1: Manual Organization 
+Section Number 
+Section Title 
+Description 
+1 
+Introduction 
+Provides information on the project 
+background, as well as the document 
+organization and conventions 
+2 
+System Capabilities 
+Provides an overview of the COLAs 
+Online system and its capabilities 
+3 
+System Functions 
+Describes each specific function including 
+step-by-step procedures for using the 
+function 
+4 
+Help Facilities 
+Discusses the help facilities provided to 
+users of the COLAs Online system 
+Appendix A 
+Definition of Terms 
+Defines important terms used in COLAs 
+Online system 
+1.3.1 
+Conventions of the User Manual 
+Table 2 lists the manual conventions of the User Manual. 
+ 
+Table 2: Manual Conventions 
+Convention 
+Description 
+Bold 
+Bold text indicates a button or key label 
+►Note: 
+Indicates a note or message to the user 
+1. Numbered List 
+Numbered lists provide step-by-step procedures for performing an action 
+• 
+Bulleted List 
+Bulleted lists provide information, not procedural steps 
+Link  
+Indicates a link to a specific application or web page 
+ 
+Question Mark – Field-level help 
+1.4 
+GLOSSARY 
+Table 3 provides a list of acronyms and terms used in the User Manual.  For a more complete 
+list, see Appendix A  Definition of Terms. 
+ 
+Table 3: Acronyms and Terms 
+Acronym / Term 
+Description 
+ALFD 
+Advertising, Labeling and Formulation Division 
+Office of the Chief Information Officer 
+Page 2 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Acronym / Term 
+Description 
+COLA 
+Certificate of Label Approval 
+COLAs Online 
+Certificate of Label Approval System 
+FOIA 
+Freedom of Information Act 
+FONL 
+Formulas Online 
+NRC 
+National Revenue Center 
+OIM 
+Online Industry Member 
+PCR 
+Public COLA Registry 
+PIA 
+Privacy Impact Assessment 
+SDLC 
+Systems Development Life Cycle 
+TTB 
+Alcohol and Tobacco Tax and Trade Bureau 
+Office of the Chief Information Officer 
+Page 3 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+2 
+SYSTEM CAPABILITIES 
+This section provides an overview of the COLAs Online system and its capabilities. 
+2.1 
+GENERAL DESCRIPTION 
+COLAs Online is a web-based system giving alcohol industry members and third party filers the 
+option to submit label applications via the TTB web site.  The Advertising, Labeling & 
+Formulation Division (ALFD) personnel will process the applications electronically, and provide 
+electronic notification to applicants of approval, rejection, or needing correction. 
+2.1.1 
+What’s New in 3.11.3 
+There were no system updates or new functionality included in Version 3.11.3 of the COLAs 
+Online system. 
+Office of the Chief Information Officer 
+Page 4 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+2.2 
+PRIVACY ACT CONSIDERATIONS 
+The TTB privacy policy is described in the Privacy Policy page linked on the TTB Online Portal 
+page and on the Public COLA Registry entry point, the Public COLA Registry Basic Search 
+page.  The TTB privacy impact assessment (PIA) is available in the Privacy Impact 
+Assessments page linked on the TTB Online Portal page and on the Public COLA Registry 
+entry point, the Public COLA Registry Basic Search page. 
+ 
+Figure 1 details the Privacy Policy page.  Figure 2 details the Privacy Impact Assessments 
+page.  Figure 3 details the Privacy Impact Assessment page for COLAs Online, accessed by 
+selecting the Certificate of Label Approval Online (COLA) link on the Privacy Impact 
+Assessments page. 
+Figure 1: Privacy Policy 
+ 
+Office of the Chief Information Officer 
+Page 5 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 2: Privacy Impact Assessments 
+ 
+ 
+Office of the Chief Information Officer 
+Page 6 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 3: Privacy Impact Assessments (COLAs Online) 
+ 
+ 
+In addition, the following government warning displays at the bottom of the TTB Online Portal 
+page: 
+ 
+WARNING! THIS SYSTEM IS THE PROPERTY OF THE UNITED STATES DEPARTMENT OF 
+TREASURY. UNAUTHORIZED USE OF THIS SYSTEM IS STRICTLY PROHIBITED AND 
+SUBJECT TO CRIMINAL AND CIVIL PENALITIES. THE DEPARTMENT MAY MONITOR, 
+RECORD, AND AUDIT ANY ACTIVITY ON THE SYSTEM AND SEARCH AND RETRIEVE 
+ANY INFORMATION STORED WITHIN THE SYSTEM. BY ACCESSING AND USING THIS 
+COMPUTER YOU ARE AGREEING TO ABIDE BY THE TTB RULES OF BEHAVIOR, AND 
+ARE CONSENTING TO SUCH MONITORING, RECORDING, AND INFORMATION 
+RETRIEVAL FOR LAW ENFORCEMENT AND OTHER PURPOSES. USERS SHOULD HAVE 
+NO EXPECTATION OF PRIVACY WHILE USING THIS SYSTEM. 
+Office of the Chief Information Officer 
+Page 7 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3 
+SYSTEM FUNCTIONS 
+This section describes each specific system function of the COLAs Online system. 
+3.1 
+SYSTEM BASICS 
+This section discusses all of the basic information needed to start using the system.  This 
+section includes the following information: 
+ 
+• 
+Getting Started – Using the TTB Online Portal Page – See Section 3.2  Getting 
+Started – Using the TTB Online Portal Page 
+• 
+User Registration – See Section 3.3  User Registration 
+• 
+COLAs Online Menu Options – See Section 3.4  COLAs Online Menu Options 
+• 
+Home: My eApplications – See Section 3.5  Home: My eApplications 
+• 
+Submit Application – See Section 3.6  Submit Application 
+• 
+View Application – See Section 3.7  View Application 
+• 
+Surrender COLA – See Section 3.8  Surrender COLA 
+• 
+Withdraw Application – See Section 3.9  Withdraw Application 
+• 
+Application Needs Correction – See Section 3.10  Application Needs Correction 
+• 
+My Profile – See Section 3.11  My Profile 
+• 
+Change Password – See Section 3.12  Change Password 
+• 
+Contact Us – See Section 3.13  Contact Us 
+• 
+Instructions – See Section 3.14  Instructions 
+• 
+Log Off – See Section 3.15  Log Off 
+Office of the Chief Information Officer 
+Page 8 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.2 
+GETTING STARTED – USING THE TTB ONLINE PORTAL PAGE 
+You access both the COLAs Online system and the Formulas Online system from the same 
+main page: the TTB Online Portal page.  You may also access the Public COLA Registry or 
+begin the user registration process for using TTB Online.  The Home: eApplications page 
+displays when you successfully log into the COLAs Online system after acknowledging the TTB 
+Security Warning.  Figure 4 details the TTB Online Portal page.  Figure 5 details the TTB 
+Security Warning.  Figure 6 details the Home: My eApplications page. 
+ 
+Figure 4: TTB Online Portal 
+ 
+Office of the Chief Information Officer 
+Page 9 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 5: TTB Security Warning 
+ 
+Figure 6: Home: My eApplications 
+ 
+Office of the Chief Information Officer 
+Page 10 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.2.1 
+Access COLAs Online through the TTB Portal Page 
+Follow these steps to access COLAs Online through the TTB Online Portal page: 
+ 
+1. From your web browser, enter https://www.ttbonline.gov/ in the address field. 
+2. Press the Enter key.  The TTB Online Portal page displays.  See Figure 4. 
+3. Enter your User Name and Password in the available fields. 
+4. Select the COLAs Online button.  The TTB Security Warning displays.  See Figure 5. 
+5. Select the OK button.  The TTB Security warning closes and the Home: My eApplications 
+page displays.  See Figure 6. 
+►Note:  If you do not have a user name and password, select the how to register? link to view 
+registration FAQs.  See Section 3.3.1  How Do I Register? for more information.  Alternatively, 
+you may go directly to the registration process by selecting the Register for TTB Online link.  
+See Section 3.3.2  Create a New User Registration for more information. 
+►Note:  Follow the steps in Section 3.12.1  Change Your Password to change an existing 
+password. 
+►Note:  Follow the steps in Section 3.12.2  Reset Your Forgotten Password to reset a forgotten 
+password. 
+►Note:  Follow the steps in Section 3.12.3  Reset Your Expired Password to reset an expired 
+password. 
+►Note:  Follow the steps in Section 3.12.4  Unlock Your Locked Account to unlock a locked 
+account. 
+►Note:  After one year of inactivity, your user ID will also be deleted and you will need to re-
+register if you wish to resume using COLAs Online.  Follow the steps in Section 3.3.2  Create a 
+New User Registration to re-register. 
+Office of the Chief Information Officer 
+Page 11 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.3 
+USER REGISTRATION 
+This section discusses the basic information for user registration.  This section includes the 
+following information: 
+ 
+• 
+How Do I Register? – See Section 3.3.1  How Do I Register? 
+• 
+Create a New User Registration – See Section 3.3.2  Create a New User Registration 
+• 
+Activate a User ID – See Section 3.3.3  Activate a User ID 
+• 
+Modify a User Registration – See Section 3.3.4  Modify a User Registration 
+3.3.1 
+How Do I Register? 
+The how to register? link displays the COLAs and Formulas Online FAQs page and provides 
+general information on how to register for COLAs Online and/or Formulas Online.  Figure 7 
+details the COLAs and Formulas Online FAQs page. 
+ 
+Figure 7: COLAs and Formulas Online FAQs 
+ 
+ 
+Follow the steps in Section 3.3.2  Create a New User Registration to register for COLAs Online 
+and/or Formulas Online. 
+Office of the Chief Information Officer 
+Page 12 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.3.2 
+Create a New User Registration 
+Follow these steps to create a new user registration: 
+ 
+1. From your web browser, enter https://www.ttbonline.gov/ in the address field. 
+2. Press the Enter key.  The TTB Online Portal page displays.  See Figure 4. 
+3. Select the Register for TTB Online link.  A confirmation message box displays prompting 
+you to confirm your action.  See Figure 8. 
+ 
+Figure 8: COLAs/FONL User Registration Confirmation 
+ 
+ 
+a. If you already use COLAs Online or Formulas Online, select the Cancel button.   
+b. If you are new to COLAs Online or Formulas Online or wish to reactivate an inactive 
+account, select OK button.  The User Registration page displays with the Main tab 
+selected.  See Figure 9. 
+ 
+Office of the Chief Information Officer 
+Page 13 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 9: User Registration – Main Tab 
+ 
+Type of Application 
+Figure 10: User Registration – Reactivating Inactive Account 
+ 
+Figure 11: User Registration – New Application 
+ 
+ 
+4. Select the radio button next to Type of Application (New Application or Reactivate an 
+Inactive Account). 
+Office of the Chief Information Officer 
+Page 14 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+a. If you are an existing COLAs Online user or an inactive Formulas Online user, select the 
+Reactivate an Inactive Account radio button and enter your user ID (if you remember it).  
+See Figure 10. 
+b. If you are a new user, select the New Application radio button.  See Figure 11. 
+Personal Information 
+Figure 12: User Registration – Personal Information (USPS Domestic) 
+ 
+Figure 13: User Registration – Personal Information (Foreign Address) 
+ 
+ 
+5. Enter your personal information in the available fields.  See Figure 12.  If you select Foreign 
+for Address Format, additional address fields display.  See Figure 13. 
+►Note:  Fields marked with asterisks (*) are required fields. 
+Business E-mail Addresses 
+Figure 14: User Registration – Business E-mail Addresses 
+ 
+ 
+6. Enter at least one valid business e-mail address in the available field(s).  See Figure 14. 
+Office of the Chief Information Officer 
+Page 15 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  You may add up to three valid e-mail addresses, but then you must select which 
+should be used as the primary contact.  E-mail notification will only be sent to the primary 
+contact e-mail address. 
+►Note:  Fields marked with asterisks (*) are required fields. 
+Authentication Questions 
+Figure 15: User Registration – Authentication Questions 
+ 
+►Note:  The system prompts you to select three different authentication questions from among 
+several available.  It also prompts you to answer the questions you have selected.  Your 
+selections and answers are protected by encryption technology and are unavailable to others.  
+This information is used by the system to allow you to activate your user ID by setting your initial 
+password or change a forgotten password. 
+7. Select three different Authentication Questions from the drop-down lists.  See Figure 15. 
+8. Enter your answers in the available fields. 
+►Note:  Fields marked with asterisks (*) are required fields. 
+9. Select the Next button.  The Company tab displays.  See Figure 16. 
+Company Tab 
+Figure 16: User Registration – Company Tab 
+ 
+ 
+Office of the Chief Information Officer 
+Page 16 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+10. Select the access type from the COLAs Online System Access drop-down list if you are 
+requesting COLAs Online access.  See Figure 16. 
+11. Select the Add button.  The Company modal window displays.  See Figure 17. 
+Company Information/System Information 
+Figure 17: User Registration – Company (System Information – COLAs Online) 
+ 
+Figure 18: User Registration – Company (System Information – Formulas Online) 
+ 
+►Note:  If you selected an access type from the COLAs Online System Access drop-down list 
+(See Figure 16), the COLAs Online radio button next to System Requested is selectable.  See 
+Figure 17.  Otherwise, you may only select the Formulas Online radio button option.  See Figure 
+18. 
+►Note:  You may register to use COLAs Online or Formulas Online.  Because access approval 
+for each system is done independently, you must complete two entries for that company: one for 
+COLAs Online access and one for Formulas Online access.  This may be completed within the 
+same user registration request. 
+►Note:  Fields marked with asterisks (*) are required fields. 
+12. If the System Requested is COLAs Online, the System Access displays based on the 
+access type selected from the COLAs Online System Access drop-down list.  See Figure 16. 
+13. If the System Requested is Formulas Online, select the Submitter or Preparer / Reviewer 
+radio button next to System Access. 
+►Note:  For Formulas Online, users may register as Submitter or Preparer/Reviewer at the 
+company level.  For COLAs Online, users can only be either a Submitter or a 
+Preparer/Reviewer for all companies included in the user registration request. 
+14. If the System Requested is Formulas Online, select the Alcohol Beverage radio button or 
+Nonbeverage Product radio button next to Company Type. 
+►Note:  The Nonbeverage Product Company Type is only applicable for a Nonbeverage 
+Product company. 
+Office of the Chief Information Officer 
+Page 17 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Submitter Company Information 
+Figure 19: User Registration – Company (Company Information – Domestic) 
+ 
+Office of the Chief Information Officer 
+Page 18 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 20: User Registration – Company (Company Information – Foreign) 
+ 
+ 
+15. If registering as a Submitter or Preparer/Reviewer for an Alcohol Beverage company, enter 
+your permit number, registry number, or brewer’s number and date of permit issue in the 
+available fields. 
+►Note:  The Company Code field is only applicable for a Nonbeverage Product company. 
+►Note:  The Date of Permit Issue field format is MM/DD/YYYY.  Enter it in manually or place 
+your cursor in the field to display a pop-up calendar to find the correct date. 
+16. If registering as a Submitter or Preparer/Reviewer for a Nonbeverage company, enter your 
+company code in the available field. 
+►Note:  The Registry, Permit, or Brewer’s Notice field will not be required and the Date of 
+Permit Issue field will be hidden if you select the Nonbeverage Product radio button next to 
+Company Type. 
+17. Enter your company address information in the available fields.  See Figure 19.  If you select 
+Foreign for Address Format, additional address fields display.  See Figure 20. 
+Office of the Chief Information Officer 
+Page 19 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  Fields marked with asterisks (*) are required fields. 
+Individual Information/Signature Authority or Power of Attorney Forms 
+Figure 21: User Registration – Company (Individual Information – Preparer/Reviewer) 
+ 
+Figure 22: User Registration – Company (Individual Information – Submitter) 
+ 
+Figure 23: User Registration – Company (Individual Information – SA/POA Selected, Beverage) 
+ 
+Figure 24: User Registration – Company (Individual Information – SA/POA Selected, Nonbeverage) 
+ 
+ 
+18. If registering as a Preparer/Reviewer, select the Employee or Representative radio button.  
+See Figure 21. 
+19. If registering as a Submitter, select the Employee or Representative radio button.  See 
+Figure 22. 
+20. If registering as a Submitter, select the Owner, Signing Authority, or Power of Attorney radio 
+button. 
+►Note:  If you are registering for the first time as a Submitter on behalf of a beverage company, 
+unless you are an owner, you must acknowledge you have a valid SA or POA on file at the NRC 
+by selecting the “I agree” checkbox.  See Figure 23.  If registering for the first time as Submitter 
+on behalf of a nonbeverage company, unless you are an owner, you need to upload a signed 
+Office of the Chief Information Officer 
+Page 20 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Power of Attorney form or a Signing Authority form.  See Figure 24.  You may download the 
+Power of Attorney form or Signing Authority form through the system for completion, or you may 
+upload your own completed, scanned form. 
+21. If the Signing Authority or Power of Attorney radio button was selected for a nonbeverage 
+company, select the POA Form or SA Form link in the action bar to download the form(s) 
+required.  See Figure 25. 
+ 
+Figure 25: User Registration – Action Bar 
+ 
+ 
+22. Complete and scan the required form(s). 
+23. Upload the file through the Docs/Links Tab. 
+Approver Information 
+Figure 26: User Registration – Approver Information 
+ 
+ 
+24. If known, enter the Title and Name of the Company Approval Official in the available fields. 
+25. Select the OK button.  The Company modal window closes and the company is added to 
+the user registration submission.  See Figure 27. 
+ 
+Office of the Chief Information Officer 
+Page 21 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 27: User Registration – Company Tab with Company Added 
+ 
+►Note:  Select the System link to display the Company modal window and edit the company 
+information.  Select the checkbox next to the company and select the Delete button to delete 
+the company.  A confirmation message box displays prompting you to confirm your action.  See 
+Figure 28.  Select the OK button to confirm. 
+Figure 28: User Registration – Delete Company Confirmation 
+ 
+Office of the Chief Information Officer 
+Page 22 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Docs/Links Tab 
+Figure 29: User Registration – Docs/Links Tab 
+ 
+►Note:  If registering for the first time as Submitter, unless you are an owner, you need to 
+upload a signed Power of Attorney form or a Signing Authority form.  If you do not have any 
+attachments to upload, follow the steps in the Comments Tab if you have any comments to add 
+to the user registration submission.  If you do not have any comments to add, follow the steps in 
+User Registration Submission to submit your user registration. 
+26. Select the Next button.  The Docs/Links tab displays.  See Figure 29. 
+27. Select the Upload button.  The Attachment modal window displays.  See Figure 30. 
+ 
+Figure 30: User Registration – Attachment Modal Window 
+ 
+ 
+28. Enter a description for the file in the available field. 
+29. Select a type from the Type drop-down list. 
+Office of the Chief Information Officer 
+Page 23 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  Fields marked with asterisks (*) are required fields. 
+►Note:  You must select the correct type.  For example, if you selected Signing Authority as 
+the Signature Authorization in the Company modal window, you must select Signing Authority 
+from the Type drop-down list.  If you selected Power of Attorney as the Signature Authorization 
+in the Company modal window, you must select Power of Attorney from the Type drop-down 
+list. 
+►Note:  If you are reactivating a former COLAs Online or Formulas Online user ID and these 
+items are on file, you will not need to file these again. 
+30. Select the Browse button to browse and select the signed Power of Attorney or Signing 
+Authority file. 
+31. Select the OK button.  The Attachment modal window closes and the file is uploaded to the 
+user registration submission.  See Figure 31. 
+ 
+Figure 31: User Registration – Docs/Links Tab with Attachment Uploaded 
+ 
+►Note:  Select the edit link to display the Attachment modal window and edit the attachment 
+information.  Select the checkbox next to the attachment and select the Delete button to delete 
+the attachment.  A confirmation message box displays prompting you to confirm your action.  
+See Figure 32.  Select the OK button to confirm. 
+Office of the Chief Information Officer 
+Page 24 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 32: User Registration – Delete Attachment Confirmation 
+ 
+Comments Tab 
+Figure 33: User Registration – Comments Tab 
+ 
+►Note:  Adding comments to a user registration submission is optional.  If you do not have any 
+comments to add, follow the steps in User Registration Submission to submit your user 
+registration. 
+32. Select the Comments tab.  The Comments tab displays.  See Figure 33. 
+33. Select the Add button.  The Comments modal window displays.  See Figure 34. 
+ 
+Office of the Chief Information Officer 
+Page 25 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 34: User Registration – Comments Modal Window 
+ 
+ 
+34. Enter comments in the available field. 
+35. Select the OK button.  The Comment modal window closes and the comments are added to 
+the user registration submission.  See Figure 35. 
+ 
+Figure 35: User Registration – Comments Tab with Comment Added 
+ 
+►Note:  Select the Comment link to display the Comment modal window and edit the comment 
+information.  Select the checkbox next to the comment and select the Delete button to delete 
+the comment.  A confirmation message box displays prompting you to confirm your action.  See 
+Figure 36.  Select the OK button to confirm. 
+Office of the Chief Information Officer 
+Page 26 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 36: User Registration – Delete Comment Confirmation 
+ 
+User Registration Submission 
+36. Select the Validate button.  Red error messages display indicating any issues found with 
+the user registration submission.  Fields with errors will also be highlighted red.  See Figure 
+37.  Alternatively, a green message displays indicating no issues were found with the user 
+registration submission.  See Figure 38.  Correct any errors and repeat this step until the 
+user registration submission is successfully validated. 
+ 
+Figure 37: User Registration – Unsuccessful Validation Message 
+ 
+Figure 38: User Registration – Successful Validation Message 
+ 
+ 
+Office of the Chief Information Officer 
+Page 27 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+37. Select the Perjury Statement checkbox at the bottom of any tab to acknowledge you have 
+read, understood, and complied with instructions for filing the application.  See Figure 39. 
+ 
+Figure 39: User Registration – Perjury Statement 
+ 
+ 
+38. Select the Submit button.  The Submission Confirmation page displays with a submission 
+ID and the user registration submission is successfully submitted.  See Figure 40. 
+ 
+Figure 40: User Registration – Submission Confirmation 
+ 
+ 
+TTB verifies your authorizations with the companies you are registering for and will contact 
+you by e-mail when a determination has been reached or if additional information is needed.  
+You should allow up to 20 days for processing and keep a record of the submission ID for 
+tracking purposes. 
+39. Select the Exit link in the main navigation banner.  See Figure 41. 
+ 
+Figure 41: User Registration – Exit Link 
+ 
+ 
+A confirmation message box displays prompting you to confirm your action.  See Figure 42. 
+ 
+Office of the Chief Information Officer 
+Page 28 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 42: User Registration – Exit Confirmation 
+ 
+ 
+40. Select the OK button to confirm.  The confirmation message box closes and the TTB Online 
+Portal page displays.  See Figure 4. 
+41. Follow the steps in Section 3.3.3  Activate a User ID to activate your user ID once TTB has 
+contacted you with the user ID. 
+Office of the Chief Information Officer 
+Page 29 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.3.3 
+Activate a User ID 
+►Note:  Follow the steps in Section 3.12.1  Change Your Password to change an existing 
+password. 
+►Note:  Follow the steps in Section 3.12.2  Reset Your Forgotten Password to reset a forgotten 
+password. 
+►Note:  Follow the steps in Section 3.12.3  Reset Your Expired Password to reset an expired 
+password. 
+►Note:  Follow the steps in Section 3.12.4  Unlock Your Locked Account to unlock a locked 
+account. 
+►Note:  After one year of inactivity, your user ID will also be deleted and you will need to re-
+register if you wish to resume using COLAs Online.  Follow the steps in Section 3.3.2  Create a 
+New User Registration to re-register. 
+Follow these steps to activate your user ID once TTB has contacted you with the user ID after 
+processing your user registration submission: 
+1. From your web browser, enter https://www.ttbonline.gov/ in the address field. 
+2. Press the Enter key.  The TTB Online Portal page displays.  See Figure 4. 
+3. Select the New or forgotten password? link.  The Password Change Utility displays.  See 
+Figure 43. 
+ 
+Office of the Chief Information Officer 
+Page 30 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 43: Activate User ID – Password Change Utility Login 
+ 
+ 
+4. Enter the user ID you received from TTB in the User ID field. 
+5. Enter the e-mail address you set during user registration as the primary e-mail in the 
+Primary Email address field. 
+6. Select the Get User Profile Questions button.  The system displays one of the three 
+authentication questions you answered when you filled out the user registration initially.  See 
+Figure 44. 
+ 
+Office of the Chief Information Officer 
+Page 31 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 44: Activate User ID – Password Change Utility Main Page 
+ 
+►Note:  If you fail two login attempts or if you fail two times to answer your security questions 
+correctly, your account will be locked.  Please contact the TTB Help Desk at 866-927-2533 
+(Option 2) to have your account unlocked. 
+7. Enter the answer for your security question in the available field. 
+8. Enter the password in the New Password field. 
+9. Enter the password in the Retyped New Password field. 
+►Note:  Passwords must meet the following complexity rules: 
+• 
+Password must be at least 8 characters long. 
+• 
+Password must not contain your user ID. 
+• 
+Password must contain at least 1 UPPERCASE, 1 lowercase, 1 digit, and 1 special 
+character. 
+• 
+You cannot reuse a password that has been used in the last 10 times or within the last 
+48 hours. 
+• 
+You cannot use the following special characters: ' (single-quote), " (double-quote), _ 
+(underscore), = (equal sign), & (ampersand), and @ (at sign). 
+10. If you make a mistake, select the Clear button to clear the entry before setting your new 
+password. 
+Office of the Chief Information Officer 
+Page 32 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+11. If you change your mind, select the Cancel button to cancel before setting your new 
+password. 
+12. Select the Set New Password button.  A confirmation message box displays stating your 
+password was successfully changed.  See Figure 45. 
+ 
+Figure 45: Activate User ID – Password Change Successful 
+ 
+ 
+13. Select the OK button.  The Password Change Utility closes and the TTB Online Portal page 
+displays.  See Figure 4. 
+14. Follow the steps in Section 3.2.1  Access COLAs Online through the TTB Portal Page to 
+login to COLAs Online using your newly activated user ID and password. 
+Office of the Chief Information Officer 
+Page 33 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.3.4 
+Modify a User Registration 
+You may modify your user registration to add access to companies in the COLAs Online 
+system. 
+ 
+Follow these steps to modify an existing user registration: 
+ 
+1. Select the My Profile link in the menu box on any page.  The My Profile page displays.  See 
+Figure 46 and Figure 47. 
+►Note:  See Section 3.4  COLAs Online Menu Options for more information on the menu box 
+and COLAs menu options. 
+ 
+Figure 46: Modify User Registration – My Profile (Top) 
+ 
+ 
+Office of the Chief Information Officer 
+Page 34 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 47: Modify User Registration – My Profile (Bottom) 
+ 
+ 
+2. Select the Modify Registration button.  The Company tab of your existing user registration 
+displays.  The application opens up the Company tab of your existing user registration.  See 
+Figure 48. 
+Office of the Chief Information Officer 
+Page 35 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Modify Company Information 
+Figure 48: Modify User Registration – Company Tab 
+ 
+ 
+3. Select the access type from the COLAs Online System Access drop-down list. 
+4. Select the Add button.  The Company modal window displays.  See Figure 49. 
+ 
+Office of the Chief Information Officer 
+Page 36 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 49: Modify User Registration – Company Modal Window 
+ 
+ 
+5. Enter the information in the available fields. 
+►Note:  The Date of Permit Issue field format is MM/DD/YYYY.  Enter it in manually or place 
+your cursor in the field to display a pop-up calendar to find the correct date. 
+►Note:  The Registry, Permit, or Brewer’s Notice field will not be required and the Date of 
+Permit Issue field will be hidden if the Nonbeverage Product radio button next to Company Type 
+is selected. 
+Office of the Chief Information Officer 
+Page 37 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  Fields marked with asterisks (*) are required fields. 
+6. Select the OK button.  The Company modal window closes and the Company tab displays.  
+See Figure 50. 
+ 
+Figure 50: Modify User Registration – Company Tab with Changes 
+ 
+►Note:  Select the System link to display the Company modal window and edit the company 
+information.  Select the checkbox next to the company and select the Delete button to delete 
+the company.  A confirmation message box displays prompting you to confirm your action.  See 
+Figure 51.  Select the OK button to confirm. 
+Figure 51: Modify User Registration – Delete Company Confirmation 
+ 
+Office of the Chief Information Officer 
+Page 38 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+ 
+7. Repeat the steps until you have added all companies desired. 
+►Note:  To add attachments to the modify user registration, follow the steps in Docs/Links Tab.  
+If you do not have any attachments to upload, follow the steps in Comments Tab if you have 
+any comments to add to the modify user registration submission.  If you do not have any 
+comments to add, follow the steps in Modify User Registration Submission to submit your 
+modify user registration. 
+Docs/Links Tab 
+8. Select the Docs/Links tab.  The Docs/Links tab displays.  See Figure 52. 
+ 
+Figure 52: Modify User Registration – Docs/Links Tab 
+ 
+ 
+9. Select the Upload button.  The Attachment modal window displays.  See Figure 53. 
+ 
+Office of the Chief Information Officer 
+Page 39 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 53: Modify User Registration – Attachment Modal Window 
+ 
+ 
+10. Enter a description for the file in the available field. 
+11. Select a type from the Type drop-down list. 
+►Note:  Fields marked with asterisks (*) are required fields. 
+►Note:  You must select the correct type.  For example, if you selected Signing Authority as 
+the Signature Authorization in the Company modal window, you must select Signing Authority 
+from the Type drop-down list.  If you selected Power of Attorney as the Signature Authorization 
+in the Company modal window, you must select Power of Attorney from the Type drop-down 
+list. 
+►Note:  If you are reactivating a former COLAs Online user ID and these items are on file, you 
+will not need to file these again. 
+12. Select the Browse button to browse and select the file. 
+13. Select the OK button.  The Attachment modal window closes and the file is uploaded to the 
+modify user registration submission.  See Figure 54. 
+ 
+Office of the Chief Information Officer 
+Page 40 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 54: Modify User Registration – Docs/Links Tab with Attachment Uploaded 
+ 
+►Note:  Select the edit link to display the Attachment modal window and edit the attachment 
+information.  Select the checkbox next to the attachment and select the Delete button to delete 
+the attachment.  A confirmation message box displays prompting you to confirm your action.  
+See Figure 55.  Select the OK button to confirm. 
+Figure 55: Modify User Registration – Delete Attachment Confirmation 
+ 
+Comments Tab 
+►Note:  Adding comments to a modify user registration submission is optional.  If you do not 
+have any comments to add, follow the steps in Modify User Registration Submission to submit 
+your modify user registration. 
+14. Select the Comments tab.  The Comments tab displays.  See Figure 56. 
+ 
+Office of the Chief Information Officer 
+Page 41 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 56: Modify User Registration – Comments Tab 
+ 
+ 
+15. Select the Add button.  The Comments modal window displays.  See Figure 57. 
+ 
+Figure 57: Modify User Registration – Comments Modal Window 
+ 
+ 
+16. Enter comments in the available field. 
+17. Select the OK button.  The Comments modal window closes and the comments are added 
+to the modify user registration submission.  See Figure 58. 
+ 
+Office of the Chief Information Officer 
+Page 42 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 58: Modify User Registration – Comments Tab with Comment Added 
+ 
+►Note:  Select the Comment link to display the Comments modal window and edit the 
+comment information.  Select the checkbox next to the comment and select the Delete button to 
+delete the comment.  A confirmation message box displays prompting you to confirm your 
+action.  See Figure 59.  Select the OK button to confirm. 
+Figure 59: Modify User Registration – Delete Comment Confirmation 
+ 
+Modify User Registration Submission 
+18. Select the Validate button.  Red error messages display indicating any issues found with 
+the user registration submission.  See Figure 60.  Alternatively, a green message displays 
+indicating no issues were found with the user registration submission.  See Figure 61.  
+Correct any errors and repeat this step until the user registration submission is successfully 
+validated. 
+ 
+Office of the Chief Information Officer 
+Page 43 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 60: Modify User Registration – Unsuccessful Validation Message 
+ 
+Figure 61: Modify User Registration – Successful Validation Message 
+ 
+ 
+19. Select the Perjury Statement checkbox at the bottom of any tab to acknowledge you have 
+read, understood, and complied with instructions for filing the application.  See Figure 62. 
+ 
+Figure 62: Modify User Registration – Perjury Statement 
+ 
+ 
+20. Select the Submit button.  The Submission Confirmation page displays with a submission 
+ID and the modify user registration submission is successfully submitted.  See Figure 63. 
+ 
+Figure 63: Modify User Registration – Submission Confirmation 
+ 
+ 
+TTB verifies the changes to your authorizations with the companies and will contact you by 
+e-mail when a determination has been reached or if additional information is needed.  You 
+should allow up to 20 days for processing and keep a record of the submission ID for 
+tracking purposes. 
+Office of the Chief Information Officer 
+Page 44 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.4 
+COLAS ONLINE MENU OPTIONS 
+The COLAs Online menu options are available in the menu box in the upper right of every page.  
+Figure 64 details the COLAs Online menu options. 
+ 
+Figure 64: COLAs Online Menu Options 
+ 
+ 
+The following menu options are available in COLAs Online: 
+ 
+• 
+Formulas Online – See Section 3.4.1  Formulas Online 
+• 
+Home: My eApplications – See Section 3.4.2  Home: My eApplications 
+• 
+Create an eApplication – See Section 3.4.3  Create an eApplication 
+• 
+Search for eApplications – See Section 3.4.4  Search for eApplications 
+• 
+My Profile – See Section 3.4.5  My Profile 
+• 
+Contact Us – See Section 3.4.6  Contact Us 
+• 
+Instructions – See Section 3.4.7  Instructions 
+• 
+Log Off – See Section 3.4.8  Log Off 
+3.4.1 
+Formulas Online 
+The Formulas Online menu option allows COLAs Online users who have access to Formulas 
+Online to access the Formulas Online system.  If you do not have access to the Formulas 
+Online system, the Formulas Online link will not display in the menu box. 
+3.4.2 
+Home: My eApplications 
+The Home: My eApplications menu option allows you to view their list of your e-filed 
+applications.  This is the default page displayed upon a successful login.  See Section 3.5  
+Home: My eApplications for more information. 
+3.4.3 
+Create an eApplication 
+The Create an eApplication menu option allows you to submit an application for processing.  
+See Section 3.6  Submit Application for more information. 
+3.4.4 
+Search for eApplications 
+The Search for eApplications menu option allows you to search for any of your e-filed 
+applications.  See Section 3.7.1  Search for eApplications for more information. 
+Office of the Chief Information Officer 
+Page 45 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.4.5 
+My Profile 
+The My Profile menu option allows you to view and edit your user profile information and 
+change your system password.  See Section 3.11  My Profile for more information. 
+3.4.6 
+Contact Us 
+The Contact Us menu option provides contact information for ALFD and technical support 
+resources.  See Section 3.13  Contact Us for more information. 
+3.4.7 
+Instructions 
+The Instructions menu option provides instructions on how to operate the system and links to 
+other resources.  See Section 3.14  Instructions for more information. 
+3.4.8 
+Log Off 
+The Log Off menu option allows you to log off the COLAs Online system.  See Section 3.15  
+Log Off for more information. 
+Office of the Chief Information Officer 
+Page 46 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.5 
+HOME: MY EAPPLICATIONS 
+The Home: My eApplications page is your home page and displays the list of your most recent 
+300 e-filed applications (submitted or saved but not submitted).  The eApplications initially 
+display in descending order by Status Date, regardless of status, but may be sorted by selecting 
+the column headings.  Figure 65 details the Home: My eApplications page. 
+ 
+Figure 65: Home: My eApplications 
+ 
+3.5.1 
+View My eApplications 
+Follow these steps to view your list of e-filed applications: 
+ 
+1. Select the Home: My eApplications link from the menu box on any page.  The Home: My 
+eApplications page displays.  See Figure 65. 
+2. To sort the list of your most recent 300 e-filed applications (submitted or saved but not 
+submitted), select one of the column headings. 
+►Note:  The eApplications initially display in descending order by Status Date, regardless of 
+status, but may be sorted by selecting the column headings. 
+Office of the Chief Information Officer 
+Page 47 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3. To view a printable version of the list, select the Printable Version link. 
+4. To view more e-filed applications, select the Next link. 
+►Note:  Each page displays 20 e-filed applications. 
+5. To view the details of a label application or approved COLA from the list, select the TTB ID 
+link. 
+6. To find a particular label application or approval, enter the TTB ID in the Search by TTB ID 
+field and select the Search button. 
+7. To perform a detailed search, select the Advanced Search link.  See Section 3.7.1  Search 
+for eApplications. 
+8. To create a new application, select the Create an eApplication button.  See Section 3.6.1  
+Create Application. 
+►Note:  You may check the most recent processing times for label applications by selecting the 
+label applications link above the list of e-filed applications.  This link directs you to the 
+Processing Times for Label Applications page on TTB.gov, which provides information to help 
+you estimate when your application will be processed. 
+Office of the Chief Information Officer 
+Page 48 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6 
+SUBMIT APPLICATION 
+This section discusses all of the basic information needed to submit an application.  This section 
+includes the following information: 
+ 
+• 
+Create Application – See Section 3.6.1  Create Application 
+• 
+Upload Attachments – See Section 3.6.2  Upload Attachments 
+• 
+Verify Application – See Section 3.6.3  Verify Application 
+• 
+Application Submitted – See Section 3.6.4  Application Submitted 
+3.6.1 
+Create Application 
+The following pages describe how to create a new application: 
+ 
+• 
+Allowable Changes to Approved Labels Acknowledgement – See Section 3.6.1.1  
+Allowable Changes to Approved Labels Acknowledgement 
+• 
+Step 1 of 3: Application Type – See Section 3.6.1.2  Step 1 of 3: Application Type 
+• 
+Step 2 of 3: COLA Information – See Section 3.6.1.3  Step 2 of 3: COLA Information 
+• 
+Step 3 of 3: Upload Labels – See Section 3.6.1.4  Step 3 of 3: Upload Labels 
+Office of the Chief Information Officer 
+Page 49 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.1.1 
+Allowable Changes to Approved Labels Acknowledgement 
+The Allowable Changes to Approved Labels Acknowledgement page requires you to review and 
+acknowledge the list of allowable label revisions before creating an application.  You must 
+confirm you have read the list of allowable revisions before you can proceed with creating an 
+application.  This list will help you determine if you need update an existing COLA or file a new 
+application.  Figure 67 details the Allowable Changes to Approved Labels Acknowledgement 
+page. 
+ 
+Follow these steps to confirm you have read the list of allowable revisions before creating an 
+application: 
+ 
+1. Select the Create an eApplication link from the menu box on any page or select the Create 
+an eApplication button from the Home: My eApplications page.  The Allowable Changes to 
+Approved Labels Acknowledgement page displays.  See Figure 67. 
+ 
+Figure 66: Allowable Changes to Approved Labels Acknowledgement 
+ 
+ 
+2. Select the complete list of allowable revisions link and the Examples of Labels with 
+Allowable Changes link to determine if you need to update an existing COLA or file a new 
+application. 
+Office of the Chief Information Officer 
+Page 50 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  For additional guidance, you may select the Allowable Revisions to Approved Labels 
+link to view the Webinar Presentation. 
+3. Select the checkbox next to “Yes, I have read the list of allowable revisions” to confirm your 
+acknowledgement. 
+4. Select the Continue button to proceed to the next step in the create process.  See Section 
+3.6.1.2  Step 1 of 3: Application Type. 
+5. Select the Cancel button to cancel the create application process and return to the Home: 
+My eApplications page.  See Figure 65. 
+Office of the Chief Information Officer 
+Page 51 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.1.2 
+Step 1 of 3: Application Type 
+The Create Application Step 1 of 3: Application Type page allows you to enter product 
+information for the application.  Figure 67 and Figure 68 detail the Create Application Step 1 of 
+3: Application Type page. 
+ 
+►Note:  All fields in Step 1 are required. 
+ 
+Follow these steps to create an application: 
+ 
+1. Select the Create an eApplication link from the menu box on any page.  The Create 
+Application Step 1 of 3: Application Type page displays.  See Figure 67 and Figure 68. 
+ 
+Figure 67: Create Application Step 1 of 3: Application Type (Top) 
+ 
+Office of the Chief Information Officer 
+Page 52 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 68: Create Application Step 1 of 3: Application Type (Bottom) 
+ 
+ 
+2. Select the Type of Product: Wine, Domestic SAKE Application, Distilled Spirit, or Malt 
+Beverage. 
+3. Select the Source of Product: Domestic or Imported. 
+►Note:  This indicates if the finished alcohol beverage was produced in the US or 
+internationally. 
+4. Select the Type of Application- Certificate of Label Approval or Certificate of Exemption from 
+Label Approval. 
+►Note:  Certificate of Label Approval is the default. 
+►Note:  If you select Certificate of Exemption from Label Approval, select the state the product 
+will be sold in from the drop-down list.  If you select Certificate of Label Approval with Source of 
+Product as Imported, the state drop-down list will be disabled. 
+5. If this is a resubmission of a previously rejected application, select the TTB ID from the drop-
+down list or enter the TTB ID in the field provided. 
+►Note:  “No” is the default. 
+Office of the Chief Information Officer 
+Page 53 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  If you select “Yes,” you must select or enter a TTB ID. 
+►Note:  The drop-down list contains rejected e-applications. 
+►Note:  The text field allows you to enter the TTB ID of an electronic or paper application that 
+was rejected within the past two years. 
+6. Select the Next button to proceed to the next step in the create process.  See Section 
+3.6.1.3  Step 2 of 3: COLA Information. 
+7. Select the Cancel application button to cancel the create application process and return to 
+the Home: My eApplications page.  See Figure 65. 
+►Note:  Select the 
+ icon for field-level help. 
+Office of the Chief Information Officer 
+Page 54 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.1.3 
+Step 2 of 3: COLA Information 
+The Create Application Step 2 of 3: COLA Information page allows you to enter COLA 
+information for the application.  Figure 69 – Figure 72 detail the Create Application Step 2 of 3: 
+COLA Information page. 
+ 
+Figure 69: Create Application Step 2 of 3: COLA Information (Top) 
+ 
+Figure 70: Create Application Step 2 of 3: COLA Information (DSP – Top) 
+ 
+ 
+Office of the Chief Information Officer 
+Page 55 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 71: Create Application Step 2 of 3: COLA Information (Middle) 
+ 
+Office of the Chief Information Officer 
+Page 56 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 72: Create Application Step 2 of 3: COLA Information (Bottom) 
+ 
+ 
+Follow these steps to continue creating an application: 
+ 
+1. From the Create Application Step 1 of 3: Application Type page, select the Next button.  
+The Create Application Step 2 of 3: COLA Information page displays.  See Figure 69 – 
+Figure 72. 
+2. If the Type of Product selected in the previous step is Distilled Spirit, the application is for 
+Distinctive Liquor Bottle Approval and additional fields will display at the top of the page.  
+See Figure 70.  Select the “Yes” radio button and enter the Total Bottle Capacity before 
+closure. 
+3. Enter the Serial Number of your application. 
+4. If you have more than one valid permit for this type of application, select the appropriate 
+Plant Registry/Basic Permit/Brewer’s No. from the drop-down list and select the Add Permit 
+button. 
+►Note:  Repeat this step to assign additional permits (except wineries). 
+►Note:  To remove a permit from the list, select the Remove link. 
+►Note:  If you have only one valid permit for this application type, it will be selected for you. 
+Office of the Chief Information Officer 
+Page 57 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+5. Enter a DBA/Trade Name if one is used on the label. 
+►Note:  You must get approval from the TTB NRC before using the Trade Name on the label. 
+►Note:  The DBA/Trade Name must match the label.  This information must be added to the 
+application each time it is used in the label.  The DBA is added when the bottler's or importer's 
+company name is different from the operating name.  The operating name is listed on the permit 
+and the DBA must be registered with the NRC before use. 
+6. Enter the Brand Name. 
+7. Enter the Fanciful Name, if applicable. 
+►Note:  Do not enter a Product Class/Type or Wine Appellation in the Brand Name or Fanciful 
+Name field.  You are not required to tell TTB the class/type designation that appears on your 
+label.  Putting this information in the Brand Name or Fanciful Name field (or any other field) will 
+result in your application being returned to you for correction. 
+8. If you have an approved TTB Formula ID, select the appropriate TTB Formula ID from the 
+drop-down list of approved TTB Formula IDs associated with the Plant Registry/Basic 
+Permit/Brewer’s No. you selected above. 
+►Note:  To remove a TTB Formula ID from the list, select the Remove link. 
+►Note:  TTB Formula IDs only appear for electronically available Formulas.  The TTB Formula 
+ID field will display a list of approved formulas; the class/type displayed will be the approved 
+class/type, not the submitted class/type. 
+►Note:  You may no longer add a Lab No./Pre-Import No. or the Lab Approval Letter Date/Pre-
+Import Date when creating a COLA eApplication.  These fields will still display for previously 
+created COLA eApplications and on read-only pages.  The information may now be entered in 
+the restructured formula fields. 
+9. Select the Net Contents from the drop-down list and select the Add Net Contents button. 
+►Note:  To remove a Net Content from the list, select the Remove link. 
+►Note:  Repeat this step to add more than one Net Contents value, if this label will be used on 
+multiple size containers. 
+10. Enter the Alcohol Content. 
+►Note:  You can enter Alcohol Content text or a numeric value.  If you enter a numeric value, it 
+must be between 0.00 – 100.00. 
+11. Enter the Wine Vintage date if it is shown on the label. 
+►Note:  Wine Vintage only appears for Wine applications.  If applicable, you must enter a Wine 
+Vintage numeric value within the range of 1700 and the current year. 
+12. Enter the Grape Varietal(s) if it is shown on the label. 
+Office of the Chief Information Officer 
+Page 58 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  Grape Varietal(s) only appears for Wine applications. 
+13. Enter the Wine Appellation if it is shown on the label. 
+►Note:  Wine Appellation only appears for Wine applications. 
+►Note:  You must enter a Wine Appellation if you have entered a Wine Vintage date or the 
+system will not allow you to proceed to the next step. 
+14. If applicable, enter the notes to the Specialist who will be processing the COLA eApplication. 
+►Note:  You may enter up to 2000 characters in the Notes to Specialist field. 
+►Note:  When your application is in “Needs Correction” status, the 2000 characters limit 
+applies to the combined total of all previous and current notes to specialist.  For example, if you 
+previously added a note of 1000 characters, you can only submit a current note of 1000 
+characters. 
+15. Select the Previous button to return to Step 1. 
+16. Select the Next button to proceed to the next step in the create process.  See Section 
+3.6.1.4  Step 3 of 3: Upload Labels. 
+17. Select the Cancel application button to cancel the create application process and return to 
+the Home: My eApplications page.  See Figure 65. 
+►Note:  Select the 
+ icon for field-level help. 
+Office of the Chief Information Officer 
+Page 59 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.1.4 
+Step 3 of 3: Upload Labels 
+The Create Application Step 3 of 3: Upload Labels page allows you to upload labels to the 
+application.  Figure 73 and Figure 74 detail the Create Application Step 3 of 3: Upload Labels 
+page. 
+ 
+Figure 73: Create Application Step 3 of 3: Upload Labels (Top) 
+ 
+Office of the Chief Information Officer 
+Page 60 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 74: Create Application Step 3 of 3: Upload Labels (Bottom) 
+ 
+ 
+Follow these steps to continue creating an application: 
+ 
+1. From the Create Application Step 2 of 3: COLA Information page, select the Next button.  
+The Create Application Step 3 of 3: Upload Labels page displays.  See Figure 73 and Figure 
+74. 
+2. Enter a translation of any foreign text or any special wording or designs that appear on the 
+materials affixed to the container (e.g., label, bottle, cork, etc.) in the field provided if 
+applicable. 
+3. Select the add/remove Images button to upload label images.  See Section 3.6.2.1  Upload 
+Label Images. 
+4. Select the add/remove Attachments button to upload attachments.  See Section 3.6.2.2  
+Upload Other Attachments. 
+5. Select the Previous button to return to the Create Application Step 2 of 3: COLA 
+Information page.  See Section 3.6.1.3  Step 2 of 3: COLA Information. 
+6. Select the Next button to proceed to the next step in the create process.  See Section 3.6.3  
+Verify Application. 
+7. Select the Cancel application button to cancel the create application process and return to 
+the Home: My eApplications page.  See Figure 65. 
+Office of the Chief Information Officer 
+Page 61 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.2 
+Upload Attachments 
+This section discusses all of the basic information needed to upload attachments.  This section 
+includes the following information: 
+ 
+• 
+Upload Label Images – See Section 3.6.2.1  Upload Label Images 
+• 
+Upload Other Attachments – See Section 3.6.2.2  Upload Other Attachments 
+3.6.2.1 
+Upload Label Images 
+The Upload Label Images page allows you to upload label images to an application.  You may 
+attach up to ten files.  Figure 75 and Figure 76 detail the Upload Label Images page. 
+ 
+Figure 75: Upload Label Images (Top) 
+ 
+Office of the Chief Information Officer 
+Page 62 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 76: Upload Label Images (Bottom) 
+Follow these steps to upload a label image to the application: 
+1. From the Create Application Step 3 of 3: Upload Labels page, select the add/remove
+Images button.  The Upload Label Images page displays.  See Figure 75 and Figure 76.
+2. Select the Browse button to select an attachment to upload.
+►Note:  Each image file must:
+•
+Have a file type of JPG or TIFF (file extensions: .jpg/.jpeg/.jpe or .tif/.tiff)
+•
+Not exceed 750KB in size
+•
+Have a compression/quality ratio set at Medium (7 out of 10 or 70 out of 100)
+•
+Utilize colors in the RGB color mode, not colors in the CMYK color mode
+•
+Have no surrounding white space or printer's proof detail; this must be cropped out
+►Note:  See How to Prepare Images for Upload for more information.
+►Note:  TIFF files should not be saved with JPG compression.
+3. Select the attachment type from the drop-down list; i.e., tell us which label this is (brand,
+neck, back, etc.).
+Office of the Chief Information Officer 
+Page 63 
+Dated:  June 11, 2015 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+►Note:  Please include only one label per image. 
+4. Enter the label image height and width. 
+►Note:  Enter the dimensions of the image, not the dimensions of the label.  The label image 
+dimensions (width and height) must be numeric characters between 0-9 in NN.NN format 
+(where N is a number). 
+5. Select the Attach file button. 
+►Note:  After uploading a file to COLAs Online, select the link to ensure that the file uploaded 
+correctly and the image is clear and readable.  Occasionally, uploaded label image files may 
+become corrupted or distorted.  If this occurs, remove the file, re-save the file with a different 
+compression/quality ratio, and then re-attempt the upload. 
+6. To attach additional files, return to Step 2. 
+►Note:  You can attach up to 10 files per application, each up to 750KB in size. 
+►Note:  To remove an attachment, select the Remove link. 
+7. Select the Done button to close the page. 
+Office of the Chief Information Officer 
+Page 64 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.2.2 
+Upload Other Attachments 
+The Upload Other Attachments page allows you to upload other attachments to an application.  
+Other applications include Formulas, SOPs, Lab Analyses, Pre-import letters, cover letters, etc.  
+Figure 77 details the Upload Other Attachments page. 
+ 
+Figure 77: Upload Other Attachments 
+ 
+ 
+Follow these steps to upload any other attachments to the application: 
+ 
+1. From the Create Application Step 3 of 3: Upload Labels page, select the add/remove 
+Attachments button.  The Upload Other Attachments page displays.  See Figure 77. 
+2. Select the Browse button to select an attachment to upload. 
+►Note:  Acceptable attachment types include DOC, TEXT, PDF, JPG, and TIFF (file 
+extensions: .doc, .txt, .pdf, .jpg/.jpeg/.jpe, and .tif/.tiff). 
+►Note:  You can attach up to 10 files per application, each up to 750KB in size. 
+3. Select the attachment type from the drop-down list. 
+4. Select the Attach file button. 
+Office of the Chief Information Officer 
+Page 65 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+5. To attach additional files, return to Step 2. 
+►Note:  To remove an attachment, select the Remove link. 
+6. Select the Done button to close the page. 
+Office of the Chief Information Officer 
+Page 66 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.3 
+Verify Application 
+The Verify Application page allows you to view and edit all information entered before sending 
+the application to TTB for processing.  Figure 78, Figure 79, and Figure 80 detail the Verify 
+Application page. 
+ 
+Figure 78: Verify Application (Top) 
+ 
+Office of the Chief Information Officer 
+Page 67 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 79: Verify Application (Middle) 
+ 
+Office of the Chief Information Officer 
+Page 68 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 80: Verify Application (Bottom) 
+ 
+ 
+Follow these steps to verify the information entered before submitting: 
+ 
+1. Select the edit step 1 button to edit information before submitting or saving. 
+►Note:  You may be restricted from editing information in the Step 1: Application Type page for 
+a submitted application in “Needs Correction” status.  The edit step 1 button will not be 
+available in the Verify Application page when you select the Make Corrections link to make 
+corrections to the submitted application. 
+►Note:  If the Commodity is changed in Step 1: Application Type, you must re-enter 
+information in Step 2: COLA Information pertaining to the changed commodity. 
+2. Select the edit step 2 button to edit information before submitting or saving. 
+►Note:  There is a 2000 character limit for the Notes to Specialist and Previous Notes fields.  
+For example, if you previously added a note of 1000 characters, you can only submit a current 
+note of 1000 characters. 
+►Note:  You may be restricted from editing information in the Step 2: COLA Information page 
+for a submitted application in “Needs Correction” status.  If you are restricted from editing this 
+Office of the Chief Information Officer 
+Page 69 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+information, the edit step 2 button will not be available in the Verify Application page when you 
+select the Make Corrections link to make corrections to the submitted application. 
+3. Select the edit step 3 button to edit information before submitting or saving. 
+►Note:  You may be restricted from editing information in the Step 3: Upload Labels page for a 
+submitted application in “Needs Correction” status.  If you are restricted from editing this 
+information, the edit step 3 button will not be available in the Verify Application page when you 
+select the Make Corrections link to make corrections to the submitted application. 
+4. To view an image attachment, select the image link. 
+5. To view an attachment, select the attachment link. 
+6. To verify the image attachment with the actual dimensions specified, select the Verify 
+Uploaded Images link. 
+►Note:  You will not be allowed to submit the application if you do not select the Verify 
+Uploaded Images link. 
+7. Select the “I agree” checkbox if you concur with the penalty of perjury statement. 
+►Note:  You will not be allowed to submit the application if you do not select the “I agree” 
+checkbox. 
+8. Select the Submit application button to send the application to TTB for processing.  See 
+Section 3.6.4  Application Submitted. 
+►Note:  Only an External User can submit an application.  The External Preparer/Reviewer 
+User can only save an application (see next step) which can be submitted by an External User 
+at a later time.  See Section 3.7.1  Search for eApplications. 
+9. Select the Don’t submit yet; save for 30 days button to save the application information for 
+up to 30 days. 
+►Note:  After 30 days, the saved application will be deleted. 
+10. Select the Cancel application button to cancel the create application process and return to 
+the Home: My eApplications page.  See Figure 65. 
+►Note:  If an application is in “Saved not Submitted” status, select the Cancel Changes button 
+to cancel the change application process and return to the Home: My eApplications page. 
+►Note:  If an application is in “Needs Correction” status, select the Cancel Corrections button 
+to cancel the correct application process and return to the Home: My eApplications page. 
+Office of the Chief Information Officer 
+Page 70 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.6.4 
+Application Submitted 
+The Application Submitted page provides the confirmation of the create application process and 
+displays information about the application that was submitted.  Figure 81 details the Application 
+Submitted page. 
+ 
+Figure 81: Application Submitted 
+ 
+ 
+Follow these steps to view the application submitted confirmation page: 
+ 
+1. From the Verify Application page, select the Submit application button.  The Application 
+Submitted page displays.  See Figure 81. 
+►Note:  Only an External User can submit an application.  The External Preparer/Reviewer 
+User can only save an application which can be submitted later by an External User.  See 
+Section 3.7.1  Search for eApplications. 
+►Note:  The confirmation page includes the TTB ID assigned to your application as well as the 
+primary Permit or Registry No. and the Serial Number you assigned to the application. 
+2. Select the create an eApplication button to start the create an application process again. 
+Office of the Chief Information Officer 
+Page 71 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3. Select the Back to My eApplications button to return to the Home: My eApplications page.  
+See Figure 65. 
+Office of the Chief Information Officer 
+Page 72 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.7 
+VIEW APPLICATION 
+This section discusses all of the basic information needed to view an application.  This section 
+includes the following information: 
+ 
+• 
+Search for eApplications – See Section 3.7.1  Search for eApplications 
+• 
+Search Results: eApplications – See Section 3.7.2  Search Results: eApplications 
+• 
+Application Detail – See Section 3.7.3  Application Detail 
+• 
+Printable Version of COLA – See Section 3.7.4  Printable Version of COLA 
+3.7.1 
+Search for eApplications 
+The Search for eApplications page allows you to search for your approved, rejected, saved not 
+submitted, or in process e-filed COLAs.  Figure 82 and Figure 83 detail the Search for 
+eApplications page. 
+ 
+Figure 82: Search for eApplications (Top) 
+ 
+Office of the Chief Information Officer 
+Page 73 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 83: Search for eApplications (Bottom) 
+ 
+ 
+Follow these steps to begin searching: 
+ 
+1. Select the Search for eApplications link from the main menu on any page.  The Search for 
+eApplication page displays.  See Figure 82 and Figure 83. 
+2. Select the Submitted By radio button to include either those submitted only by you or to 
+include all others with the same signing authority. 
+►Note:  Enter one or more fields of search criteria. 
+3. Enter Date Submitted Range (From Date and To Date). 
+►Note:  The format is MM/DD/YYYY.  Select the 
+ icon to display a pop-up calendar to 
+find the correct date. 
+4. Enter Date Status Last Updated Range (Last Updated From Date and To Date). 
+►Note:  The format is MM/DD/YYYY.  Select the 
+ icon to display a pop-up calendar to 
+find the correct date. 
+5. Enter a TTB ID. 
+Office of the Chief Information Officer 
+Page 74 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+6. Enter a Serial #. 
+7. Select the Plant Registry/Basic Permit/Brewer’s No. value(s) in the list provided. 
+8. Enter the Product Name. 
+9. Select the Brand Name, Fanciful Name or Either radio option.  Enter name text. 
+10. Select the Type of Application. 
+►Note:  Select all that apply. 
+11. Select the Type of Product for the search. 
+►Note:  Select all that apply. 
+►Note:  If Type of Product is “Wine,” then the Grape Varietal(s) field displays as a search 
+criterion. 
+12. Select Source of Product 
+13. Select Type of Submission. 
+14. Select Distinctive Liquor Bottle. 
+15. Enter the Representative ID in the field provided. 
+16. Select the COLA Status from the drop-down list provided. 
+17. Select the Search button to view your search results.  The Search Results: eApplications 
+page displays with the records that match your search criteria.  See Section 3.7.2  Search 
+Results: eApplications. 
+18. Select the Clear and Start Over button to reset all data fields to perform a new search. 
+19. Select the Back to My eApplications button to return to the home page. 
+►Note:  To perform a wildcard search, enter a “%” at the beginning or end of the search criteria 
+value. 
+►Note:  Search results are limited to a maximum of 500 items. 
+►Note:  You cannot search for paper filed COLA applications from within COLAs Online.  To 
+check on the status of a paper filed application, contact ALFD Customer Service at 1-866-927-
+ALFD (2533) and press Option 4 for Malt Beverage/Distilled Spirit Labeling and Formulation or 
+Option 6 for Wine Labeling. 
+Office of the Chief Information Officer 
+Page 75 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.7.2 
+Search Results: eApplications 
+The Search Results: eApplications page provides detailed results information on e-filed COLA 
+applications based on search criteria.  Figure 84 details the Search Results: eApplications page. 
+ 
+Figure 84: Search Results: eApplications 
+ 
+ 
+Follow these steps to view the search results: 
+ 
+1. Select the Search for eApplications link from the menu box on any page.  See Section 3.7.1  
+Search for eApplications. 
+2. Enter search criteria. 
+3. Select the Search button.  The search results based on the value entered display.  See 
+Figure 84. 
+►Note:  Search results are limited to a maximum of 500 items. 
+4. To sort the search results, click on any column heading. 
+5. To view more search results, select the Next link. 
+Office of the Chief Information Officer 
+Page 76 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+6. To view the details of an e-filed application, select the TTB ID link.  See Section 3.7.3  
+Application Detail. 
+7. Select the New Search button to return to the Search page. 
+8. Select the Back to My eApplications button to return to the Home: My eApplications page.  
+See Figure 65. 
+Office of the Chief Information Officer 
+Page 77 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.7.3 
+Application Detail 
+The Application Detail page provides detailed status information of submitted e-filed COLA 
+applications.  Figure 85, Figure 86, and Figure 87 detail the Application Detail page. 
+ 
+Figure 85: Application Detail (Top) 
+ 
+Office of the Chief Information Officer 
+Page 78 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 86: Application Detail (Middle) 
+ 
+Office of the Chief Information Officer 
+Page 79 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 87: Application Detail (Bottom) 
+ 
+ 
+Follow these steps to view application details: 
+ 
+1. From the Search Results page or Home: My eApplication page, select the TTB ID link to 
+view the details of an application.  The Application Detail page displays.  See Figure 85, 
+Figure 86, and Figure 87. 
+2. Use the scroll bar to view all the details of the application. 
+3. To view images or attachments uploaded to the application, select the image or attachment 
+link. 
+4. For e-filed applications, select the Printable Version link to view a printable version of an e-
+filed COLA.  See Section 3.7.4.1  Printable E-filed COLA. 
+►Note:  e-filed COLAs are identified by “001” in positions 6-8 of the TTB ID. 
+►Note:  Older COLA applications may not have an available printable version.  If you want to 
+obtain a copy of the entire COLA, you will need to make a request under FOIA.  For more 
+information, go to http://www.ttb.gov/foia/index.shtml.  Please include CFM ID/TTB ID number in 
+your request. 
+Office of the Chief Information Officer 
+Page 80 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+5. For paper filed applications, select the Printable Version link to view a scanned image of a 
+paper filed COLA.  See Section 3.7.4.2  Printable Paper Filed COLA. 
+►Note:  Approved COLAs can be surrendered by selecting the Surrender Cola link. 
+►Note:  Received applications can be withdrawn by selecting the Withdraw Application link. 
+►Note:  Rejected applications can be resubmitted by selecting the Resubmit Application link. 
+6. Select the Back button to return to the Search Results: eApplications page.  See Figure 84. 
+Office of the Chief Information Officer 
+Page 81 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.7.4 
+Printable Version of COLA 
+This section discusses all of the basic information for printing COLAs in the system.  This 
+section includes the following information: 
+ 
+• 
+Printable E-filed COLA – See Section 3.7.4.1  Printable E-filed COLA 
+• 
+Printable Paper Filed COLA – See Section 3.7.4.2  Printable Paper Filed COLA 
+3.7.4.1 
+Printable E-filed COLA 
+The Printable E-filed COLA page provides public users with a printable version of an e-filed 
+COLA.  Figure 88 and Figure 89 detail the Printable E-file COLA page. 
+ 
+Figure 88: Printable E-filed COLA (Top) 
+ 
+Office of the Chief Information Officer 
+Page 82 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 89: Printable E-filed COLA (Bottom) 
+ 
+3.7.4.1.1 
+Print an E-filed COLA 
+Follow these steps to print an e-filed COLA: 
+ 
+1. Select the TTB ID link.  The Application Detail page displays.  See Figure 85, Figure 86, and 
+Figure 87. 
+2. Select the Printable Version link to view a printable version of an e-filed COLA.  See Figure 
+88 and Figure 89. 
+►Note:  For existing COLA applications (before COLAs Online 3.5), the “FORMULA/SOP NO.” 
+Field is Block 10 and the “LAB. NO. & DATE / PREIMPORT NO. & DATE” Field is Block 11. 
+For new COLA applications (COLAs Online 3.5 and above), the “GRAPE VARIETAL(S)” Field is 
+Block 10 and the “FORMULA” field is Block 11.  The “FORMULA” field will display the value (if 
+any) for the Company Formula Code or TTB Formula ID and/or the Lab Sample Number and 
+Lab Date. 
+3. Select the 
+ icon from your web browser. 
+Office of the Chief Information Officer 
+Page 83 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.7.4.2 
+Printable Paper Filed COLA 
+The Printable Paper Filed COLA page provides public users with a scanned image of a paper 
+filed COLA.  Figure 90 details the Printable Paper Filed COLA page. 
+ 
+Figure 90: Printable Paper Filed COLA 
+ 
+Office of the Chief Information Officer 
+Page 84 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.7.4.2.1 
+Print a Paper Filed COLA 
+Follow these steps to print a paper filed COLA: 
+ 
+1. Select the TTB ID link.  The Application Detail page displays.  See Figure 85, Figure 86, and 
+Figure 87. 
+2. Select the Printable Version link to view a scanned image of the paper filed COLA.  See 
+Figure 90. 
+3. Select the 
+ icon from your web browser. 
+Office of the Chief Information Officer 
+Page 85 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.8 
+SURRENDER COLA 
+This section discusses all of the basic information needed to surrender an approved e-filed 
+COLA.  This section includes the following information: 
+ 
+• 
+Request to Surrender COLA – See Section 3.8.1  Request to Surrender COLA 
+• 
+Surrender COLA Confirmation – See Section 3.8.2  Surrender COLA Confirmation 
+3.8.1 
+Request to Surrender COLA 
+The Request to Surrender COLA page allows you to surrender an approved e-filed COLA.  
+Figure 91 details the Request to Surrender COLA page. 
+ 
+Figure 91: Request to Surrender COLA 
+ 
+ 
+Follow these steps to surrender an approved COLA: 
+ 
+1. Select the TTB ID link of an approved COLA.  The Application Detail page displays.  See 
+Figure 85, Figure 86, and Figure 87. 
+2. Select the Surrender Cola link on the Application Detail page.  The Request to Surrender 
+COLA page displays.  See Figure 91. 
+Office of the Chief Information Officer 
+Page 86 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3. Select the Surrender button.  The Surrender COLA Confirmation page displays.  See 
+Figure 92. 
+4. Select the Cancel button to cancel the surrender process. 
+►Note:  You should surrender a COLA when you no longer need it to bottle or remove product 
+from Customs custody, or when you go out of business. 
+Office of the Chief Information Officer 
+Page 87 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.8.2 
+Surrender COLA Confirmation 
+The Surrender COLA Confirmation page displays the confirmation of the surrendered e-filed 
+COLA.  Figure 92 details the Surrender COLA Confirmation page. 
+ 
+Figure 92: Surrender COLA Confirmation 
+ 
+ 
+1. Select the Back to My eApplications button to return to the Home: My eApplications page.  
+See Figure 65. 
+Office of the Chief Information Officer 
+Page 88 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.9 
+WITHDRAW APPLICATION 
+This section discusses all of the basic information needed to withdraw an e-filed application 
+under review (i.e., in the “Received” status).  This section includes the following information: 
+ 
+• 
+Request to Withdraw Application – See Section 3.9.1  Request to Withdraw 
+Application 
+• 
+Withdraw Application Confirmation – See Section 3.9.2  Withdraw Application 
+Confirmation 
+3.9.1 
+Request to Withdraw Application 
+The Request to Withdraw Application page allows you to withdraw an e-filed application under 
+review (i.e., in the “Received” status).  Figure 93 details the Request to Withdraw Application 
+page. 
+ 
+Figure 93: Request to Withdraw Application 
+ 
+ 
+Follow these steps to withdraw an application from processing: 
+ 
+1. Select the TTB ID link of a submission in the Received status.  The Application Detail page 
+displays.  See Figure 85, Figure 86, and Figure 87. 
+Office of the Chief Information Officer 
+Page 89 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+2. Select the Withdraw Application link from the Application Detail page.  The Request to 
+Withdraw Application page displays.  See Figure 93. 
+3. Select the Withdraw button.  The Withdraw Application Confirmation page displays.  See 
+Figure 94. 
+4. Select the Cancel button to cancel the withdraw process and return to the Application Detail 
+page. 
+Office of the Chief Information Officer 
+Page 90 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.9.2 
+Withdraw Application Confirmation 
+The Withdraw Application Confirmation page displays the confirmation of the withdraw 
+application process.  Figure 94 details the Withdraw Application Confirmation page. 
+ 
+Figure 94: Withdraw Application Confirmation 
+ 
+ 
+1. Select the Back to My eApplications button to return to the Home: My eApplications page.  
+See Figure 65. 
+Office of the Chief Information Officer 
+Page 91 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.10 
+APPLICATION NEEDS CORRECTION 
+The Application Needs Correction page provides you with information on why an e-filed 
+application needs correcting and provides the ability to submit corrections to an e-filed 
+application.  Applications in the “Needs Correction” status have 30 days for the corrections to be 
+made.  If changes are not made within 30 days, the application will automatically be rejected.  
+Figure 95 details the Application Needs Correction page. 
+ 
+Figure 95: Application Needs Correction 
+ 
+ 
+Follow these steps to view application corrections: 
+ 
+1. From the Application Detail page, select the Make Corrections link.  The Application Needs 
+Correction page displays.  See Figure 95. 
+►Note:  The Make Corrections link is only available for applications in the “Needs Correction” 
+status. 
+►Note:  Once you select the Make Corrections link, you must make all corrections at one time.  
+You will not be given the option to save the application and submit later during this process. 
+Office of the Chief Information Officer 
+Page 92 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+2. To make corrections to the application, select the Make Corrections link.  The Verify 
+Application page displays for that TTB ID.  See Section 3.6.3  Verify Application. 
+►Note:  You may be restricted from editing information in Step 1: Application Type, Step 2: 
+COLA Information, or Step 3: Upload Labels.  If you are restricted from editing this information, 
+the edit step 1, edit step 2, or edit step 3 buttons are not displayed when you select the Make 
+Corrections link to make corrections to the application. 
+►Note:  If the Commodity is changed in Step 1: Application Type, you must re-enter 
+information in Step 2: COLA Information pertaining to the changed commodity. 
+►Note:  Applications in the Needs Correction status have 30 days for the corrections to be 
+made.  If changes are not made within 30 days, the application will automatically be rejected. 
+3. Follow steps 2-8 in Section 3.6.3  Verify Application to edit information and resend the 
+corrected application to TTB for processing. 
+4. Select the Cancel Corrections button to cancel your changes and return to the Home: My 
+eApplications page. 
+Office of the Chief Information Officer 
+Page 93 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.11 
+MY PROFILE 
+This section discusses all of the basic information needed to manage your profile.  This section 
+includes the following information: 
+ 
+• 
+Update My Profile – See Section 3.11.1  Update My Profile 
+• 
+Profile Update Confirmation – See Section 3.11.2  Profile Update Confirmation 
+3.11.1 
+Update My Profile 
+The My Profile page provides the ability to view and edit some of your user profile information 
+submitted during the registration process.  Figure 96 and Figure 97 detail the My Profile page. 
+ 
+Figure 96: My Profile (Top) 
+ 
+Office of the Chief Information Officer 
+Page 94 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 97: My Profile (Bottom) 
+ 
+ 
+Follow these steps to view and/or edit your user profile information: 
+ 
+1. Select the My Profile link from the menu box on any page.  The My Profile page displays.  
+See Figure 96 and Figure 97. 
+2. Make changes to your e-mail address, telephone number, or fax number if applicable. 
+3. Make changes to your authentication questions and answers if applicable. 
+4. Select the Save Changes button.  The Profile Update Confirmation page displays.  See 
+Section 3.11.2  Profile Update Confirmation. 
+5. Select the Change Password button to change your system password.  See Section 3.12  
+Change Password. 
+6. Select the Back to My eApplications button to return to the Home: My eApplications page.  
+See Figure 65. 
+Office of the Chief Information Officer 
+Page 95 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.11.2 
+Profile Update Confirmation 
+The Profile Update Confirmation page displays the confirmation of the update profile process.  
+Figure 98 details the Profile Update Confirmation page. 
+ 
+Figure 98: Profile Update Confirmation 
+ 
+ 
+1. Select the Back to My eApplications button to return to the Home: My eApplications page.  
+See Figure 65. 
+Office of the Chief Information Officer 
+Page 96 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.12 
+CHANGE PASSWORD 
+Passwords expire every 90 days and you will be required to change your password before 
+expiration.  You can change your password at any time through the Password Change Utility.  If 
+you login to COLAs Online when your password is due to expire, a confirmation message box 
+displays reminding you to change your password through the Password Change Utility.  See 
+Figure 99.  You may select the OK button to close the confirmation message box and follow the 
+steps in Section 3.12.3  Reset Your Expired Password to change your password. 
+ 
+Figure 99: Change Password Reminder Confirmation 
+ 
+ 
+If your password expires before you are able to change your password, an error message 
+displays when you attempt to login to COLAs Online.  See Figure 100. 
+ 
+Office of the Chief Information Officer 
+Page 97 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 100: Expired Password Error Message 
+ 
+ 
+You may follow the steps in Section 3.12.3  Reset Your Expired Password to reset your expired 
+password through the Password Change Utility. 
+ 
+If you attempt to login to COLAs Online multiple times with an invalid user name/password 
+combination, you will lock your account.  An error message displays stating your account is 
+locked.  See Figure 101. 
+ 
+Office of the Chief Information Officer 
+Page 98 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 101: Locked Account Error Message 
+ 
+ 
+You may reset your password to unlock your account.  Follow the steps in Section 3.12.4  
+Unlock Your Locked Account to unlock your account by resetting your password through the 
+Password Change Utility. 
+ 
+If you have simply forgotten your password, but it is not expired, you may follow the steps in 
+Section 3.12.2  Reset Your Forgotten Password to reset your forgotten password through the 
+Password Change Utility. 
+After one year of inactivity, your user ID will also be deleted and you will need to re-register if 
+you wish to resume using COLAs Online.  Follow the steps in Section 3.3.2  Create a New User 
+Registration to re-register. 
+►Note:  Follow the steps in Section 3.3.3  Activate a User ID to reset a forgotten password. 
+3.12.1 
+Change Your Password 
+Follow these steps to change a COLAs Online system password through the Password Change 
+Utility: 
+ 
+1. Select the My Profile link from the menu box on any page.  The My Profile page displays.  
+See Figure 96 and Figure 97. 
+Office of the Chief Information Officer 
+Page 99 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+2. Select the Change Password button.  A confirmation message box displays stating you will 
+be logged out to perform this action.  See Figure 102. 
+ 
+Figure 102: Change Password – Change Password Logout Confirmation 
+ 
+ 
+3. Select the OK button.  The confirmation message box closes and you are logged out of 
+COLAs Online.  The Password Change Utility login page displays.  See Figure 103. 
+ 
+Figure 103: Change Password – Password Change Utility Login 
+ 
+ 
+Office of the Chief Information Officer 
+Page 100 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+4. Enter your user ID in the User ID field. 
+5. Enter your e-mail address in the Primary Email address field. 
+6. Select the Get User Profile Questions button.  The system displays one of the three 
+authentication questions you answered when you filled out the user registration initially.  See 
+Figure 104. 
+ 
+Figure 104: Change Password – Password Change Utility Main Page 
+ 
+►Note:  If you fail two times to answer your security questions correctly, your account will be 
+locked in the application.  Please contact the TTB Help Desk at 866-927-2533 (Option 2) to 
+have your account unlocked in the application. 
+7. Enter the answer for your security question in the available field. 
+8. Enter the password in the New Password field. 
+9. Enter the password in the Retyped New Password field. 
+►Note:  Passwords must meet the following complexity rules: 
+• 
+Password must be at least 8 characters long. 
+• 
+Password must not contain your user ID. 
+Office of the Chief Information Officer 
+Page 101 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+• 
+Password must contain at least 1 UPPERCASE, 1 lowercase, 1 digit, and 1 special 
+character. 
+• 
+You cannot reuse a password that has been used in the last 10 times or within the last 
+48 hours. 
+• 
+You cannot use the following special characters: ' (single-quote), " (double-quote), _ 
+(underscore), = (equal sign), & (ampersand), and @ (at sign). 
+10. If you make a mistake, select the Clear button to clear the entry before setting your new 
+password. 
+11. If you change your mind, select the Cancel button to cancel before setting your new 
+password. 
+12. Select the Set New Password button.  A confirmation message box displays stating your 
+password was successfully changed.  See Figure 105. 
+ 
+Figure 105: Change Password – Password Change Successful 
+ 
+ 
+13. Select the OK button to confirm.  The Password Change Utility closes and the TTB Online 
+Portal page displays.  See Figure 4. 
+14. Follow the steps in Section 3.2.1  Access COLAs Online through the TTB Portal Page to 
+login to COLAs Online using your user ID and new password. 
+Office of the Chief Information Officer 
+Page 102 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.12.2 
+Reset Your Forgotten Password 
+Follow these steps to reset a forgotten COLAs Online system password through the Password 
+Change Utility: 
+ 
+1. From your web browser, enter https://www.ttbonline.gov/ in the address field. 
+2. Press the Enter key.  The TTB Online Portal page displays.  See Figure 4. 
+3. Select the New or forgotten password? link.  The Password Change Utility displays.  See 
+Figure 106. 
+ 
+Figure 106: Reset Forgotten Password – Password Change Utility Login 
+ 
+ 
+4. Enter your user ID in the User ID field. 
+5. Enter your e-mail address in the Primary Email address field. 
+6. Select the Get User Profile Questions button.  The system displays one of the three 
+authentication questions you answered when you filled out the user registration initially.  See 
+Figure 107. 
+ 
+Office of the Chief Information Officer 
+Page 103 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 107: Reset Forgotten Password – Password Change Utility Main Page 
+ 
+►Note:  If you fail two times to answer your security questions correctly, your account will be 
+locked in the application.  Please contact the TTB Help Desk at 866-927-2533 (Option 2) to 
+have your account unlocked in the application. 
+7. Enter the answer for your security question in the available field. 
+8. Enter the password in the New Password field. 
+9. Enter the password in the Retyped New Password field. 
+►Note:  Passwords must meet the following complexity rules: 
+• 
+Password must be at least 8 characters long. 
+• 
+Password must not contain your user ID. 
+• 
+Password must contain at least 1 UPPERCASE, 1 lowercase, 1 digit, and 1 special 
+character. 
+• 
+You cannot reuse a password that has been used in the last 10 times or within the last 
+48 hours. 
+• 
+You cannot use the following special characters: ' (single-quote), " (double-quote), _ 
+(underscore), = (equal sign), & (ampersand), and @ (at sign). 
+10. If you make a mistake, select the Clear button to clear the entry before setting your new 
+password. 
+Office of the Chief Information Officer 
+Page 104 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+11. If you change your mind, select the Cancel button to cancel before setting your new 
+password. 
+12. Select the Set New Password button.  A confirmation message box displays stating your 
+password was successfully changed.  See Figure 108. 
+ 
+Figure 108: Reset Forgotten Password – Password Change Successful 
+ 
+ 
+13. Select the OK button to confirm.  The Password Change Utility closes and the TTB Online 
+Portal page displays.  See Figure 4. 
+14. Follow the steps in Section 3.2.1  Access COLAs Online through the TTB Portal Page to 
+login to COLAs Online using your user ID and new password. 
+Office of the Chief Information Officer 
+Page 105 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.12.3 
+Reset Your Expired Password 
+Follow these steps to reset an expired COLAs Online system password through the Password 
+Change Utility: 
+ 
+1. From your web browser, enter https://www.ttbonline.gov/ in the address field. 
+2. Press the Enter key.  The TTB Online Portal page displays.  See Figure 4. 
+3. Select the Expired password? link.  The Password Change Utility displays.  See Figure 109. 
+ 
+Figure 109: Reset Expired Password – Password Change Utility Login 
+ 
+ 
+4. Enter your user ID in the User ID field. 
+5. Enter your e-mail address in the Primary Email address field. 
+6. Select the Get User Profile Questions button.  The system displays one of the three 
+authentication questions you answered when you filled out the user registration initially.  See 
+Figure 110. 
+ 
+Office of the Chief Information Officer 
+Page 106 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 110: Reset Expired Password – Password Change Utility Main Page 
+ 
+►Note:  If you fail two times to answer your security questions correctly, your account will be 
+locked in the application.  Please contact the TTB Help Desk at 866-927-2533 (Option 2) to 
+have your account unlocked in the application. 
+7. Enter the answer for your security question in the available field. 
+8. Enter the password in the New Password field. 
+9. Enter the password in the Retyped New Password field. 
+►Note:  Passwords must meet the following complexity rules: 
+• 
+Password must be at least 8 characters long. 
+• 
+Password must not contain your user ID. 
+• 
+Password must contain at least 1 UPPERCASE, 1 lowercase, 1 digit, and 1 special 
+character. 
+• 
+You cannot reuse a password that has been used in the last 10 times or within the last 
+48 hours. 
+• 
+You cannot use the following special characters: ' (single-quote), " (double-quote), _ 
+(underscore), = (equal sign), & (ampersand), and @ (at sign). 
+10. If you make a mistake, select the Clear button to clear the entry before setting your new 
+password. 
+Office of the Chief Information Officer 
+Page 107 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+11. If you change your mind, select the Cancel button to cancel before setting your new 
+password. 
+12. Select the Set New Password button.  A confirmation message box displays stating your 
+password was successfully changed.  See Figure 111. 
+ 
+Figure 111: Reset Expired Password – Password Change Successful 
+ 
+ 
+13. Select the OK button to confirm.  The Password Change Utility closes and the TTB Online 
+Portal page displays.  See Figure 4. 
+14. Follow the steps in Section 3.2.1  Access COLAs Online through the TTB Portal Page to 
+login to COLAs Online using your user ID and new password. 
+Office of the Chief Information Officer 
+Page 108 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.12.4 
+Unlock Your Locked Account 
+Follow these steps to unlock a locked COLAs Online account through the Password Change 
+Utility: 
+ 
+1. From your web browser, enter https://www.ttbonline.gov/ in the address field. 
+2. Press the Enter key.  The TTB Online Portal page displays.  See Figure 4. 
+3. Select the New or forgotten password? link.  The Password Change Utility displays.  See 
+Figure 112. 
+ 
+Figure 112: Unlock Locked Account – Password Change Utility Login 
+ 
+ 
+4. Enter your user ID in the User ID field. 
+5. Enter your e-mail address in the Primary Email address field. 
+6. Select the Get User Profile Questions button.  The system displays one of the three 
+authentication questions you answered when you filled out the user registration initially.  See 
+Figure 113. 
+ 
+Office of the Chief Information Officer 
+Page 109 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 113: Unlock Locked Account – Password Change Utility Main Page 
+ 
+►Note:  If you fail two times to answer your security questions correctly, your account will be 
+locked in the application.  Please contact the TTB Help Desk at 866-927-2533 (Option 2) to 
+have your account unlocked in the application. 
+7. Enter the answer for your security question in the available field. 
+8. Enter the password in the New Password field. 
+9. Enter the password in the Retyped New Password field. 
+►Note:  Passwords must meet the following complexity rules: 
+• 
+Password must be at least 8 characters long. 
+• 
+Password must not contain your user ID. 
+• 
+Password must contain at least 1 UPPERCASE, 1 lowercase, 1 digit, and 1 special 
+character. 
+• 
+You cannot reuse a password that has been used in the last 10 times or within the last 
+48 hours. 
+• 
+You cannot use the following special characters: ' (single-quote), " (double-quote), _ 
+(underscore), = (equal sign), & (ampersand), and @ (at sign). 
+10. If you make a mistake, select the Clear button to clear the entry before setting your new 
+password. 
+Office of the Chief Information Officer 
+Page 110 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+11. If you change your mind, select the Cancel button to cancel before setting your new 
+password. 
+12. Select the Set New Password button.  A confirmation message box displays stating your 
+password was successfully changed.  See Figure 114. 
+ 
+Figure 114: Unlock Locked Account – Password Change Successful 
+ 
+ 
+13. Select the OK button to confirm.  The Password Change Utility closes and the TTB Online 
+Portal page displays.  See Figure 4. 
+14. Follow the steps in Section 3.2.1  Access COLAs Online through the TTB Portal Page to 
+login to COLAs Online using your user ID and new password. 
+Office of the Chief Information Officer 
+Page 111 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.13 
+CONTACT US 
+The Contact Us menu option displays the Contact Us page.  The Contact Us page provides 
+information on how to contact ALFD Customer Service via the ALFD mailing address, Phone 
+Number, Fax Number, ALFD e-mail address as well as submit a problem report.  Figure 115 
+details the Contact Us page. 
+ 
+Figure 115: Contact Us 
+ 
+3.13.1 
+Report Problems with COLAs Online 
+Follow these steps to report a problem with COLAs Online: 
+ 
+1. Select the Contact Us link from the menu box on any page.  The Contact Us page displays.  
+See Figure 115. 
+2. Select one or more subject areas 
+►Note:  If your problem is not listed, enter the problem in the Other field. 
+3. Enter Comments (if any). 
+Office of the Chief Information Officer 
+Page 112 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+4. Enter the Name. 
+5. Enter the E-mail Address. 
+6. Enter the Phone Number. 
+7. Enter the Fax Number. 
+8. Enter the TTB ID Number (if any). 
+9. Select the Submit button to submit your e-mail problem report to ALFD. 
+10. Select the Close button to close the Contact Us page. 
+11. Select the Clear and Start Over button to reset all data fields. 
+Office of the Chief Information Officer 
+Page 113 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14 
+INSTRUCTIONS 
+The Instructions page provides detailed instructions on how to operate the system, obtaining a 
+login account via the COLAs Online Registration form and instructions for operating COLAs 
+Online via an online help or a downloadable version.  The links are organized into two sections.  
+The COLAs Online / Public Cola Registry section lists instructions for the COLAs Online 
+application.  The TTB Form 5100.31 section includes helpful information on the label application 
+process and form.  Figure 116 details the Instructions page. 
+ 
+Figure 116: Instructions 
+ 
+ 
+Follow these steps to view the instructions for COLAs Online: 
+ 
+1. Select the Instructions link from the menu box on any page.  The Instructions page displays.  
+See Figure 116. 
+2. In the COLAs Online / Public Cola Registry section, select the Online Industry Member 
+Manual link to view the COLAs Online Industry Member Online Help.  See Section 3.14.1  
+Online Industry Member Manual. 
+3. In the COLAs Online / Public Cola Registry section, select the Download Online Industry 
+Member Manual link to view a PDF version of the COLAs Online Industry Member User 
+Manual.  See Section 3.14.2  Download Online Industry Member Manual. 
+Office of the Chief Information Officer 
+Page 114 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+4. In the COLAs Online / Public Cola Registry section, select the COLAs Online User 
+Registration link to view the registration form for COLAs Online. 
+5. In the COLAs Online / Public Cola Registry section, select the Web Site Privacy and 
+Security Act Notice link to view the Privacy and Security Statement page.  See Section 
+3.14.3  Web Site Privacy and Security Act Notice. 
+6. In the COLAs Online / Public Cola Registry section, select the Definition of Terms link to 
+view a helpful glossary of terms about the label application and approval process.  See 
+Section 3.14.4  Definition of Terms. 
+7. In the COLAs Online / Public Cola Registry section, select the COLAs Online FAQs link to 
+view the list of Frequently Asked Questions about label applications and the COLAs Online 
+web site.  See Section 3.14.5  COLAs FAQs. 
+8. In the TTB Form 5100.31 section, select the Application for and Certification/Exemption of 
+Label/Bottle Approval TTB Form 5100.31 link to view or download TTB Form 5100.31 -- 
+APPLICATION FOR AND CERTIFICATION/EXEMPTION OF LABEL/BOTTLE APPROVAL.  
+See Section 3.14.6  Application for and Certification/Exemption of Label/Bottle Approval 
+TTB Form 5100.31. 
+9. In the TTB Form 5100.31 section, select the Allowable Revisions to Approved Labels link to 
+view the list of modifications that can be made to an already approved label without 
+requiring re-approval.  See Section 3.14.7  Allowable Revisions to Approved Labels. 
+10. In the TTB Form 5100.31 section, select the Paperwork Reduction Act Notice link to view 
+the Paperwork Reduction Act Notice in compliance with the Paperwork Reduction Act of 
+1995.  See Section 3.14.8  Paperwork Reduction Act Notice. 
+11. In the TTB Form 5100.31 section, select the COLA Form Privacy Act Statement link to view 
+the COLA Application Privacy Act Statement.  See Section 3.14.9  COLA Form Privacy Act 
+Statement. 
+Office of the Chief Information Officer 
+Page 115 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.1 
+Online Industry Member Manual 
+The COLAs Online Industry Member Online Help is available through the Online Industry 
+Member Manual link in the Instructions page.  Figure 117 details the COLAs Online Industry 
+Member Online Help. 
+ 
+Figure 117: COLAs Online Industry Member Online Help 
+ 
+Office of the Chief Information Officer 
+Page 116 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.2 
+Download Online Industry Member Manual 
+The COLAs Online Industry Member User Manual is available (in PDF format) through the 
+Download Online Industry Member Manual link in the Instructions page.  Figure 118 details the 
+COLAs Online Industry Member User Manual. 
+ 
+Figure 118: COLAs Online Industry Member User Manual 
+ 
+Office of the Chief Information Officer 
+Page 117 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.3 
+Web Site Privacy and Security Act Notice 
+The Privacy Policy page is available through the Web Site Privacy and Security Act Notice link 
+in the Instructions page.  The Privacy Policy page contains information regarding the privacy 
+and security policies related to the COLAs Online system.  Figure 119 details the Privacy Policy 
+page. 
+ 
+Figure 119: Privacy Policy 
+ 
+Office of the Chief Information Officer 
+Page 118 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.4 
+Definition of Terms 
+The Definition of Terms page is available through the Definition of Terms link in the Instructions 
+page.  The Definition of Terms page contains the list of terms used in the system through the 
+field-level help.  Figure 120 details the Definition of Terms page. 
+ 
+Figure 120: Definition of Terms 
+ 
+ 
+Follow these steps to view the list of definitions of terms: 
+ 
+1. Select the 
+ icon next to the field name.  The Definition of Terms page displays and the 
+page scrolls to the appropriate field name.  See Figure 120. 
+►Note:  You can also navigate to the definition of terms page from the Instructions page. 
+2. Select the Close button to close the page. 
+Office of the Chief Information Officer 
+Page 119 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.5 
+COLAs FAQs 
+The COLAs Online Frequently Asked Questions page is available through the COLAs Online 
+FAQs link in the Instructions page.  Figure 121 details the COLAs Online FAQs page. 
+ 
+Figure 121: COLAs Online FAQs 
+ 
+Office of the Chief Information Officer 
+Page 120 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.6 
+Application for and Certification/Exemption of Label/Bottle Approval TTB Form 
+5100.31 
+The Application for and Certification/Exemption of Label/Bottle Approval TTB Form 5100.31 
+page is available (in PDF format) through the Application for and Certification/Exemption of 
+Label/Bottle Approval TTB Form 5100.31 link in the Instructions page.  Figure 122 details the 
+Application for and Certification/Exemption of Label/Bottle Approval TTB Form 5100.31 page. 
+►Note:  This is a link to the paper form and is not required if you file electronically through 
+COLAs Online. 
+Figure 122: Application for and Certification/Exemption of Label/Bottle Approval TTB Form 
+5100.31 
+ 
+►Note:  When you initially select the link for the form, a confirmation message box displays 
+prompting you to set the page size to LEGAL in Page Setup before printing the form.  See 
+Figure 123. 
+Office of the Chief Information Officer 
+Page 121 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Figure 123: TTB Form 5100.31 Download Confirmation 
+ 
+Office of the Chief Information Officer 
+Page 122 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.7 
+Allowable Revisions to Approved Labels 
+The Allowable Revisions to Approved Labels section of TTB Form 5100.31 is available through 
+the Allowable Revisions to Approved Labels link in the Instructions page.  Figure 124 details the 
+Allowable Revisions to Approved Labels section. 
+Figure 124: Allowable Revisions to Approved Labels 
+ 
+►Note:  When you initially select the link for the form, a confirmation message box displays 
+prompting you to set the page size to LEGAL in Page Setup before printing the form.  See 
+Figure 125. 
+Figure 125: TTB Form 5100.31 Download Confirmation 
+ 
+Office of the Chief Information Officer 
+Page 123 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.8 
+Paperwork Reduction Act Notice 
+The Paperwork Reduction Act Notice page is available through the Paperwork Reduction Act 
+Notice link in the Instructions page.  Figure 126 details the Paperwork Reduction Act Notice 
+page. 
+►Note:  This is the same notice as listed on TTB Form 5100.31. 
+Figure 126: Paperwork Reduction Act Notice 
+ 
+Office of the Chief Information Officer 
+Page 124 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.14.9 
+COLA Form Privacy Act Statement 
+The COLAs Form Privacy Act Statement page is available through the COLA Form Privacy Act 
+Statement link in the Instructions page.  Figure 127 details the COLA Form Privacy Act 
+Statement page. 
+►Note:  This is the same statement as listed on TTB Form 5100.31. 
+Figure 127: COLA Form Privacy Act Statement 
+ 
+Office of the Chief Information Officer 
+Page 125 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+3.15 
+LOG OFF 
+Follow these steps to log off COLAs Online: 
+ 
+1. Select the Log Off link from the menu box on any page.  COLAs Online logs you off and 
+displays the TTB Online Portal page. See Figure 4. 
+►Note: To log back into COLAs Online, follow the steps in Section 3.2.1  Access COLAs 
+Online through the TTB Portal Page. 
+Office of the Chief Information Officer 
+Page 126 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+4 
+HELP FACILITIES 
+This section discusses the help facilities provided to users of the COLAs Online system. 
+4.1 
+FIELD LEVEL TOOL TIPS 
+Tool tips are small rectangles of text that describes a field.  Field level tool tips will be provided 
+in the system when the user places the cursor over certain system field labels.   
+4.2 
+COLAS ONLINE INDUSTRY MEMBER ONLINE HELP 
+The COLAs Online Industry Member Online Help is available through the Online Industry 
+Member Manual link in the Instructions page.  See Figure 117. 
+4.3 
+COLAS ONLINE INDUSTRY MEMBER USER MANUAL 
+The COLAs Online Industry Member User Manual is available (in PDF format) through the 
+Download Online Industry Member Manual link in the Instructions page.  See Figure 118. 
+4.4 
+ALFD CUSTOMER SERVICE 
+If you need assistance, please contact ALFD Customer Service. 
+4.5 
+DEFINITION OF TERMS 
+The most common Online Industry Member system terms (field names) used and their 
+definitions can be found in Appendix A. 
+Office of the Chief Information Officer 
+Page 127 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+APPENDIX A 
+DEFINITION OF TERMS 
+This section provides the definitions of common terms used in the COLAs Online system.  
+Select a letter below to go to the terms beginning with that letter. 
+ 
+A │ B │ C │ D │ E │ F│ G │ H │ I │ J │ K │ L │ M │ N │ O │ P │ Q │ R │ S │ T │ U │ V │ W │ X 
+│ Y│ Z 
+A 
+Alcohol Content 
+An accurate statement of the alcohol content must appear on the brand label of all wine and distilled spirits 
+products.  This statement is optional for malt beverages, but if shown must be in the correct format. 
+• 
+Wine Labels – When creating an eApplication please indicate the specific alcohol content or range of 
+alcohol content as it appears on the label.  If you are using “table wine” or “light wine” on your label to 
+meet the alcohol content requirement, either indicate the alcohol content of the wine or enter “table” or 
+“light” in this field. 
+• 
+Malt Beverage Labels - When creating an eApplication please indicate the alcohol content as it appears 
+on the label (if shown).  If alcohol content is not shown on the label this field is optional. 
+• 
+Distilled Spirit Labels - When creating an eApplication please indicate the alcohol content as it appears 
+on the label. 
+ALFD 
+Advertising, Labeling and Formulation Division. 
+Approved 
+This status indicates a final action regarding a particular application.  Applications enter this status when both 
+the application and the labels meet all applicable requirements.  At this point an application becomes a 
+Certificate.  This status authorizes the Certificate holder to either bottle or remove from Customs custody 
+alcohol beverages that bear labels identical to those shown on the Certificate. 
+Assigned 
+Applications enter this status when they are assigned to a specialist and the internal evaluation begins. 
+Top 
+B 
+Brand Name 
+This is the name under which a product is sold.  If the product is not sold under a brand name, the name of the 
+bottler, packer or importer becomes the brand name. 
+Top 
+C 
+Capacity  
+This is the actual volume of the container that is required on the COLA for Distinctive Liquor Bottles. 
+Class/Type 
+This code indicates the class and or type designation for a product.  Each product has been assigned a unique 
+class/type code. 
+COLA 
+Certificate of Label Approval. 
+Office of the Chief Information Officer 
+Page 128 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+COLA Status 
+COLA statuses include: 
+• 
+Received 
+• 
+Assigned 
+• 
+Needs Correction 
+• 
+Rejected 
+• 
+Approved 
+• 
+Withdrawn 
+• 
+Saved not submitted 
+• 
+Surrendered 
+• 
+Revoked 
+• 
+Expired 
+• 
+Corrected 
+When searching by status, select a particular status from the drop down.  If you do not select a status, all 
+statuses will be searched. 
+COLAs Online 
+Certificate of Label Approval System. 
+Corrected 
+Applications change from “Needs Correction” to “Corrected” after the applicant makes the required revisions 
+and resubmits the application back to TTB for review.  Once the review process starts the status changes to 
+“Assigned,” once again until the internal evaluation is complete. 
+Top 
+D 
+Date Completed 
+This is the date when the COLA application was approved. 
+When searching by this field, you may either enter the month, day and year e.g., 12/17/2003, or select the 
+appropriate date from the calendars.  If you know the specific date the COLA was approved, use the same 
+date in both the “from” and “to” blocks.  You may also search for a range of time by entering different dates in 
+the “from” and “to” areas. 
+Date Status Last Updated 
+This date reflects the last time the status of an eApplication changed, e.g., from “Received” to “Approved.” 
+When searching by this field, you may either enter the month, day and year e.g., 8/15/2003, or select the 
+appropriate date from the calendars.  If you know the specific date the status changed, use the same date in 
+both the “from” and “to” blocks.  You may also search for a range of time by entering different dates in the 
+“from” and “to” areas. 
+Date Submitted 
+This is the date that the eApplication was submitted to TTB. 
+When searching by this field, you may either enter the month, day and year e.g., 04/20/2003, or select the 
+appropriate date from the calendars.  If you know the specific date the eApplication was submitted, use the 
+same date in both the “from” and “to” blocks.  You may also search for a range of time by entering different 
+dates in the “from” and “to” areas. 
+DBA/Trade Name 
+This is a name you may choose to do business as other than your official corporate or business name. 
+If you are using a DBA, Assumed Name or Trade Name in the mandatory name and address statement on a 
+label, you must enter it here when filing an eApplication. 
+You may only use a DBA, Assumed Name or Trade Name on a beverage alcohol label AFTER you obtain 
+approval from the TTB National Revenue Center in Cincinnati, Ohio.  If you have questions about the addition 
+of a DBA or Trade Name, please call the Revenue Center at 1-800-398-2282. 
+Office of the Chief Information Officer 
+Page 129 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Dimensions 
+The actual dimensions of the label in inches is collected in order to correctly display the label image in your 
+browser window.  This information is also used during the approval process to understand the true size of very 
+large labels that may have been reduced in size before they were submitted with the eApplication. 
+Distilled Spirit Labels 
+When creating an eApplication please indicate the alcohol content as it appears on the label. 
+Distinctive Liquor Bottle 
+A distilled spirits container is considered a "Distinctive Liquor Bottle" if: the spirits contents are not visible 
+through the container OR the shape or design of the container is other than that of a “standard” or “traditional” 
+spirits container. 
+You must submit photos of the front and back of Distinctive Liquor Bottles in Step 3 when submitting an 
+eApplication for Distinctive Liquor Bottle approval. 
+Top 
+E 
+eApplication 
+An electronically submitted COLAs application. 
+Expired 
+While generally “Approved” Certificates never expire, under certain limited conditions Certificates are given an 
+expiration date by TTB at the time of approval.  The status of an “Approved” Certificates changes to “Expired” 
+when the expiration date is reached. 
+e-filed 
+Electronically filed. 
+External User 
+An authenticated Online Industry Member (OIM) with a user id and password.  This user has the ability to 
+create and save but not submit or submit electronic applications.  They also have the ability to withdraw, 
+surrender, review status, and correct electronic applications. 
+Top 
+F 
+Fanciful Name 
+This is a name that may be used in addition to a brand name to further identify a product and is required for 
+malt beverage and distilled spirit specialty products that must be labeled with a statement of composition.  It is 
+optional for other products. 
+Supply the Fanciful Name if one is used on the label. 
+Final Status 
+• 
+Rejected 
+• 
+Approved 
+• 
+Withdrawn 
+• 
+Surrendered 
+• 
+Revoked 
+• 
+Expired 
+FOIA 
+Freedom of Information Act. 
+FONL 
+Formulas Online. 
+Office of the Chief Information Officer 
+Page 130 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+For sale in 
+For Certificates of Exemption, this specifies the state for which the exemption was filed. 
+Formula 
+Corresponds with Item 11 on 5100.31 - The term "Formula" encompasses formulas, pre-import approval 
+letters, lab analysis, and submissions formerly known as statements of process (SOP).  A Formula is a 
+quantitative list of ingredients and a step-by-step method of manufacture for alcohol beverage products (wine, 
+distilled spirits, malt beverage) requiring approval from TTB prior to production or importation as per Industry 
+Circular 2007-4.  TTB's Regulatory Authority for such products may also be found at 27 CFR parts 4, 5, 7, 19, 
+24, 25, and 26.  Please visit http://www.ttb.gov/formulation/index.shtml for more information.  For any domestic 
+or imported alcohol beverage products that received TTB formula approval prior to January 10, 2011, please 
+manually enter the TTB ID number, or TTB lab number in the Company Formula #/SOP# text box. A copy of 
+the approved formula, or pre-import approval letter must accompany the label application.  If formula approval 
+for any domestic or imported alcohol beverage product was obtained after January 10, 2011 please select the 
+TTB Formula ID number (generated by Formulas Online) from the drop-down list of approved formulas.  DO 
+NOT submit your COLA application until AFTER you have obtained formula approval, if required. 
+Top 
+G 
+Grape Varietals 
+Grape Varietals are the names of the dominant grapes used in the wine.  Cabernet Sauvignon, Chardonnay, 
+Zinfandel, and Merlot are examples of grape varieties.  A Grape Varietal designation on the label requires an 
+appellation of origin and means that at least 75 percent of the grapes used to make the wine are of that 
+variety, and that entire 75 percent were grown in the labeled appellation (except “Vitis labrusca” grapes, such 
+as Concord, which require at least 51 percent). 
+Top 
+I 
+Internal User 
+A TTB employee accessing the COLAs system.  Internal employees have access to more functionality in 
+COLAs than External Users. 
+Top 
+L 
+Lab Approval Letter Date 
+The date on which a Laboratory Analysis was approved.  Some COLA Applications require that a Laboratory 
+Analysis be completed by TTB prior to COLA filing. 
+Lab No. 
+Some imported products require laboratory analysis or pre-import letter approval in addition to label approval. 
+When submitting an eApplication for an imported product for which you were required to obtain laboratory 
+analysis or pre-import letter approval you must supply the corresponding TTB lab number or Pre-import 
+number and indicate the date of the TTB letter.  You must also submit a copy of the letter in Step 3 of this 
+application. 
+For a complete listing of products that require lab analysis or pre-import letter approval, please see TTB 
+Industry Circular 2002-2. 
+DO NOT submit your COLA application until AFTER you have obtained lab analysis/pre-import letter approval. 
+Top 
+Office of the Chief Information Officer 
+Page 131 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+M 
+Malt Beverage Labels 
+When creating an eApplication please indicate the alcohol content as it appears on the label (if shown).  If 
+alcohol content is not shown on the label this field is optional. 
+Top 
+N 
+Needs Correction 
+Applications in this status have been reviewed by TTB but cannot be approved as submitted.  The application 
+is returned to the submitter with a list of corrections that need to be made to either the application or to the 
+label itself.  The submitter has 30 days to make the corrections.  If the application is not returned to TTB within 
+30 days from the date the application is returned then the status changes to “Rejected.”  If the submitter makes 
+the corrections and resubmits the application to TTB within 30 days, the status changes to “Corrected.”  
+Applications in the “Needs Correction” status may also be “Withdrawn” by the applicant. 
+Net Contents 
+An accurate statement of the net contents of the container must either appear on the label or be blown or 
+branded into the container. 
+When completing an eApplication, please indicate the size (net contents) of the container(s) on which the 
+label(s) will be used. 
+You must tell us in STEP 3 if the net contents are blown, branded or embossed in or on the container instead 
+of appearing on the label. 
+Distilled spirits and wine may only be packaged in the standard container sizes you see in the drop down list.  
+There is no restriction on container sizes for malt beverages. 
+One COLA may be used to cover more than one size container.  If this is the case, please indicate all sizes 
+that will be used.  You do not need to supply images of labels that will be used for each size if the only 
+difference is the shape or proportionate size of the label. 
+NRC 
+National Revenue Center. 
+Top 
+O 
+OCIO 
+Office of the Chief Information Officer. 
+OIM 
+Online Industry Member. 
+Origin 
+This code indicates the country (or state for domestic products) of origin for each product.  Each country has 
+been assigned a unique origin code.  Enter the origin code if you know it, or use the lookup feature to find it. 
+Top 
+P 
+PCR 
+Public COLA Registry. 
+Permit Name 
+The operating name and/or owner name associated with a Plant Registry/Basic Permit/Brewer's Number. 
+Office of the Chief Information Officer 
+Page 132 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+PIA 
+Privacy Impact Assessment. 
+Plant Registry/Basic Permit/Brewer's No. 
+This is a unique number that is assigned by TTB to each business location.  Examples include BW-NY-123, 
+DSP-KY-89, BR-WI-ABC-567 or VA-I-456. 
+When submitting an eApplication, please select the location(s) where this product will be bottled/imported.  
+You may only file eApplication(s) for locations that appear in your “My Profile” section of COLAs Online. 
+Proprietors of domestic Distilled Spirits Plants and Breweries may obtain one COLA to cover multiple business 
+locations if: the principle place of business is shown in the mandatory name and address statement on the 
+label(s) AND the same label will be used for products bottled at each location. 
+A COLA must be obtained for each location where a domestic wine is actually bottled (i.e., one COLA may not 
+cover multiple locations). 
+Beverage alcohol Importers may not use one COLA to cover multiple locations. 
+When searching from the COLAs Online search screen, you may only search for COLAs filed by the 
+companies that appear in your “My Profile” section of COLAs Online.  Either select one number, or you may 
+select “any” if you are registered to file COLAs on behalf of multiple entities. 
+Preparer/Reviewer 
+This role provides an external user limited access for preparing or reviewing an electronic application (eApp).  
+The user does not have the ability to submit an electronic application after creating or reviewing an eApp. 
+Previously Rejected Application 
+This applies when a COLA application was rejected and you subsequently resubmit it. 
+If you are completing an eApplication and you submitted these labels in the past and they were rejected, you 
+must supply the TTB ID number of the rejected application.  The TTB ID number is a 14 digit number and can 
+be found on the upper left-hand corner of paper COLAs.  If this is a resubmission of a rejected eApplication, 
+select the correct TTB ID number of the rejected COLA from the drop down list (shows only eApplications 
+rejected in the past 30 days). 
+Product Class/Type 
+This code indicates the class and or type designation for a product.  Each product has been assigned a unique 
+class/type code.  Enter the class/type code if you know it, or use the lookup feature to find it. 
+Product Name 
+You may search for COLAs by “Brand Name” OR “Fanciful Name” OR both if you select “Either.” 
+The Brand Name is the name under which a product is sold.  If the product is not sold under a brand name, the 
+name of the bottler, packer or importer becomes the brand name. 
+The Fanciful Name is a name that may used in addition to a brand name to further identify a product and is 
+required for malt beverage and distilled spirit specialty products that must be labeled with a statement of 
+composition.  It is optional for other products. 
+Top 
+Q 
+Qualifications 
+These are conditions under which the labels may be used. 
+Top 
+R 
+Reasons for Correction/Rejection 
+These are reasons for which the COLA application needs to be corrected.  If the time permitted for corrections 
+passes without any changes from the COLA submitter, the application will automatically be rejected, and these 
+reasons will become the reasons for which the application was rejected. 
+Office of the Chief Information Officer 
+Page 133 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Received 
+Applications enter this status when they are received by TTB and remain in this status until internal evaluation 
+begins.  Once the evaluation process starts the status changes to “Assigned,” until the internal evaluation is 
+complete. 
+Received Code 
+A three digit code number at the sixth, seventh and eighth positions within the TTB ID number that indicates 
+how a label application was received.  For instance, if the application was received electronically then the TTB 
+ID # would contain the received code "001" at the sixth, seventh and eighth positions.  Other receive codes 
+used are "000" for hand delivered applications, "002" indicates that the application was received by regular 
+USPS mail and "003" indicates that the application was received by an overnight delivery service such as UPS 
+or FEDEX. 
+Rejected 
+This status indicates a final TTB action regarding a particular application.  Paper applications enter this status 
+when initial TTB review discloses that either the application or the label does not comply with Federal 
+requirements.  Electronic applications are generally returned for correction rather than rejected; however, an 
+electronic application may be rejected if all the necessary corrections are not made to an application that was 
+returned for correction.  Electronic applications that have been returned for correction enter this status if the 
+application is not resubmitted to TTB within 30 days.  A rejection does not restrict the ability to resubmit a new 
+application with corrected labels at a later date. 
+Representative ID 
+Third party COLA filers (consultants, label reps, trade associations, etc.) are given a unique ID number by 
+TTB.  If you wish to limit your search to COLAs that were filed by a particular representative, enter their ID 
+number here. 
+Revoked 
+“Approved” Certificates will change to this status when TTB rescinds approval because either the labeling laws 
+or regulations have changed rendering the Certificate invalid or the Certificate was approved by TTB in error. 
+Top 
+S 
+Saved not Submitted 
+An application in this status has been either completely or partially created, but has not yet been submitted to 
+TTB for review.  TTB cannot view applications in this status.  An application may only remain in this status for 
+up to 30 days.  After 30 days in this status the application is automatically deleted.  If the application is 
+submitted, the status changes to “Received." 
+SDLC 
+Systems Development Life Cycle. 
+Serial Number/Serial No. 
+This is a unique, sequential number assigned by the COLA holder.  The first two digits reflect the calendar 
+year the application was created.  The remaining digits may be a combination of letters and numbers but may 
+not exceed four characters in length. 
+When creating an eApplication you must assign a sequential and unique number to each application.  COLAs 
+Online automatically assigns the first two characters, which represent the current calendar year. 
+Source of Product 
+Indicates if the finished alcohol beverage was produced in the US or somewhere else.  For example wine 
+produced in France is imported and whiskey made in Kentucky is domestic. 
+Special Wording 
+Any wording appearing on materials firmly affixed to the container other than the labels attached to the 
+application, or any wording embossed on the container.  This field may also contain translations of foreign 
+language text appearing on the labels. 
+Office of the Chief Information Officer 
+Page 134 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+State of Exemption 
+For Certificates of Exemption, this specifies the state for which the exemption was filed. 
+Submitted By 
+This is the person who submitted the eApplication to TTB. 
+When searching by this field, you may only view eApplications that were submitted by you or by other users 
+that have signing authority for the same companies.  Third party filers may only view eApplications filed by 
+them. 
+Sulfite Analysis 
+Any standard wine label that does not contain a sulfite declaration or contains a Sulfite-Free declaration must 
+be submitted to either a TTB laboratory or a TTB-certified laboratory for analysis. 
+The results of this analysis must be included with the COLA. 
+Surrendered 
+“Approved” Certificates will change to this status when the Certificate holder voluntarily communicates to TTB 
+that they no longer need the Certificate.  Generally “Approved” Certificates do not expire, however, TTB 
+encourages all industry members to surrender obsolete Certificates either by written communication for paper 
+filed applications or electronically if applications were e-filed. 
+Top 
+T 
+TTB 
+Alcohol and Tobacco Tax and Trade Bureau. 
+TTB ID 
+This is a unique, 14 digit number assigned by TTB to track each COLA.  The first 5 digits represent the 
+calendar year and Julian date the application was received by TTB.  The next 3 digits tell how the application 
+was received (001 = e-filed; 002 & 003 = mailed/overnight; 000 = hand delivered).  The last 6 digits is a 
+sequential number that resets for each day and for each received code. 
+If you know the TTB ID number, this is the best way to search for individual COLAs.  The TTB ID number for 
+eApplications is supplied to the submitter in the “Application Submitted” confirmation message.  The TTB ID 
+number can be found in the upper left-hand corner of paper COLAs. 
+Type of Application 
+A Certificate of Label Approval authorizes a product to be sold in interstate commerce and must be obtained 
+BEFORE a domestic product is bottled or BEFORE an imported product is removed from Customs' custody. 
+A Certificate of Exemption authorizes a product to be sold in the state where it was bottled and must be 
+obtained BEFORE a product is bottled. 
+When completing an eApplication, select Certificate of Label Approval if this alcohol beverage will be sold 
+within the state where the bottler is located and/or in interstate commerce (i.e., in states other than where the 
+bottler is located). 
+When completing an eApplication, select Certificate of Exemption from Label Approval if you will only sell this 
+alcohol beverage intrastate (i.e., only within the state where the bottler is located), and you wish to be 
+exempted from the labeling requirements of the Federal Alcohol Administration Act. 
+Products approved under a Certificate of Exemption MUST be labeled “For sale in (state where bottling takes 
+place) only.” 
+►Note:  TTB does not issue Certificates of Exemption for Malt Beverages or for products imported in bottles. 
+Type of Product 
+Select either Wine, Distilled Spirit or Malt Beverage. 
+If you are unsure of the classification of a product, please contact the Alcohol Labeling & Formulation Division 
+Customer Service Team at 1-866-927-ALFD or by e-mail at alfd@ttb.gov. 
+►Note:  Sake is classified as wine for labeling purposes. 
+Office of the Chief Information Officer 
+Page 135 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Type of Submission 
+If Distinctive Liquor Bottle is selected, enter the total bottle capacity before closure. 
+Top 
+V 
+Vendor Code 
+This code was used in the past to identify organizations who were submitting COLAs.  The Vendor Code is no 
+longer in use, but may be used to search for certain historical COLA records.  Plant Registry/Basic 
+Permit/Brewer's No. is used to identify the business locations for which the COLA applications are filed 
+Vendor Name 
+No longer in use.  See "Vendor Code" for details. 
+Top 
+W 
+Wine Appellation 
+An appellation indicates the origin of the grapes used to make the wine.  Please supply the appellation of 
+origin if it appears on the label. 
+A wine may be labeled with an appellation of origin that is a country, a state, or a county (or a foreign 
+equivalent) if not less than 75 percent of the wine is produced from grapes grown in the named place. 
+A wine may be labeled with an appellation of origin that is an approved/recognized viticultural area if not less 
+than 85 percent of the wine is produced from grapes grown in the named viticultural area. 
+An appellation of origin is generally optional information, however it becomes mandatory if the wine is labeled 
+with: a vintage date (appellation must be smaller than a country), a grape varietal designation, OR an Estate 
+Bottle claim (appellation must then be a viticultural area). 
+Wine Labels 
+When creating an eApplication please indicate the specific alcohol content or range of alcohol content as it 
+appears on the label.  If you are using “table wine” or “light wine” on your label to meet the alcohol content 
+requirement, either indicate the alcohol content of the wine or enter “table” or “light” in this field. 
+Wine Vintage 
+A vintage date indicates the year in which the grapes used to make the wine were harvested.  Please supply 
+the vintage date of the wine if one appears on the label. 
+A vintage date may be used on the label if not less than 95 percent of the wine is produced from grapes grown 
+in that year and must be labeled with an appellation smaller than a country. 
+Withdrawn 
+This status indicates that the applicant withdrew the application before TTB took final action.  A withdrawal 
+does not restrict the ability to resubmit a new application at a later date. 
+Top 
+Office of the Chief Information Officer 
+Page 136 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+INDEX 
+A 
+Access COLAs Online 
+TTB Online Portal Page ....................................... 11 
+Allowable Revisions to Approved Labels .......... 123 
+Application 
+Application Detail ................................................. 78 
+Application Needs Correction .............................. 92 
+Application Submitted .......................................... 71 
+Create Application ............................................... 49 
+Request to Withdraw Application ......................... 89 
+Submit Application ............................................... 49 
+Verify Application ................................................. 67 
+View Application .................................................. 73 
+Withdraw Application ........................................... 89 
+Withdraw Application Confirmation ...................... 91 
+Application for and Certification/Exemption of 
+Label/Bottle Approval TTB Form 5100.31 ...... 121 
+Application Needs Correction ............................... 92 
+Application Submitted ........................................... 71 
+Attachments 
+Upload Attachments ............................................ 62 
+C 
+Change Password .................................................. 97 
+Change Your Password ....................................... 99 
+Reset Your Expired Password ........................... 106 
+Reset Your Forgotten Password ........................ 103 
+Unlock Your Locked Account ............................. 109 
+COLA 
+Printable Version of COLA ................................... 82 
+Request to Surrender COLA ................................ 86 
+Surrender COLA .................................................. 86 
+Surrender COLA Confirmation ............................. 88 
+COLA Form Privacy Act Statement .................... 125 
+COLAs FAQs ........................................................ 120 
+COLAs Online 
+Activate a User ID ................................................ 30 
+Contact Us ......................................................... 112 
+Create a New User Registration .......................... 13 
+General Description ............................................... 4 
+Getting Started ....................................................... 9 
+Help Facilities .................................................... 127 
+Home 
+My EApplications ............................................. 47 
+How Do I Register? .............................................. 12 
+Menu Options ...................................................... 45 
+Modify a User Registration .................................. 34 
+Privacy Act Considerations .................................... 5 
+System Basics ....................................................... 8 
+System Capabilities ............................................... 4 
+System Functions .................................................. 8 
+TTB Online Portal Page ......................................... 9 
+User Registration ................................................. 12 
+What’s New in 3.11.3 ............................................. 4 
+COLAs Online Industry Member Online Help .... 116 
+COLAs Online Industry Member User Manual ... 117 
+Contact Us 
+Report Problems with the COLAs Online ........... 112 
+Create a New User Registration 
+Approver Information ........................................... 21 
+Authentication Questions ..................................... 16 
+Business E-mail Addresses ................................. 15 
+Comments Tab .................................................... 25 
+Company Information/System Information ........... 17 
+Company Tab ...................................................... 16 
+Docs/Links Tab .................................................... 23 
+Individual Information/Signature Authority or Power 
+of Attorney Forms ............................................ 20 
+Personal Information ............................................ 15 
+Submitter Company Information .......................... 18 
+Type of Application .............................................. 14 
+User Registration Submission.............................. 27 
+Create Application 
+Allowable Changes to Approved Labels 
+Acknowledgement ........................................... 50 
+Create Application Step 1 of 3 
+Application Type .............................................. 52 
+Create Application Step 2 of 3 
+COLA Information ............................................ 55 
+Create Application Step 3 of 3 
+Upload Labels ................................................. 60 
+D 
+Definition of Terms .............................................. 119 
+Download Online Industry Member Manual ....... 117 
+H 
+Help Facilities ....................................................... 127 
+ALFD Customer Service .................................... 127 
+COLAs Online Industry Member Online Help .... 127 
+COLAs Online Industry Member User manual ... 127 
+Field Level Tool Tips .......................................... 127 
+Home 
+My EApplications 
+View My eApplications..................................... 47 
+I 
+Instructions........................................................... 114 
+L 
+Log Off .................................................................. 126 
+M 
+Menu Options 
+Contact Us ........................................................... 46 
+Create an eApplication ........................................ 45 
+Formulas Online .................................................. 45 
+Office of the Chief Information Officer 
+Page I 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 
+
+Alcohol and Tobacco Tax and Trade Bureau COLAs Online 3.11.3 Online Industry Member User Manual 
+Home 
+My eApplications ............................................. 45 
+Instructions .......................................................... 46 
+Log Off ................................................................. 46 
+My Profile ............................................................. 46 
+Search for eApplication ........................................ 45 
+Modify Registration 
+Modify User Registration Submission .................. 43 
+Modify User Registration 
+Comments Tab .................................................... 41 
+Docs/Links Tab .................................................... 39 
+Modify Company Information ............................... 36 
+My Profile ................................................................ 94 
+Profile Update Confirmation ................................. 96 
+Update My Profile ................................................ 94 
+O 
+Online Industry Member Manual ......................... 116 
+P 
+Paperwork Reduction Act Notice ........................ 124 
+Print Filed COLAS 
+Printable Paper Filed COLA ................................ 84 
+Printable E-filed COLA 
+Print an E-filed COLA .......................................... 83 
+Printable Paper Filed COLA 
+Print a Paper Filed COLA .................................... 85 
+Printable Version of COLA 
+Printable E-filed COLA ......................................... 82 
+Privacy Act Considerations..................................... 5 
+S 
+Submit Application ................................................ 49 
+Create Application ............................................... 49 
+Surrender COLA ..................................................... 86 
+Surrendering COLA 
+Request to Surrender COLA ................................ 86 
+Surrender COLA Confirmation ............................. 88 
+T 
+Terms 
+Definition ............................................................ 128 
+TTB Form 5100.31 
+Application for and Certification/Exemption of 
+Label/Bottle Approval .................................... 121 
+TTB Online Portal Page ........................................... 9 
+Access COLAs Online ......................................... 11 
+U 
+Upload Attachments .............................................. 62 
+Uploading Attachments 
+Upload Label Images ........................................... 62 
+Upload Other Attachments .................................. 65 
+User Registration ................................................... 12 
+Activate a User ID ................................................ 30 
+Create a New User Registration .......................... 13 
+Modify a User Registration .................................. 34 
+V 
+Verify Application ................................................... 67 
+View Application .................................................... 73 
+Application Detail ................................................. 78 
+Printable Version of COLA ................................... 82 
+Search for eApplications ...................................... 73 
+Search Results 
+eApplications ................................................... 76 
+W 
+Web Site Privacy and Security Act Notice ......... 118 
+Withdraw Application ............................................ 89 
+Request to Withdraw Application ......................... 89 
+Withdraw Application Confirmation ...................... 91 
+ 
+ 
+ 
+ 
+ 
+ 
+Office of the Chief Information Officer 
+Page II 
+Dated:  June 11, 2015 
+ 
+FOR OFFICIAL USE ONLY 

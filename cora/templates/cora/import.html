@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORA — Import COLA Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0d10;
+            --card-bg: rgba(21, 26, 35, 0.8);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #14b8a6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-error: #ef4444;
+            --text-success: #10b981;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 30%, var(--primary) 70%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            background: rgba(10, 12, 16, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+
+        /* File Upload Styling */
+        .image-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        @media (max-width: 600px) {
+            .image-upload-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .file-upload-box {
+            background: rgba(10, 12, 16, 0.4);
+            border: 1px dashed var(--card-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-height: 120px;
+        }
+
+        .file-upload-box:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .file-upload-box svg {
+            stroke: var(--text-muted);
+            width: 28px;
+            height: 28px;
+            transition: stroke 0.2s;
+        }
+
+        .file-upload-box:hover svg {
+            stroke: var(--primary);
+        }
+
+        .file-upload-box span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .file-upload-box input[type="file"] {
+            display: none;
+        }
+
+        .file-status {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-top: 0.25rem;
+            word-break: break-all;
+        }
+
+        /* Button Action */
+        .actions {
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 0.85rem 2rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Feedback UI */
+        .toast {
+            display: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .toast-error {
+            background: rgba(239, 68, 110, 0.15);
+            border: 1px solid rgba(239, 68, 110, 0.3);
+            color: var(--text-error);
+        }
+
+        .toast-success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--text-success);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CORA APPLICATION PORTAL</h1>
+            <p>Standalone Registry Import & Compliance Verification</p>
+        </header>
+
+        <div id="toastBox" class="toast"></div>
+
+        <form id="importForm">
+            <!-- Application Metadata Card -->
+            <div class="card">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Application Information
+                </h2>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="ttb_id">TTB Tracking ID *</label>
+                        <input type="text" id="ttb_id" required placeholder="e.g., COLA-2026-004587">
+                    </div>
+                    <div class="form-group">
+                        <label for="cola_application_id">COLA Application ID</label>
+                        <input type="text" id="cola_application_id" placeholder="e.g., 102548">
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="applicant_name">Applicant Company Name *</label>
+                        <input type="text" id="applicant_name" required placeholder="e.g., Blue Ridge Cellars LLC">
+                    </div>
+                    <div class="form-group">
+                        <label for="product_type">Product Type *</label>
+                        <select id="product_type" required>
+                            <option value="WINE">Wine</option>
+                            <option value="DISTILLED_SPIRITS">Distilled Spirits</option>
+                            <option value="MALT_BEVERAGES">Malt Beverages</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="brand_name">Brand Name *</label>
+                        <input type="text" id="brand_name" required placeholder="e.g., Blue Ridge Reserve">
+                    </div>
+                    <div class="form-group">
+                        <label for="fanciful_name">Fanciful Name</label>
+                        <input type="text" id="fanciful_name" placeholder="e.g., Moonlit Harvest">
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="wine_appellation">Wine Appellation (If applicable)</label>
+                        <input type="text" id="wine_appellation" placeholder="e.g., Virginia">
+                    </div>
+                    <div class="form-group">
+                        <label for="distinctive_bottle_capacity">Bottle Capacity</label>
+                        <input type="text" id="distinctive_bottle_capacity" placeholder="e.g., 750 mL">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="grape_varietals">Grape Varietals (Comma separated list)</label>
+                    <input type="text" id="grape_varietals" placeholder="e.g., Cabernet Sauvignon, Merlot, Petit Verdot">
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="date_of_application">Date of Application</label>
+                        <input type="date" id="date_of_application">
+                    </div>
+                    <div class="form-group">
+                        <label for="date_issued">Date Issued</label>
+                        <input type="date" id="date_issued">
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="ttb_authorized_signature">TTB Authorized Signature</label>
+                        <input type="text" id="ttb_authorized_signature" placeholder="e.g., J. Anderson">
+                    </div>
+                    <div class="form-group">
+                        <label for="cola_status">Initial COLA Status</label>
+                        <select id="cola_status">
+                            <option value="RECEIVED">Received</option>
+                            <option value="APPROVED">Approved</option>
+                            <option value="CONDITIONALLY_APPROVED">Conditionally Approved</option>
+                            <option value="NEEDS_CORRECTION">Needs Correction</option>
+                            <option value="REJECTED">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Labels Images Upload Card -->
+            <div class="card">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    Upload Label Artwork (Max 4, PNG/JPG, Max 1.5MB per image)
+                </h2>
+                <div class="image-upload-grid">
+                    <!-- Brand Label -->
+                    <div class="file-upload-box" onclick="triggerFileInput('file_brand')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <strong>Brand Label (Front)</strong>
+                        <span>Select file</span>
+                        <input type="file" id="file_brand" accept="image/png, image/jpeg" onchange="updateFileLabel('file_brand')">
+                        <div id="file_brand_status" class="file-status"></div>
+                    </div>
+
+                    <!-- Back Label -->
+                    <div class="file-upload-box" onclick="triggerFileInput('file_back')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <strong>Back Label</strong>
+                        <span>Select file</span>
+                        <input type="file" id="file_back" accept="image/png, image/jpeg" onchange="updateFileLabel('file_back')">
+                        <div id="file_back_status" class="file-status"></div>
+                    </div>
+
+                    <!-- Neck Label -->
+                    <div class="file-upload-box" onclick="triggerFileInput('file_neck')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <strong>Neck Label</strong>
+                        <span>Select file</span>
+                        <input type="file" id="file_neck" accept="image/png, image/jpeg" onchange="updateFileLabel('file_neck')">
+                        <div id="file_neck_status" class="file-status"></div>
+                    </div>
+
+                    <!-- Other/Mockup Label -->
+                    <div class="file-upload-box" onclick="triggerFileInput('file_other')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <strong>Other Artwork / Mockup</strong>
+                        <span>Select file</span>
+                        <input type="file" id="file_other" accept="image/png, image/jpeg" onchange="updateFileLabel('file_other')">
+                        <div id="file_other_status" class="file-status"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-submit">Import Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function triggerFileInput(id) {
+            document.getElementById(id).click();
+        }
+
+        // Prevent file click event propagation causing double trigger
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        function updateFileLabel(id) {
+            const input = document.getElementById(id);
+            const status = document.getElementById(id + '_status');
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                status.innerText = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
+            } else {
+                status.innerText = '';
+            }
+        }
+
+        function showMessage(msg, isError = false) {
+            const toast = document.getElementById('toastBox');
+            toast.className = 'toast ' + (isError ? 'toast-error' : 'toast-success');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('importForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const toast = document.getElementById('toastBox');
+            toast.style.display = 'none';
+
+            const formData = new FormData();
+
+            // Construct payload json matching endpoint schema
+            const grape_input = document.getElementById('grape_varietals').value;
+            const grape_varietals = grape_input 
+                ? grape_input.split(',').map(s => s.trim()).filter(Boolean) 
+                : [];
+
+            const app_id_val = document.getElementById('cola_application_id').value;
+            const cola_application_id = app_id_val ? parseInt(app_id_val) : null;
+
+            const cola_application = {
+                ttb_id: document.getElementById('ttb_id').value.trim(),
+                cola_application_id: cola_application_id,
+                applicant_name: document.getElementById('applicant_name').value.trim(),
+                product_type: document.getElementById('product_type').value,
+                brand_name: document.getElementById('brand_name').value.trim(),
+                fanciful_name: document.getElementById('fanciful_name').value.trim() || null,
+                grape_varietals: grape_varietals.length > 0 ? grape_varietals : null,
+                wine_appellation: document.getElementById('wine_appellation').value.trim() || null,
+                distinctive_bottle_capacity: document.getElementById('distinctive_bottle_capacity').value.trim() || null,
+                cola_status: document.getElementById('cola_status').value,
+                date_of_application: document.getElementById('date_of_application').value || null,
+                date_issued: document.getElementById('date_issued').value || null,
+                ttb_authorized_signature: document.getElementById('ttb_authorized_signature').value.trim() || null,
+                label_images: []
+            };
+
+            const imageInputs = [
+                { id: 'file_brand', type: 'BRAND' },
+                { id: 'file_back', type: 'BACK' },
+                { id: 'file_neck', type: 'NECK' },
+                { id: 'file_other', type: 'OTHER' }
+            ];
+
+            // Verify files and attach to FormData
+            let filesAddedCount = 0;
+            for (let i = 0; i < imageInputs.length; i++) {
+                const item = imageInputs[i];
+                const input = document.getElementById(item.id);
+                if (input.files.length > 0) {
+                    const file = input.files[0];
+                    formData.append(file.name, file);
+                    cola_application.label_images.push({
+                        label_type: item.type,
+                        file_name: file.name,
+                        file_size_bytes: file.size
+                    });
+                    filesAddedCount++;
+                }
+            }
+
+            formData.append('payload', JSON.stringify({ cola_application }));
+
+            // Submit using fetch
+            fetch('/application/import/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+            .then(async response => {
+                const data = await response.json();
+                if (response.ok) {
+                    // Success
+                    showMessage(data.message || 'Application imported successfully!');
+                    // Optionally reset form
+                    document.getElementById('importForm').reset();
+                    // Clear statuses
+                    imageInputs.forEach(item => {
+                        document.getElementById(item.id + '_status').innerText = '';
+                    });
+                } else {
+                    // Display error from server
+                    const errMsg = data.details || data.reason || 'An error occurred during import.';
+                    showMessage(errMsg, true);
+                }
+            })
+            .catch(err => {
+                showMessage('Network error or server failure: ' + err.message, true);
+            });
+        });
+    </script>
+</body>
+</html>

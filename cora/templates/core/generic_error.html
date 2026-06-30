@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{# Contextual template for when an error occurs during import #}
+{% block content %}{% endblock %}
+
+{# Template used by POST /application/import endpoint on failure #}
+{% extends "cora/templates/core/generic_error.html" %}
+{% block title %}Import Failed - {{ reason }}{% endblock %}
+{% block content %}
+<h3>{{ 'ERROR' }}</h3>
+<p>Could not process application import due to the following error:</p>
+<ul>
+    <li><strong>Reason:</strong> {{ reason|upper }}</li>
+    <li><strong>Details:</strong> {{ details }}</li>
+</ul>
+<p><a href="/application/?pretty">Go back to Application List</a></p>
+{% endblock %}
+
+{# Used for successful import on the frontend #}
+{% extends "cora/templates/core/generic_success.html" %}
+{% block title %}Import Successful{% endblock %}
+{% block content %}
+<h3>✅ Import Complete</h3>
+<p>The application has been successfully processed and imported into the system.</p>
+
+{% if is_idempotent %}
+    <h4>ℹ️ Idempotency Detected</h4>
+    <p class="alert alert-warning">This record already exists with TTB ID <code>{{ application.ttb_id }}</code>. No data changes were made. The existing record was used, which matches the submitted payload.</p>
+{% else %}
+    <h4>🌟 New Record Created</h4>
+    <p>A brand new application record has been saved.</p>
+{% endif %}
+
+<div class="card mt-4 p-3">
+    <h5>Application Details</h5>
+    <dl>
+        <dt>TTB ID:</dt><dd>{{ application.ttb_id }}</dd>
+        <dt>Brand Name:</dt><dd>{{ application.brand_name }}</dd>
+        <dt>Status:</dt><dd><span class="badge badge-success">{{ application.status }}</span></dd>
+    </dl>
+</div>
+
+<p class="mt-4"><a href="/application/{{ application.id }}">{{ 'VIEW APPLICATION' }}</a></p>
+
+{% endblock %}

@@ -1,0 +1,591 @@
+CBMA Importer Claims System | CBMA Import Resources | Tax Simplification Pilot Program
+HOME 
+FREQUENTLY ASKED QUESTIONS (F…
+COLAS AND FORMULAS ONLINE FAQS
+COLAs and Formulas Online FAQs
+Print this topic
+Search in Page
+Category
+- Any -
+Search FAQs
+ 
+Collapse All
+About COLAs Online
+C1: What is COLAs Online?
+COLAs Online is an Internet-based system that allows registered industry members to
+apply online for a certificate of label approval (COLA), certificate of exemption from
+label approval, or distinctive liquor bottle approval.  See TTB Form 5100.31, Application
+For And Certification/Exemption of Label/Bottle Approval. COLAs Online also gives
+registered industry members the ability to track the status of their electronic label
+submissions. COLAs Online does not allow for the tracking of paper submissions of
+COLAs.
+In addition, COLAs Online serves as the sole internal database for TTB's Alcohol Labeling
+and Formulation Division (ALFD) to track all work-related documentation, including all
+COLA submissions received for approval either on paper or electronically through our
+COLAs Online system. COLAs Online also stores all approved COLAs in our Public COLA
+Report Fraud: TTB Tips Online
+ Menu
+An official website of the United States government Here’s how you know
+How helpful is this page?
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+1/19
+
+Registry, a public module that provides the general public with detailed information on
+approved COLAs, along with a printable version of the COLAs, if available.
+ 
+C2: What is the difference between COLAs Online and the Public COLA Registry?
+COLAs Online is the authenticated part of the COLAs Online system, accessible by
+username and password.  This system allows industry members to access their own
+applications, but maintains the confidentiality of pending applications that have not been
+approved, in accordance with the regulations in 27 CFR 13.61.  The system allows
+registered users to electronically submit label applications to TTB or to check the status
+of previously e-filed label applications.  The status of paper submissions is not available
+to applicants through COLAs Online. 
+ThePublic COLA Registryis the public module of the COLAs Online system, and it
+requires no username or password.  Copies of approved electronic and paper applications
+for a COLA, a certificate of exemption from label approval, or a distinctive liquor bottle
+approval are available in the Public COLA Registry in accordance with the regulations at
+27 CFR 13.61.  The system includes printable versions of the approvals, if available.  The
+system also includes approved applications that subsequently expired or were
+surrendered or revoked. 
+ 
+C3: What are the benefits of using COLAs Online?
+COLAs Online users may submit label applications to TTB electronically, reducing
+the time and cost associated with filing paper label applications.
+COLAs Online users receive an immediate electronic confirmation of TTB’s receipt of
+their label application submission and a unique TTB ID number for tracking
+purposes.
+COLAs Online users have fewer rejections for omissions of data because the system
+has business rules that will not allow users to submit electronic applications
+(eApplications) that have certain incorrect information or incomplete portions.
+COLAs Online users may access the system 22 hours per day, 7 days a week.
+If reasons for denying the label are disclosed during TTB’s initial review of an
+eApplication, COLAs Online users are given the opportunity to make corrections to
+the application within 30 calendar days , before TTB takes final action on the
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+2/19
+
+application.  After that period of time, if no corrections are made, the system will
+then automatically deny the application.  The COLAs Online status will show as
+“rejected.”
+Corrected eApplications receive priority consideration.  Upon receipt they are
+placed in the queue to be processed before the next set of applications that are still
+in “received” status.  
+C4: Does COLAs Online reduce the amount of time it takes to receive label approval?
+The process of human review of the COLA application for compliance with the
+regulations remains; however, elimination of the time it takes to send paper applications
+through the mail shortens the process significantly. Also, the online application has built-
+in validations to prevent many errors that are made by applicants on paper applications.
+Another feature of COLAs Online is that users are given the opportunity to correct a label
+application, eliminating the need for most outright rejections and reducing the overall
+turnaround time for COLA approvals.
+C5: Does COLAs Online improve the consistency of decisions made relating to label
+applications?
+Consistency of decisions made relating to label applications can be addressed only to a
+limited degree by a Web-based system. COLAs Online has business rules that keep many
+incorrect or incomplete applications from being submitted to ALFD. However, the human
+element remains part of the label approval process.
+C6: How does COLAs Online affect customer service?
+We believe COLAs Online enhances our customer service by providing industry members
+with another option for submitting label applications and by providing several options for
+contacting us. For example, you may send us questions regarding general or specific
+labeling issues by email at Submit an Online Inquiry.
+In addition, you may view current label processing times and processing times for
+beverage alcohol formulas on TTB.gov without having to contact ALFD directly.
+COLAs Online does not reduce an industry member's ability to interact with our label
+specialists or supervisors. Industry members or industry representatives may make an
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+3/19
+
+appointment to meet with a labeling or formula specialist or a supervisor by contacting
+ALFD toll free at (866) 927-ALFD (2533) or commercially at (202) 453-2250, between
+8:00 AM and 4:30 PM Eastern Time, Monday through Friday (except Federal Holidays).
+Based on our goal of continuous improvement, we welcome your candid comments,
+suggestions, and concerns. This information assists us in improving the service we
+provide to our customers.
+C7: Am I required to file COLAS electronically?
+No. The filing of COLAs electronically is optional. We also accept paper copies of TTB
+Form 5100.31, Application for and Certification/Exemption of Label/Bottle Approval.
+ 
+Registering and Getting Access to COLA Online
+C8: How do I register to use COLAs Online?
+There are two different options available for you to receive a user ID and initial password
+for COLAs Online:
+Register Electronically
+You may register electronically by clicking on the following link: Register for TTB Online. 
+Follow the steps in Create a New Registration to complete and submit your registration
+electronically.
+Links to TTB’s online services may also be found at the TTB Online Portal Page.
+Register by Mail
+You may also submit a paper COLAs Online Access Request form (TTB F 5013.2) by mail. 
+If you are submitting a paper request form, we require you to mail us the form with
+original signatures.
+Mail your completed form(s) to: 
+Alcohol and Tobacco Tax and Trade Bureau
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+4/19
+
+Alcohol Labeling and Formulation Division
+1310 G Street, NW, Box 12
+Washington, DC 20005
+Note:  If you do not have signature authority or a power of attorney that provides you with
+the authority to sign documents on behalf of the company for which you are filing label
+applications, the company will need to complete a Signing Authority form (TTB F 5100.1)
+or Power of Attorney form (TTB F 5000.8).  Follow the instructions on the forms, which
+require that the forms be submitted to the TTB National Revenue Center (NRC).  If you
+already have signing authority or a power of attorney that either authorizes you to sign all
+documents or specifically to sign COLA applications, you must submit a copy of that
+approved form when you submit your registration application.  You must have either a
+Signing Authority form or a Power of Attorney form on file prior to submitting your COLAs
+online registration application.
+ 
+C9: What if I cannot download the COLAs Online Access Request form, TTB F 5013.2 from
+TTB’s website?
+You can request registration forms by calling ALFD toll-free at 1-866-927-ALFD (2533) or
+at (202) 453-2250, or by email at Submit an Online Inquiry.
+ 
+C10: Will I receive an acknowledgement of receipt when I register? How can I check the
+status of my COLAs Online registration form(s)?
+We do not send acknowledgements of receipt for paper applications; however, if you use
+our online registration system, after your registration is complete you will receive a
+submission identification number.  You may check the status of a pending paper or
+electronic registration by contacting us toll-free at 1-866-927-2533, commercially at
+(202) 453-2250, or by email at Submit an Online Inquiry.
+In addition, you may view current processing times for COLAs Online Registrations on
+TTB.gov without having to contact ALFD directly.
+Once we have completed processing your COLAs Online Access Request form, we will
+send you an email that contains your user ID.  When you first log into the system, you
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+5/19
+
+must use your user ID and security questions to set your password through the Password
+Change Utility.
+ 
+C11: Can I use third party filers to file label applications electronically?
+Yes. Third party filers (trade associations, law firms, and industry representatives and
+consultants) can submit label applications on your behalf. Since the act of submitting an
+eApplication equates to signing the COLA form, a third party filer must either have
+signature authority or power of attorney for each company for which they wish to submit
+eApplications. Third party filers must also register to use COLAs Online and receive a
+user ID and password.
+ 
+Browser and Other Technical Requirements
+C12: What Web browser works best with COLAs Online?
+You may submit applications in the COLAs Online system using any of the following
+internet browsers:
+Apple Safari (version 5.1 or later)
+Google Chrome (version 21.0 or later)
+Microsoft Internet Explorer (version 8 or later)
+Mozilla Firefox (version 15.0 or later)
+We recommend you use Microsoft Internet Explorer (version 8 or later) on a Windows
+operating system for the best system performance.  When using other browsers you may
+notice some pages do not look the same as they do when using Internet Explorer.  We
+recommend setting your browser to compatibility mode to address this issue.  We will
+continue to work on these "cosmetic" issues, but COLAs Online does function properly in
+all of the compatible browsers mentioned above.
+ 
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+6/19
+
+C13: What else is required to use COLAs Online?
+In order to receive status notifications about electronically filed applications and other
+communication from ALFD, users are required to have an active e-mail account.
+Additionally, a scanner may be required in order to submit image files of paper labels.
+Users may need image processing software to convert PDF files to JPEG (.jpg, .jpeg, .jpe)
+or PNG (.png) files.
+ 
+C14: When does COLAs Online shut down for routine maintenance?
+The system is accessible 22 hours per day, 7 days a week. Routine maintenance, during
+which the system will not be available, is scheduled daily between 4:00 and 6:00 AM
+Eastern Time; additional scheduled system maintenance times may be found on the TTB
+System Maintenance Schedule calendar.
+ 
+Managing Your User Profile
+C15: How do I update my COLAs Online user profile with new permit numbers or as other
+user information changes?
+You may update some of the information associated with your account, including your
+password, phone numbers, fax numbers, and email addresses, by accessing My Profile
+from the menu which is located in the upper right corner of your computer screen when
+you are logged into COLAs Online. If you want to add additional permits to your account
+you must modify your user registration account after accessing My Profile. You may also
+request access to Formulas Online via COLAs Online through this process.
+ 
+C16: The person who used to file our COLAs left the company. How do I cancel their
+account so they can no longer access COLAs Online?
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+7/19
+
+To delete a user from COLAs Online for any reason, you may contact registration at  866-
+927-2533, option 3, or complete and mail a COLAs Online Access Request form, check
+the box “Delete User" in section A, and provide relevant information in the appropriate
+fields in the other sections. If you have a new employee filing COLA applications for you,
+that person must register for his/her own account with TTB. We do not permit people to
+share accounts under any circumstances for security reasons. If you move to a new
+company, you must contact us to remove the permit on your account that you will no
+longer use.
+C17: What should I do if I have forgotten my password or if my password has expired?
+You may reset your forgotten or expired password by answering the security questions
+correctly through the Password Change Utility. Please be aware that after two failed
+attempts, your account will be locked. To unlock your account, please see question C18.
+ 
+C18: What should I do if I attempt to login and I receive an error message stating that my
+account is locked?
+Your account can become locked for the following reasons:
+a. After incorrectly entering your login credentials three times. You may unlock your
+account by answering the security questions correctly through the Password
+Change Utility and resetting your password.
+b. After two failed attempts to answer your security questions through the Password
+Change Utility. To unlock your account, you will have to contact the TTB Helpdesk or
+call the Helpdesk toll-free at 1-866-927-2533, option 2, between 7:00 AM and 8:00
+PM Eastern Time on Monday through Friday.
+C19: I have created a new password. How long is it good for?
+Your password is valid for a period of 120 days from the date that you last changed your
+password.
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+8/19
+
+Please be aware that the system will not allow you to use a password if it has been used
+before.
+C20: What are the rules and requirements for creating and changing my password?
+Acceptable passwords must be composed of a combination of characters defined by you
+for accessing the COLAs Online application.  For security reasons, passwords should not
+contain identifiers that are common knowledge, such as your name, important dates,
+spouse/child/pet names, PIN numbers, etc.  Passwords are to be unique and should not
+be shared with other individuals.  When creating your password, please note that it must
+conform to the following complexity rules:
+Password must be at least 8 characters long.
+Password must not contain your user ID.
+Password must contain at least 1 UPPERCASE letter, 1 lowercase letter, 1 numeral (0-
+9), and 1 special character.
+You cannot reuse a password that has been used in the past 10 times or within the
+past 48 hours.
+You cannot use the following special characters: ' (single-quote), " (double-quote), _
+(underscore), = (equal sign), & (ampersand), and @ (at sign).
+Follow the steps in Change my Password to create or change your password.
+Electronic Filing and Updates
+C21: What are the steps for filing a label application in COLAs Online?
+Follow the steps in Create an Application to file electronic COLA applications
+(eApplications).
+C22: Are users able to check the status of their eApplications?
+Yes; you may view the status of your eApplications in COLAs Online through the "Home:
+My eApplications" page. You may also view the status of your eApplications through the
+"Search Results: eApplications" page by performing a "Search for eApplications." The
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+9/19
+
+system also allows you to search for all eApplications that you submitted and identify
+their current status, whether "Received," "Approved," “Conditionally Approved,” "Needs
+Correction," or "Rejected." You cannot see information about other companies'
+submissions or about your paper applications. We send e-mail notification of status
+changes in eApplications to the submitter. Therefore, if you use a third party filer to
+submit applications, that party receives the notifications.
+C23: What is the difference between the “Needs Correction” and “Rejected” status of a
+COLA Application?
+EApplications that TTB cannot approve as submitted may be returned to the submitter
+with the status of “Needs Correction.”  This is an intermediate step that affords the
+submitter the opportunity to make corrections to bring their eApplication into compliance
+prior to a final action on the application.  This step is not available with paper
+submissions.
+TTB will return the eApplication to the submitter with a list of corrections that need to be
+made to the application, the label, or both.  From that date, the submitter has 30 calendar
+days to make the corrections.  If the eApplication is not corrected and resubmitted to TTB
+within that time period, TTB will automatically deny the label application and the status
+within COLAs Online will state that the COLA was “Rejected.”  
+The “Rejected” status indicates that TTB has made a final decision to deny the
+application.  Paper applications enter this status when the initial TTB review discloses
+that either the application or the label does not comply with Federal requirements.  These
+applications are rejected and returned to the submitter by either email or postal mail.  As
+discussed above, eApplications are afforded an intermediate step and are generally
+returned for correction before a final action is taken; however, an eApplication may be
+rejected (denied) if all the necessary corrections are not made to an application that was
+returned for correction, or when the application that was returned for “Needs Correction”
+is not resubmitted to TTB within 30 calendar days.  
+If your label is rejected, you may still resubmit a new application with corrected labels at
+a later date. However, this application will not receive priority consideration over other
+applications received at that time. 
+C24: May I file for formula and pre-import approval electronically?
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+10/19
+
+Yes. Since January 2011, authorized users may file formula and pre-import applications
+electronically by using Formulas Online. You must register to use Formulas Online.
+If you are a current COLAs Online user, you will need to modify your account to add
+Formulas Online access to your profile. When your registration is confirmed, you will
+use the same username and password to log on to both systems.
+If you are not a current COLAs Online user, you need to register online at
+http://www.ttbonline.gov. Once TTB processes your application, you will receive your
+user name and password from TTB Online registrars and you will be able to submit
+formula and pre-import applications electronically.
+Visit the Formulas Online Homepage to learn more about it.
+ 
+C25: How do I submit additional information, such as lab analyses or organic certificates,
+with my COLA eApplication?
+You will need to submit any additional documentation by scanning the document(s) and
+saving it as a file. Then use the upload other attachments option in Step 3 of the
+application process to upload the file. Acceptable file types include DOC(.doc, .docx),
+TEXT(.txt), PDF(.pdf), JPEG (.jpg, .jpeg, .jpe).. You can attach up to 10 files, but each file
+must not exceed 750KB.
+ 
+C26: Will TTB electronically notify the States and U.S. Customs & Border Protection
+(USCBP) of approved COLAs?
+No. This phase of COLAs Online does not interact with State or Customs systems.
+However, all approved COLAs and images of electronically filed labels are posted on the
+COLA Public Registry
+at:https://www.ttbonline.gov/colasonline/publicSearchColasBasic.do, available for
+viewing by anyone, including the States, USCBP, and other federal agencies. There is a
+48 hour delay before posting approved COLAs to the website. Users of COLAs Online and
+the public are able to print copies of electronically approved labels from the web page
+that can be submitted to the States or USCBP. We are looking at a future enhancement to
+the system that will provide an auto-notification to the States and USCBP when a COLA
+is approved.
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+11/19
+
+ 
+C27: If I am required to submit a paper copy of the COLA to a state or Customs does the e-
+filed version have my signature and the signature of a TTB representative?
+The e-filed COLA contains the statement "Application was e-filed" in the applicant
+signature box. The applicant's name appears in the adjacent box, as it does on a paper
+COLA. A facsimile of the signature of the TTB approving official appears on the approved
+COLA.
+ 
+Submitting Attachments and Viewing Printable Version
+C28: What file formats does COLAs Online accept for label images?
+COLAs Online will accept label images in either JPEG (.jpg, .jpeg) or PNG (.png) file
+formats. COLAs Online does not accept images in the TIFF file format; trying to upload an
+image saved as a TIFF will result in an error.  For acceptable file formats for other
+attachments, see C29.
+Last reviewed/updated July 10, 2020
+ 
+C29: What file formats does COLAs Online accept for attachments?
+Attachments that you may need to upload to COLAs Online in support of your label
+application, such as any letterhead documents or an organic certification, may be
+uploaded using the following file formats: DOC (.doc, .docx), TEXT (.txt), PDF (.pdf), or
+JPEG (.jpg, .jpeg, .jpe) file formats. See also acceptable file formats for label images at
+C28.
+Last reviewed/updated July 10, 2020
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+12/19
+
+ 
+C30: What is the limit on file size for label images?
+No single label image file may exceed 1.5 MB.  To ensure that the label specialists can
+read every word on label images, we recommend that you save each image (e.g., brand
+label, back label, etc.) that is part of your submission at a resolution of at least 120-170
+dpi.  JPEG files should generally have a compression/quality ratio set at “Medium,” which
+may be represented as 7 out of 10 or 70 out of 100.
+You can typically find compression and resolution assistance by going into the software’s
+Help menu and selecting “Index “and then “Compression Method” or “Resolution.” You
+should always review the compression and resolution settings prior to saving your image
+file and prior to uploading images to COLAs Online.
+Last reviewed/updated July 10, 2020
+ 
+C31: What do I need to do to prepare my label image file properly?
+In addition to ensuring that each label image doesn’t exceed 1.5MB (see C30) in size and
+is saved as a JPEG or PNG file format (see C28), here are additional guidelines to help you
+prepare the label image files for your submission:
+Each label on your container (e.g. brand, back, neck, etc.) must be uploaded as a
+separate file.
+For reasons outlined below, make sure the image is cropped to show only the
+label itself.  If you scanned your label or used a phone to take a picture of it, the
+image you start with likely has white space or other background around the label. 
+Be sure to crop all extra background out of the image, so the edges of the image just
+touch the edges of the label, before you upload it.  You can use any photo editing
+software for this.
+ 
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+13/19
+
+Make sure the image’s width and height that you enter in Step 3 of your COLAs
+Online application are accurate.  Inaccurate entry of the image’s dimensions can
+result in distorted images, which our label specialists will have difficulty reviewing,
+and which may delay approval.  In addition, entering an inaccurate width and height
+may result in the label image displaying incorrectly on TTB’s Public COLA Registry.
+If the dimensions of your label image (with extra background cropped out) differ
+from the dimensions of the actual, printed label, that is acceptable – but in Step 3,
+be sure you enter the dimensions of the label as it will be printed (not the
+dimensions of the label image itself). 
+ 
+Last reviewed/updated July 10, 2020
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+14/19
+
+ 
+C32: The words on the label I’ve prepared are blurry or hard to read. How can I improve
+the text’s legibility?
+Images saved at lower resolutions can result in text that is blurry or pixelated, especially
+when magnified.  As a rule of thumb, shoot for a resolution of at least 120 to 170 dpi
+(while also ensuring that the image file size does not exceed 1.5MB).
+If you find the label text is still hard to read after increasing the resolution, try saving the
+image using the PNG file format.
+ 
+Last reviewed/updated July 10, 2020
+ 
+C33: What should I do if TTB sends my labels back for correction because the image
+dimensions I provided skewed or distorted the printable version of my application?
+If you entered incorrect image dimensions under Step 3 of your COLAs Online
+application, or if your label images included extra background (e.g., white space) around
+the image itself that was not accounted for in the label dimensions you entered, the
+image will appear distorted on the printable version.  The printable version is used by our
+specialists to process your application; it is also uploaded into the Public COLA Registry,
+so it is important that your image displays correctly on the printable version.
+If your image file includes additional background, please crop it out, resave the
+image, and upload the new image to your application (after removing the old image).
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+15/19
+
+If your image already excludes additional background, simply remove the old
+image and upload it again with the proper dimensions.
+Learn more about preparing your label image properly, see C31.
+Last reviewed/updated July 10, 2020
+C34: What do I do if my image attachments do not upload properly?
+After uploading files to COLAs Online, you should click on the “Verify Uploaded Images”
+link on the “Verify Application” step to ensure that the all files were uploaded and display
+correctly. Occasionally, due to glitches during the data transfer from your workstation to
+the TTB server, uploaded label image files become corrupted. When this occurs, please
+try to save the file again on your workstation and then after removing the first image file,
+re-attempt the upload on Step 3. If problems persist, you may contact the Alcohol
+Labeling and Formulation Division (ALFD) at 1-866-927-ALFD (2533) or Submit an Online
+Inquiry to ALFD for further assistance.
+Last reviewed/updated July 10, 2020
+C35: What should I do if the image displayed is not the image I uploaded?
+The image displayed on a web page sometimes is not the "correct" image because of the
+way your browser stores or "caches" images. If you clear your browser cache, you should
+be able to see the latest image.
+We suggest following these steps to clear your cache in the following browsers:
+Internet Explorer:
+1. Click on the cog-symbol in the upper right corner of the browser.
+2. Select the item "Internet options".
+3. In the tab "General" you can find a section "Browser history". When you click on
+the button "Delete" a new Window opens.
+4. Remove all checks except the selection "Temporary Internet files and website
+files".
+5. Click on the Button "Delete" to empty the browser cache.
+6. Reload the page.
+Chrome:
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+16/19
+
+1. Click the ellipsis in the upper right-hand corner.
+2. Scroll down to Clear browsing data under Privacy and security
+3. Click Clear browsing data
+4. At the top, choose a time range. To delete everything, select All time.
+5. Uncheck Cookies and other site data
+6. Click Clear data
+7. Reload the page.
+Edge:
+1. Click the ellipsis in the upper right-hand corner.
+2. Select Settings
+3. Select Privacy and services on the left-hand side
+4. Select Choose what to clear
+5. Uncheck Cookies and other site data
+6. Click Clear now
+7. Reload the page.
+Last reviewed/updated July 10, 2020
+About Formulas Online
+C36: What is Formulas Online?
+The Formulas Online System is TTB's efficient, and secure method for drafting,
+submitting, and tracking formula applications electronically. Formulas Online was
+designed to include step-by-step guidance and validation checks to ensure that formula
+applications are accurate. Also, a single user ID may be used to access both Formulas
+Online and COLAs Online. If you submit COLAs electronically, you will be required to add
+Formulas Online to your current COLAs Online profile. For more information about
+Formulas Online visit the Formulas Online Customer Support page.
+C37: How do I register for Formulas Online?
+You may register electronically for Formulas Online by going to Register for TTB Online. 
+Follow the steps in Create a New Registration to complete and submit your registration
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+17/19
+
+electronically.
+Links to TTB’s online services may also be found at the TTB Online Portal Page.
+C38: I am a current user of COLAs Online. When I attempt to access Formulas Online using
+my current user ID and password, I receive an error message. What do I need to do?
+As an existing user of COLAs Online, you must modify your registration to add Formulas
+Online access to your profile.  Access to the Formulas Online system is not automatic and
+registration is not instantaneous.  Follow the steps in Modify my User Registration, by
+accessing My Profile from the menu which is located in the upper right corner of your
+computer screen when you are logged into COLAs Online.  
+You may view current processing times for COLAs Online registrations and Formulas
+Online registrations on TTB.gov without having to contact ALFD directly.
+ 
+General Questions about COLAs and Formulas Online
+C39: Is there an application fee for COLA applications or formula submissions?
+No, TTB does not charge a fee related to COLA applications or formula submissions.
+Last updated: June 24, 2026
+Filing & Payments
+Permits Online
+COLAs Online
+Tax Returns
+Permit Applications
+About TTB
+Contact Us
+Offices
+Careers
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+18/19
+
+Submit a Claim Online
+Regulations
+Additional Information
+Open Government
+Plain Language
+Information Quality
+Forms
+Labeling
+Additional Resources
+FOIA
+Whistleblower Protection
+Report Fraud
+Other Government Sites
+Dept. of the Treasury
+USA.gov
+Data.gov
+Internal Revenue Service
+Office of Special Counsel
+Language Links
+En Español
+Français
+漢語
+Accessibility 
+ Privacy Policy
+6/24/26, 11:18 AM
+COLAs and Formulas Online FAQs | TTB: Alcohol and Tobacco Tax and Trade Bureau
+https://www.ttb.gov/faqs/colas-and-formulas-online-faqs
+19/19
