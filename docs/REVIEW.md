@@ -55,9 +55,11 @@ CORA is a Django-based internal system for managing COLA (Certificate of Label A
 - **Added `failing_field` property** to all JSON error responses for easier client-side debugging
 - **Converted HTML error responses** to use styled `import_error.html` template instead of raw HttpResponse
 
-### 4.6 Landing Page Navigation
+### 4.6 Landing Page Navigation & Application Detail
 - **"View Applications"** button now links to `/application?list=1` to trigger `_handle_application_list()`
 - **"Import Application"** button continues to link to `/application` (displays import form)
+- **GET /application/{TTB_ID}** now renders styled `application_detail.html` showing all application fields and label images
+- Detail view uses consistent styling (--card-bg, --primary colors, fonts) with the import form
 
 ## 5. Security & Compliance Notes
 - No secrets in code; `.env` remains uncommitted.

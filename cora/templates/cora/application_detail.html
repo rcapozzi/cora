@@ -1,6 +1,271 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Application Detail</h1>
-<p>TTB ID: {{ application.ttb_id }}</p>
-<p>Status: {{ application.status }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORA — Application Detail: {{ application.ttb_id }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0d10;
+            --card-bg: rgba(21, 26, 35, 0.8);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #14b8a6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-error: #ef4444;
+            --text-success: #10b981;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 2.5rem; }
+
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 30%, var(--primary) 70%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p { color: var(--text-muted); font-size: 1.05rem; }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .value {
+            background: rgba(10, 12, 16, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .badge-RECEIVED { background: rgba(99, 102, 241, 0.2); color: var(--primary); }
+        .badge-IN_REVIEW { background: rgba(20, 184, 166, 0.2); color: var(--accent); }
+        .badge-VERIFIED { background: rgba(16, 185, 129, 0.2); color: var(--text-success); }
+        .badge-APPROVED { background: rgba(16, 185, 129, 0.2); color: var(--text-success); }
+        .badge-REJECTED { background: rgba(239, 68, 110, 0.2); color: var(--text-error); }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        @media (max-width: 600px) { .images-grid { grid-template-columns: 1fr; } }
+
+        .image-card {
+            background: rgba(10, 12, 16, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-type { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+        .image-name { font-size: 0.9rem; color: var(--text-main); word-break: break-all; }
+
+        .actions { margin-top: 2rem; text-align: right; }
+
+        .btn-back {
+            background: rgba(10, 12, 16, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            padding: 0.85rem 2rem;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Application Detail</h1>
+            <p>TTB COLA Registry - View Application</p>
+        </header>
+
+        <div class="card">
+            <h2 class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Application Information
+            </h2>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>TTB Tracking ID</label>
+                    <div class="value">{{ application.ttb_id }}</div>
+                </div>
+                <div class="form-group">
+                    <label>COLA Application ID</label>
+                    <div class="value">{{ application.cola_application_id|default:'—' }}</div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Applicant Company Name</label>
+                    <div class="value">{{ application.applicant_name }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Product Type</label>
+                    <div class="value">
+                        {% if application.product_type == 'DISTILLED_SPIRITS' %}Distilled Spirits
+                        {% elif application.product_type == 'MALT_BEVERAGES' %}Malt Beverages
+                        {% else %}{{ application.product_type|title }}{% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Brand Name</label>
+                    <div class="value">{{ application.brand_name }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Fanciful Name</label>
+                    <div class="value">{{ application.fanciful_name|default:'—' }}</div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Wine Appellation</label>
+                    <div class="value">{{ application.wine_appellation|default:'—' }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Bottle Capacity</label>
+                    <div class="value">{{ application.distinctive_bottle_capacity|default:'—' }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Grape Varietals</label>
+                <div class="value">{{ application.grape_varietals|join:', '|default:'—' }}</div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Date of Application</label>
+                    <div class="value">{{ application.date_of_application|date:'Y-m-d'|default:'—' }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Date Issued</label>
+                    <div class="value">{{ application.date_issued|date:'Y-m-d'|default:'—' }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>TTB Authorized Signature</label>
+                <div class="value">{{ application.ttb_authorized_signature|default:'—' }}</div>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <div class="value"><span class="badge badge-{{ application.status }}">{{ application.get_status_display }}</span></div>
+            </div>
+        </div>
+
+        {% if label_images %}
+        <div class="card">
+            <h2 class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                Label Images ({{ label_images|length }})
+            </h2>
+            <div class="images-grid">
+                {% for img in label_images %}
+                <div class="image-card">
+                    <img src="{{ img.file_path }}" alt="{{ img.get_label_type_display }}">
+                    <div class="image-type">{{ img.get_label_type_display }}</div>
+                    <div class="image-name">{{ img.file_name }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="actions">
+            <a href="{% url 'application_list' %}?list=1" class="btn-back">Back to Applications</a>
+        </div>
+    </div>
+</body>
+</html>
 {% endblock %}
