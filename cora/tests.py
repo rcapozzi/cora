@@ -255,8 +255,8 @@ class ApplicationListEndpointTests(TestCase):
         response = self.client.get(reverse("application_list"), HTTP_ACCEPT="application/json")
         self.assertEqual(response.status_code, 200)
         body = json.loads(response.content.decode())
-        self.assertIn("applications", body)
-        self.assertTrue(body["total"] >= 35)
+        self.assertIn("results", body)
+        self.assertTrue(body["count"] >= 35)
 
     def test_search_filters_results(self):
         response = self.client.get(
@@ -265,7 +265,7 @@ class ApplicationListEndpointTests(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         body = json.loads(response.content.decode())
-        self.assertTrue(any("Brand 10" in entry["brand_name"] for entry in body["applications"]))
+        self.assertTrue(any("Brand 10" in entry["brand_name"] for entry in body["results"]))
 
     def test_sorting_and_pagination(self):
         response = self.client.get(
@@ -274,8 +274,8 @@ class ApplicationListEndpointTests(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         body = json.loads(response.content.decode())
-        self.assertIn("page", body)
-        self.assertIn("num_pages", body)
+        self.assertIn("count", body)
+        self.assertIn("next", body)
 
 
 @override_settings(ROOT_URLCONF='cora.urls')

@@ -1,55 +1,40 @@
 # Gap Analysis
-Last updated: 2026-06-28
+Last updated: 2026-06-30
 
 ## Scope
 This document lists gaps between the current code and a stable, reviewable employer-grade delivery.
 
 ---
 
-## Critical
-1. Database config mismatch
-- `cora/settings.py` switches to Postgres only when `POSTGRES_HOST` is set; `docker-compose.yml` uses `DATABASE_URL`.
-- Result: team members can end up on SQLite vs Postgres without realizing it, causing schema drift.
-
-2. Schema/model migration drift
-- `models.py` defines lifecycle timestamps; applied DB state can still miss them if migrations are not authoritative.
-- This produces runtime `OperationalError` on `/application`.
+## Resolved (This Session)
+1. ✅ **Database config mismatch** - Fixed `docker-compose.yml` to set `POSTGRES_HOST=postgres` so web service connects to postgres container.
+2. ✅ **Schema/model migration drift** - Replaced 12 stale migrations with single authoritative `0001_initial.py` containing all model fields.
+3. ✅ **Missing `application_detail.html` template** - Created template to fix 500 error on detail view.
+4. ✅ **Test assertion mismatches** - Fixed tests to expect `results`/`count` instead of `applications`/`total`.
 
 ---
 
-## High
-3. Application isolation / auth in tests
-- `cora/tests.py` creates real `auth.User` records but does not isolate app state or permission behavior.
-- Risk: review locks and `review_by` ownership are not actually enforced.
+## High Priority (Remaining)
+1. **Application isolation / auth in tests** - Tests create real `auth.User` records but do not isolate app state or permission behavior.
+   - Risk: review locks and `review_by` ownership are not actually enforced end-to-end.
 
-4. View error contract
-- `views.py` uses broad `except Exception` for request parsing and returns `server_error` with the exception string.
-- Risk: stack traces leak out of JSON responses during pilot runs.
+2. **View error contract** - `views.py` uses broad `except Exception` for request parsing and returns `server_error` with the exception string.
+   - Risk: stack traces leak out of JSON responses during pilot runs.
 
-5. Missing label-image metadata enforcement
-- `LabelImage` stores width/height/image_format, but `application_import` skips image metadata extraction on invalid image uploads.
-- Risk: bad files can pass through with incomplete metadata.
+3. **Missing label-image metadata enforcement** - `LabelImage` stores width/height/image_format, but `application_import` skips image metadata extraction on invalid image uploads.
+   - Risk: bad files can pass through with incomplete metadata.
 
 ---
 
-## Medium
-6. Media/upload hygiene
-- `get_label_upload_path` derives path from `ttb_id` before the app is saved or validated.
-- Risk: filesystem paths depend on untrusted payload content.
+## Medium Priority
+4. **Media/upload hygiene** - `get_label_upload_path` derives path from `ttb_id` before the app is saved or validated.
+   - Risk: filesystem paths depend on untrusted payload content.
 
-7. Test route coverage
-- `/application/import` is tested; `/submission/import` alias is not independently tested.
-- Risk: alias regression can go unnoticed.
-
-8. No CI or quality gate docs
-- README doesn’t yet define `ruff`/`mypy`/`pytest` policy, so review acceptance is subjective.
+5. **No CI or quality gate docs** - README doesn't define `ruff`/`mypy`/`pytest` policy.
 
 ---
 
-## Low
-9. Duplicate timezone import
-- `cora/views.py` imports `timezone` twice.
-- Risk: maintainability noise only.
+## Low Priority
+6. **Duplicate timezone import** - `cora/views.py` imports `timezone` twice (minor maintainability noise).
 
-10. Missing `exists()` check before label-image operations
-- `views.py` assumes `label_images` relation is available; no empty-state annotation or no-image fallback.
+7. **Missing `exists()` check before label-image operations** - No empty-state annotation or no-image fallback.

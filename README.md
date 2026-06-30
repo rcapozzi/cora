@@ -4,6 +4,8 @@
 
 CORA is a Django web application for managing label compliance operations and alcohol label verification using OCR.
 
+![Screenshot of imported application](application_import.png)
+
 ### Architectural Strategy
 * **Queue Engine:** Local Docker-based Postgres utilizing the pre-compiled `PGMQ` extension (via `ghcr.io/pgmq/pg18-pgmq:latest`).
 * **Design Pattern:** Claim Check Pattern. Raw image payloads (up to 4 files at 1.5MB each) are written straight to shared local disk storage, passing only the lightweight `Application ID` metadata through the message queue.

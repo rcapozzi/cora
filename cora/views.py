@@ -100,6 +100,11 @@ IMPORT_PAYLOAD_SCHEMA = {
 }
 
 
+def landing(request):
+    """Landing page for CORA application portal."""
+    return render(request, 'cora/landing.html')
+
+
 def ping(request):
     now = timezone.localtime()
     payload = {
