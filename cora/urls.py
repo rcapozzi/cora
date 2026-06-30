@@ -11,7 +11,7 @@ urlpatterns = [
     re_path(r'^application/(?P<id>[0-9a-f-]{36})/release/?$', views.application_release, name='application_release'),
     re_path(r'^ping/?$', views.ping, name='ping'),
     re_path(r'^application/?$', views.application_list, name='application_list'),
-    path('application/import', views.application_import, name='application_import'),
+    path('application/import/', views.application_import, name='application_import'),
 ]
 # Serve media files locally ONLY during development
 if settings.DEBUG:
