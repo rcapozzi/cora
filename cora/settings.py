@@ -65,25 +65,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cora.wsgi.application'
 
-if os.environ.get('POSTGRES_HOST'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('POSTGRES_NAME', 'cora_db'),
-            'USER': os.environ.get('POSTGRES_USER', 'cora_user'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'cora_local_password'),
-            'HOST': os.environ.get('POSTGRES_HOST', 'postgres'),
-            'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-            'CONN_MAX_AGE': 60,
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_NAME', 'cora_db'),
+        'USER': os.environ.get('POSTGRES_USER', 'cora_user'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'cora_local_password'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'postgres'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+        'CONN_MAX_AGE': 60,
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

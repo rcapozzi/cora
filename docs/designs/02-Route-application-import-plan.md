@@ -83,7 +83,7 @@ class LabelImage(models.Model):
 
 ### B. Endpoint Architecture (`GET` and `POST`)
 
-#### `GET /application/import`
+#### `GET /application`
 - **Content Negotiation**:
   - `Accept: application/json` -> Return the JSON Schema of the import payload.
   - `Accept: text/html` (or default browser) -> Render a user-friendly HTML upload form.
@@ -92,7 +92,7 @@ class LabelImage(models.Model):
   - Supports up to 4 file upload inputs (dynamically matches files to metadata image filenames).
   - Uses basic JavaScript to intercept submission, serialize metadata as JSON inside a `payload` field, and append binary files into a `multipart/form-data` request submitted asynchronously or synchronously.
 
-#### `POST /application/import`
+#### `POST /application`
 - Requires `multipart/form-data` Content-Type.
 - Flow diagram of validation and ingestion pipeline:
 

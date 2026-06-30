@@ -61,6 +61,13 @@ CORA is a Django-based internal system for managing COLA (Certificate of Label A
 - **GET /application/{TTB_ID}** now renders styled `application_detail.html` showing all application fields and label images
 - Detail view uses consistent styling (--card-bg, --primary colors, fonts) with the import form
 
+### 4.7 PostgreSQL Message Queue Setup
+- **Created `0002_setup_pgmq_trigger.py`** to manage pgmq queue via Django migration
+- Drops trigger `t_label_images_to_queue` and function `trigger_send_to_pgmq()` before creation
+- Creates `q_label_images` queue via `pgmq.create()`
+- Creates trigger function that sends `{"id", "file_path", "file_name"}` to queue on INSERT
+- Binds `AFTER INSERT` trigger to `label_images` table
+
 ## 5. Security & Compliance Notes
 - No secrets in code; `.env` remains uncommitted.
 - Release workflow must be tied to reviewer identity and lock acquisition.
