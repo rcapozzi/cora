@@ -21,6 +21,7 @@ services:
     build:
       context: . # Looks for the Dockerfile in ~/src/cora
     container_name: cora_web
+#    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app # Mounts local source code for live-reloading during development
@@ -30,8 +31,12 @@ services:
     env_file:
       - .env
     environment:
-      - DEBUG=True
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      DEBUG: "True"
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "${POSTGRES_PORT:-5432}"
+      POSTGRES_DB: "${POSTGRES_DB:-cora_db}"
+      POSTGRES_USER: "${POSTGRES_USER:-cora_user}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-cora_local_password}"
     depends_on:
       postgres:
         condition: service_healthy # Ensures Django doesn't boot until DB is fully ready
@@ -42,15 +47,19 @@ services:
       context: .
     container_name: cora_worker
     # Replace this command with your specific worker run script (e.g., python manage.py qcluster)
-    command: python manage.py run_worker 
+    command: python manage.py run_worker
     volumes:
       - .:/app # Mounts local source code so worker picks up code changes instantly
       - ~/var/media:/app/media # MUST match the web service exactly for the Claim Check pattern
     env_file:
       - .env
     environment:
-      - DEBUG=True
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      DEBUG: "True"
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "${POSTGRES_PORT:-5432}"
+      POSTGRES_DB: "${POSTGRES_DB:-cora_db}"
+      POSTGRES_USER: "${POSTGRES_USER:-cora_user}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-cora_local_password}"
     depends_on:
       postgres:
         condition: service_healthy
