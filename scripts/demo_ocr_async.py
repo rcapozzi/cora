@@ -34,7 +34,7 @@ async def ocr_worker(worker_id: int, queue: PGMQueue):
 
             if message is None:
                 # Queue is empty. Sleep briefly to prevent tight-looping the DB.
-                await asyncio.sleep(1)
+                await asyncio.sleep(EMPTY_QUEUE_BACKOFF)
                 continue
 
             logger.info(f"Worker-{worker_id} claimed message {message.msg_id}")
