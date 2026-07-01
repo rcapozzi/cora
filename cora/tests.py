@@ -320,3 +320,39 @@ class ApplicationDetailReleaseTests(TestCase):
 
         response = self.client.get(reverse("application_detail", kwargs={"id": str(self.app.id)}))
         self.assertEqual(response.status_code, 200)
+
+
+@override_settings(ROOT_URLCONF='cora.urls')
+class StatusEndpointTests(TestCase):
+    def test_status_returns_success(self):
+        response = self.client.get(reverse("status"), HTTP_ACCEPT="application/json")
+        self.assertEqual(response.status_code, 200)
+        body = json.loads(response.content.decode())
+        self.assertTrue(body["success"])
+        self.assertIn("ocr_backlog", body)
+        self.assertEqual(body["ocr_backlog"]["queue_name"], "q_label_images")
+        self.assertIn("messages", body["ocr_backlog"])
+        self.assertIn("count", body["ocr_backlog"])
+        self.assertIn("note", body["ocr_backlog"])
+
+    def test_status_empty_queue(self):
+        response = self.client.get(reverse("status"), HTTP_ACCEPT="application/json")
+        self.assertEqual(response.status_code, 200)
+        body = json.loads(response.content.decode())
+        self.assertTrue(body["success"])
+        self.assertEqual(body["ocr_backlog"]["messages"], [])
+        self.assertEqual(body["ocr_backlog"]["count"], 0)
+
+    def test_status_db_failure_returns_500(self):
+        from unittest.mock import patch
+        from django.db import connection
+        with patch.object(connection, 'cursor', side_effect=RuntimeError('db down')):
+            response = self.client.get(reverse("status"), HTTP_ACCEPT="application/json")
+        self.assertEqual(response.status_code, 500)
+        body = json.loads(response.content.decode())
+        self.assertFalse(body["success"])
+        self.assertEqual(body["reason"], "status_error")
+        self.assertEqual(body["failing_field"], "ocr_backlog")
+        self.assertIn("detail", body)
+        self.assertIn("details", body)
+

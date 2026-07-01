@@ -127,10 +127,12 @@ cora/
 ├── static/              # Project-wide static files
 ├── templates/           # Global template overrides (optional)
 ├── media/               # Uploaded label images (gitignored)
-├── db.sqlite3           # SQLite database (dev)
 ├── docker-compose.yml   # Local Postgres + PGMQ
 ├── pyproject.toml       # uv project manifest + deps
-└── manage.py            # Django management script
+├── manage.py            # Django management script
+├── docs
+├── docs/design          # Design docs feed to AI
+└── docs/roadmap         # Ideation zone
 
 
 ```
@@ -138,7 +140,7 @@ cora/
 ## Technology Stack
 
 - Backend: Django 6.0
-- Database: PostgreSQL + PGMQ (or SQLite for development)
+- Database: PostgreSQL + PGMQ
 - Frontend: HTML/CSS/JavaScript with HTMX
 - OCR: PaddleOCR (planned)
 - Testing: pytest

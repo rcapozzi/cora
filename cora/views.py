@@ -16,6 +16,7 @@ import jsonschema
 
 from .models import ColaApplication, LabelImage
 from .tasks import process_application
+from django.db import connection
 
 from django.utils import timezone
 
@@ -102,6 +103,39 @@ IMPORT_PAYLOAD_SCHEMA = {
 def landing(request):
     """Landing page for CORA application portal."""
     return render(request, 'cora/landing.html')
+
+
+def status(request):
+    """Read-only observability for OCR backlog using PGMQ."""
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT pgmq.read(%s, 10, 1)",
+                ['q_label_images'],
+            )
+            rows = cursor.fetchall()
+    except Exception as exc:
+        return JsonResponse({
+            "success": False,
+            "reason": "status_error",
+            "failing_field": "ocr_backlog",
+            "details": str(exc),
+        }, status=500)
+
+    messages = []
+    if rows:
+        for row in rows:
+            messages.append({"message": row[0]})
+
+    return JsonResponse({
+        "success": True,
+        "ocr_backlog": {
+            "queue_name": "q_label_images",
+            "messages": messages,
+            "count": len(messages),
+            "note": "Shows at most 20 messages for observability preview.",
+        },
+    })
 
 
 def ping(request):
