@@ -260,20 +260,13 @@ def application_list(request):
     wants_json = 'application/json' in request.headers.get('Accept', '')
     is_htmx = request.headers.get('HX-Request') == 'true'
 
-    # GET method handling
-    if request.method == 'GET':
-        # Import schema endpoint (?schema=1 or no query params with JSON Accept)
-        if request.GET.get('schema') == '1' or (wants_json and not request.GET):
-            return JsonResponse(IMPORT_PAYLOAD_SCHEMA, safe=False)
-        # HTML form for frontend (only when no query params)
-        if 'text/html' in request.headers.get('Accept', '') and not request.GET:
-            return render(request, 'cora/import.html')
-
-    # POST method: handle import
+    # POST method: handle import/create
     if request.method == 'POST':
-        return _handle_application_import(request, wants_json)
+        return _handle_application_create(request, wants_json)
 
-    # GET method: list applications (with query params like ?list=1, ?q=, etc)
+    # GET method: return application list by default
+    if request.GET.get('schema') == '1':
+        return JsonResponse(IMPORT_PAYLOAD_SCHEMA, safe=False)
     return _handle_application_list(request, wants_json, is_htmx)
 
 
@@ -388,7 +381,7 @@ def _handle_application_list(request, wants_json, is_htmx):
 
 
 @csrf_exempt
-def _handle_application_import(request, wants_json):
+def _handle_application_create(request, wants_json):
     """Handles POST /application - Import a new application."""
     if request.method != 'POST':
         err_msg = "Method not allowed"

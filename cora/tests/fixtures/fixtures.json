@@ -1,0 +1,86 @@
+{
+  "fixtures": [
+    {
+      "model": "cora.colaapplication",
+      "pk": 1,
+      "fields": {
+        "brand_name": "VINEYARD RESERVE",
+        "ttb_id": "TTB-2026-0001",
+        "status": "RECEIVED",
+        "applicant_name": "VINEYARD RESERVE Estate Wines",
+        "product_type": "WINE",
+        "cola_application_id": 1001,
+        "fanciful_name": "Reserve",
+        "grape_varietals": ["Cabernet Sauvignon"],
+        "wine_appellation": "Napa Valley",
+        "distinctive_bottle_capacity": "750 mL"
+      }
+    },
+    {
+      "model": "cora.colaapplication",
+      "pk": 2,
+      "fields": {
+        "brand_name": "CHATEAU BLANC",
+        "ttb_id": "TTB-2026-0002",
+        "status": "RECEIVED",
+        "applicant_name": "CHATEAU BLANC Vineyards",
+        "product_type": "WINE",
+        "cola_application_id": 1002,
+        "fanciful_name": "Blanc",
+        "grape_varietals": ["Chardonnay"],
+        "wine_appellation": "Sonoma Coast",
+        "distinctive_bottle_capacity": "1.5 L"
+      }
+    },
+    {
+      "model": "cora.colaapplication",
+      "pk": 3,
+      "fields": {
+        "brand_name": "SUMMIT LAGER",
+        "ttb_id": "TTB-2026-0003",
+        "status": "RECEIVED",
+        "applicant_name": "SUMMIT BREWING COMPANY",
+        "product_type": "BEER",
+        "cola_application_id": 1003,
+        "fanciful_name": "Summit",
+        "grape_varietals": [],
+        "wine_appellation": "",
+        "distinctive_bottle_capacity": "12 FL OZ"
+      }
+    },
+    {
+      "model": "cora.colaapplication",
+      "pk": 4,
+      "fields": {
+        "brand_name": "VALLEY IPA",
+        "ttb_id": "TTB-2026-0004",
+        "status": "RECEIVED",
+        "applicant_name": "VALLEY CRAFT BREWERS",
+        "product_type": "BEER",
+        "cola_application_id": 1004,
+        "fanciful_name": "Valley",
+        "grape_varietals": [],
+        "wine_appellation": "",
+        "distinctive_bottle_capacity": "355 mL"
+      }
+    }
+  ],
+  "images": {
+    "VINEYARD-RESERVE": {
+      "front": "tests/label_images/VINEYARD-RESERVE_front.jpg",
+      "back": "tests/label_images/VINEYARD-RESERVE_back.jpg"
+    },
+    "CHATEAU-BLANC": {
+      "front": "tests/label_images/CHATEAU-BLANC_front.jpg",
+      "back": "tests/label_images/CHATEAU-BLANC_back.jpg"
+    },
+    "SUMMIT-LAGER": {
+      "front": "tests/label_images/SUMMIT-LAGER_front.jpg",
+      "back": "tests/label_images/SUMMIT-LAGER_back.jpg"
+    },
+    "VALLEY-IPA": {
+      "front": "tests/label_images/VALLEY-IPA_front.jpg",
+      "back": "tests/label_images/VALLEY-IPA_back.jpg"
+    }
+  }
+}
