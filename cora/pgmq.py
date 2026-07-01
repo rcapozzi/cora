@@ -24,3 +24,17 @@ def enqueue_application(application_id, *, queue_name: str = 'cora_ocr_jobs') ->
             'SELECT pgmq.send(%s, %s, %s)',
             [queue_name, str(application_id), 'application_id'],
         )
+
+
+def read_queue(queue_name: str = 'q_label_images', vt: int = 60, qty: int = 1):
+    with connection.cursor() as cursor:
+        cursor.execute(
+            'SELECT * FROM pgmq.read(%s, %s, %s)',
+            [queue_name, vt, qty],
+        )
+        return cursor.fetchall()
+
+
+def delete_message(queue_name: str, msg_id: int) -> None:
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT pgmq.delete(%s, %s)', [queue_name, msg_id])

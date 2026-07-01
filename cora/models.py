@@ -67,6 +67,8 @@ class LabelImage(models.Model):
     image_format = models.CharField(max_length=10)
 
     image = models.ImageField(upload_to=get_label_upload_path)
+    ocr_text = models.TextField(null=True, blank=True)
+    ocr_status = models.CharField(max_length=30, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
