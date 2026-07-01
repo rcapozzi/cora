@@ -69,9 +69,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_NAME', 'cora_db'),
-        'USER': os.environ.get('POSTGRES_USER', 'cora_user'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'cora_local_password'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'postgres'),
+        'USER': os.environ.get('POSTGRES_USER', 'cora'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'cora'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
         'PORT': os.environ.get('POSTGRES_PORT', '5432'),
         'CONN_MAX_AGE': 60,
     }
