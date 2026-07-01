@@ -273,7 +273,6 @@ def application_list(request):
 @csrf_exempt
 def _handle_application_list(request, wants_json, is_htmx):
     """Handles GET /application - Search, filter, paginate."""
-    # --- Parameter extraction & sanitization --------------------------------
     q = (request.GET.get('q') or '').strip()[:200]
     raw_status = request.GET.get('status', '')
     raw_type = request.GET.get('product_type', '')
@@ -294,7 +293,6 @@ def _handle_application_list(request, wants_json, is_htmx):
     except (ValueError, TypeError):
         limit = 20
 
-    # --- ORM query ----------------------------------------------------------
     lock_cutoff = timezone.now() - timedelta(minutes=LOCK_TIMEOUT_MINUTES)
 
     queryset = ColaApplication.objects.all()
@@ -314,12 +312,10 @@ def _handle_application_list(request, wants_json, is_htmx):
     order_prefix = '-' if order == 'desc' else ''
     queryset = queryset.order_by(f'{order_prefix}{sort_by}')
 
-    # --- Pagination ---------------------------------------------------------
     total = queryset.count()
     offset = (page - 1) * limit
     results = list(queryset[offset: offset + limit])
 
-    # Build next/previous URLs
     def build_url(p):
         params = request.GET.copy()
         params['page'] = p
@@ -331,7 +327,6 @@ def _handle_application_list(request, wants_json, is_htmx):
             "value": t,  "label": t.replace("_", " ").title(),
         } for t in sorted(ALLOWED_PRODUCT_TYPES)
     ]
-    # Also expose lock_cutoff to template so stale locks render distinctly
     context = {
         'applications': results,
         'total':         total,
@@ -349,7 +344,6 @@ def _handle_application_list(request, wants_json, is_htmx):
         'allowed_product_types': allowed_product_types,
     }
 
-    # --- Response -----------------------------------------------------------
     if wants_json:
         return JsonResponse({
             'success':  True,
@@ -372,12 +366,16 @@ def _handle_application_list(request, wants_json, is_htmx):
             ],
         })
 
-    # HTMX partial — return only the tbody fragment
     if is_htmx:
         return render(request, 'cora/partials/application_table.html', context)
 
-    # Full page
     return render(request, 'cora/application_list.html', context)
+
+
+@csrf_exempt
+def application_create(request):
+    """Render the application create / import form."""
+    return render(request, 'cora/import.html')
 
 
 @csrf_exempt

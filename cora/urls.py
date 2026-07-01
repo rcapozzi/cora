@@ -11,6 +11,7 @@ urlpatterns = [
     re_path(r'^application/(?P<id>[0-9a-f-]{36}|\d+)/release/?$', views.application_release, name='application_release'),
     re_path(r'^ping/?$', views.ping, name='ping'),
     re_path(r'^application/?$', views.application_list, name='application_list'),
+    path('application/?$', views.application_create, name='application_create'),
     path('status/', views.status, name='status'),
 ]
 if settings.DEBUG:
