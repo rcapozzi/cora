@@ -3,22 +3,25 @@ This captures how the test data was produced using Hermes.
 
 ## Create fictitious test data
 
-Generate test data. For this phase, create 5 items where each item looks like the following:
+Generate test data to simulate the labels for Wine, Beer, and Liquor bottles. For this phase, create 5 items where each item looks like the following:
   "item": {
+    "fanciful_name": "KNOB CREEK",
     "brand_name": "KNOB CREEK",
     "alcohol_content": "60% ALC./VOL.",
     "net_contents": "750 mL",
     "health_warning": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
   }
-Create a file named `test/items.json`
+Update `test-data/items.json`
 
 ## Create Images
 
-For each item in `test/items.json`, do the following:
-* Create a directory named `test/{brand_name_dir}` where {brand_name_dir} is {brand_name} with all spaces replaced by '-';
-* create a fictional image of the front label. The image should be a PNG no more than 500KB.
-* Place the image in `test/{brand_name_dir}`. The image should be named `front.png`. 
-* Create `test/{brand_name_dir}/fields.json` with the fields associated to the item.
+For each item in `test-data/items.json`, do the following:
+* Create a directory named `test-data/{brand_name_dir}` where {brand_name_dir} is {brand_name} with all spaces and quotes replaced by '-' unless the directory already exists;
+* create a fictional image of the front label. The image should be a JPG no more than 500KB.
+* Place the image in `test-data/{brand_name_dir}`. The image should be named `front.jpg`. 
+* create a fictional image of the back label. The image should be a JPG no more than 500KB.
+* Place the image in `test-data/{brand_name_dir}`. The image should be named `back.jpg`. 
+* Create `test-data/{brand_name_dir}/fields.json` with the fields associated to the item.
 
 # application/import
 Creates a single request payload for import

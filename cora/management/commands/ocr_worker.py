@@ -2,6 +2,7 @@ import asyncio
 import json
 import logging
 import os
+import os.path
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -57,11 +58,11 @@ class Command(BaseCommand):
                 msg_id = row[0]
                 message = json.loads(row[5])
                 logger.info(
-                    'Worker-%s claimed message %s for filename %s/%s',
+                    'Worker-%s got msg_id=%s label_id=%s filename=%s',
                     worker_id,
                     msg_id,
                     message['file_path'],
-                    message['file_name'],
+                    os.path.join(message['file_path'], message['file_name']),
                 )
 
                 try:
@@ -69,9 +70,9 @@ class Command(BaseCommand):
                     await asyncio.to_thread(delete_message, QUEUE_NAME, msg_id)
                     logger.info('Worker-%s completed message %s', worker_id, msg_id)
                 except Exception as exc:
-                    logger.error(
-                        'Worker-%s failed on message %s: %s', worker_id, msg_id, exc
-                    )
+                    logger.error('Worker-%s failed on message %s: %s', worker_id, msg_id, exc)
+            await asyncio.sleep(EMPTY_QUEUE_BACKOFF)
+
 
 
     async def main(self):

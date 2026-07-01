@@ -1,7 +1,7 @@
 # End Point application/import
 
 # Decision Made: multipart/form-data
-We use **multipart/form-data** for the `/application/import` endpoint to guarantee transaction integrity, satisfy HTML form standards, and stream large label files safely.
+We use **multipart/form-data** for the `/application` endpoint to guarantee transaction integrity, satisfy HTML form standards, and stream large label files safely.
 
 ## Multipart Request Structure
 The request is submitted as a standard standard `multipart/form-data` payload containing:
@@ -10,7 +10,7 @@ The request is submitted as a standard standard `multipart/form-data` payload co
 
 ## Purpose
 
-The /application/import endpoint imports a single COLA application and its associated label image metadata into the system.
+The POST /application endpoint imports a single COLA application and its associated label image metadata into the system.
 It supports two clients:
 - Interactive browser users
 - Programmatic API clients

@@ -75,4 +75,4 @@ class LabelImage(models.Model):
         db_table = 'label_images'
 
     def __str__(self):
-        return f"{self.label_type}: {self.file_name}"
+        return f"{self.id} {self.ocr_status} {self.label_type} {self.file_name}"
