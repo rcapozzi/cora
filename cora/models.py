@@ -7,6 +7,33 @@ def get_label_upload_path(instance, filename):
     return f"cola/{instance.cola_application.ttb_id}/{filename}"
 
 
+class ApiToken(models.Model):
+    """API token for service-to-service authentication.
+
+    Tokens are hashed using PBKDF2 with configurable iterations.
+    Only the prefix (first 8 chars) is stored in plain text for lookup.
+    """
+    name = models.CharField(max_length=100, help_text="Human-readable label for the token")
+    token_hash = models.CharField(max_length=128, help_text="PBKDF2-SHA256 hash of the full token")
+    prefix = models.CharField(max_length=8, db_index=True, help_text="First 8 chars for token lookup")
+    scopes = models.JSONField(default=list, help_text="List of scopes: ['read'], ['write'], or ['review']")
+    created_by = models.ForeignKey(
+        'auth.User',
+        on_delete=models.CASCADE,
+        related_name='api_tokens',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(null=True, blank=True)
+    revoked_at = models.DateTimeField(null=True, blank=True)
+    last_used_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'cora_api_tokens'
+
+    def __str__(self):
+        return f"{self.name} ({self.prefix}...)"
+
+
 class ColaApplication(models.Model):
     id = models.CharField(max_length=36, primary_key=True, default=generate_uuid7)
     cola_application_id = models.BigIntegerField(null=True, blank=True)

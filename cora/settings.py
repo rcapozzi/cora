@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -90,4 +92,19 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+
+# CORA Auth Settings
+CORA_AUTH_REQUIRED = os.environ.get('CORA_AUTH_REQUIRED', 'False').lower() == 'true'
+CORA_TOKEN_PBKDF2_ITERATIONS = int(os.environ.get('CORA_TOKEN_PBKDF2_ITERATIONS', '100000'))
+
+# REST Framework configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'cora.authentication.ApiTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # Per-view permission checks via decorators
+    ],
+}
 
