@@ -1,11 +1,12 @@
 # CORA `/application` Endpoint — Consolidated Design Document
 
 This document consolidates all behavior specification describes the complete `/application` endpoint family:
-- **POST** `/application` — Import a new COLA application (with label images)
-- **GET**  `/application` — Search, filter, paginate, or return import form/schema
-- **GET**  `/application/{id}` — Detail view with review lock acquisition
+- **GET** `/application` — List, search, filter, paginate application records (collection)
+- **GET** `/application/new` — Returns form for creating a new application
+- **POST** `/application` — Create a new COLA application (with label images)
+- **GET** `/application/{id}` — Detail view with review lock acquisition
 - **POST** `/application/{id}/release` — Release review lock on unload/abandon
-- **GET**  `/application/import` — Alias for HTML import form (legacy route)
+- **GET** `/application/import` — Alias for HTML form (legacy route, consider removing)
 
 All routes share a single URL pattern (`/application`) with method/content-type dispatch.
 
@@ -17,31 +18,134 @@ All routes share a single URL pattern (`/application`) with method/content-type 
 graph TD
     CLIENT[Client Request] --> A{HTTP Method}
 
-    A -->|POST /application| B{Content-Type}
-    B -->|multipart/form-data| C[Import Application]
-    B -->|other| D[415 Unsupported Media Type]
+    A -->|GET /application| B{Accept Header}
+    B -->|application/json| C[Return JSON List]
+    B -->|text/html| D[Render Application List HTML]
 
-    A -->|GET /application| E{Accept Header}
-    E -->|application/json| F[Return JSON Schema]
-    E -->|text/html| G[Render Import Form]
+    A -->|GET /application/new| E[Render Import Form]
 
-    A -->|GET /application?params| H{Accept Header}
-    H -->|application/json| I[Paginated JSON List]
-    H -->|text/html + HX-Request| J[HTMX Partial: Table Rows]
-    H -->|text/html| K[Full Dashboard HTML]
+    A -->|POST /application| F{Content-Type}
+    F -->|multipart/form-data| G[Create Application]
+    F -->|other| H[415 Unsupported Media Type]
 
-    A -->|"GET /application/{id}"| L{"Accept Header"}
-    L -->|application/json| M[JSON Detail + Nested Images]
-    L -->|text/html| N[Side-by-Side Verification Screen]
+    A -->|GET /application?params| I{Accept Header}
+    I -->|application/json| J[Filtered JSON List]
+    I -->|text/html + HX-Request| K[HTMX Partial: Table Rows]
+    I -->|text/html| L[Full Application List HTML]
 
-    A -->|"POST /application/{id}/release"| O[Release Lock - 204 No Content]
+    A -->|"GET /application/{id}"| M{"Accept Header"}
+    M -->|application/json| N[JSON Detail + Nested Images]
+    M -->|text/html| O[Side-by-Side Verification Screen]
+
+    A -->|"POST /application/{id}/release"| P[Release Lock - 204 No Content]
 ```
 
 ---
 
-## 2. POST `/application` — Import Application
+## 2. GET `/application` — List / Search / Filter / Paginate
 
-### 2.1 Request
+### 2.1 Query Parameters
+
+| Param | Type | Default | Notes |
+|-------|------|---------|-------|
+| `q` | string | — | Search `brand_name`, `fanciful_name`, `applicant_name`, `ttb_id` (icontains, max 200 chars) |
+| `status` | string | — | Must be in `ALLOWED_STATUSES` |
+| `product_type` | string | — | Must be in `ALLOWED_PRODUCT_TYPES` |
+| `page` | int ≥ 1 | 1 | — |
+| `limit` | int [1, 100] | 20 | — |
+| `sort_by` | string | `date_of_application` | Must be in `ALLOWED_SORT_FIELDS` |
+| `order` | string | `desc` | `asc` or `desc` |
+
+`ALLOWED_STATUSES`: `RECEIVED`, `APPROVED`, `VERIFIED`, `IN_REVIEW`, `CONDITIONALLY_APPROVED`, `NEEDS_CORRECTION`, `REJECTED`, `SURRENDERED`, `WITHDRAWN`
+
+`ALLOWED_PRODUCT_TYPES`: `WINE`, `DISTILLED_SPIRITS`, `MALT_BEVERAGES`
+
+`ALLOWED_SORT_FIELDS`: `date_of_application`, `created_at`, `brand_name`
+
+### 2.2 Default Behavior (Collection)
+
+By default, `GET /application` returns a list of application records (the collection), not a form.
+
+### 2.3 Form Retrieval
+
+To get the application creation form, use `GET /application/new` which returns the HTML form for creating a new application.
+
+### 2.4 Lock Handling in List Query
+
+Expired `IN_REVIEW` locks (older than **15 minutes**) are **excluded** from the default queryset but remain visible in the DB so the next agent can see and take them over.
+
+```python
+lock_cutoff = now() - timedelta(minutes=15)
+queryset = ColaApplication.objects.exclude(
+    status='IN_REVIEW', review_started_at__lt=lock_cutoff
+).all()
+```
+
+### 2.5 Content Negotiation
+
+| Accept / HX-Request | Response |
+|---------------------|----------|
+| `Accept: application/json` | JSON list |
+| `Accept: application/json` + `?schema=1` | JSON Schema for create payload |
+| `HX-Request: true` (HTMX) | Partial HTML — table rows + pagination strip |
+| Default (`text/html`) | Full application list HTML |
+
+### 2.6 JSON Response Envelope
+
+```json
+{
+  "success": true,
+  "count": 142,
+  "next": "/application?page=2&q=blue",
+  "previous": null,
+  "results": [
+    {
+      "id": "uuid-v7",
+      "cola_application_id": 102548,
+      "ttb_id": "COLA-2026-004587",
+      "applicant_name": "Blue Ridge Cellars LLC",
+      "product_type": "WINE",
+      "brand_name": "Blue Ridge Reserve",
+      "fanciful_name": "Moonlit Harvest",
+      "status": "RECEIVED",
+      "date_of_application": "2026-03-12"
+    }
+  ]
+}
+```
+
+### 2.7 HTMX Wiring (Application List)
+
+```html
+<!-- Search input -->
+<input id="search-input"
+       name="q"
+       hx-get="/application"
+       hx-target="#results-body"
+       hx-trigger="keyup changed delay:300ms"
+       hx-include="#filter-form">
+
+<!-- Status filter -->
+<select name="status"
+        hx-get="/application"
+        hx-target="#results-body"
+        hx-trigger="change"
+        hx-include="#filter-form">
+```
+
+---
+
+## 3. GET `/application/new` — Application Creation Form
+
+Returns the HTML form for creating a new COLA application. Equivalent to the legacy `/application/import/` endpoint.
+
+**Response**: HTML form (`cora/import.html`)
+
+---
+
+## 4. POST `/application` — Create Application
+
+### 4.1 Request
 
 | Aspect | Requirement |
 |--------|-------------|
@@ -49,7 +153,7 @@ graph TD
 | Form field `payload` | JSON string matching `IMPORT_PAYLOAD_SCHEMA` |
 | Files | One per `label_images[].file_name` in payload |
 
-### 2.2 Payload Schema (abridged)
+### 4.2 Payload Schema (abridged)
 
 ```json
 {
@@ -74,7 +178,7 @@ graph TD
 
 Allowed `label_type`: `BRAND`, `BACK`, `NECK`, `OTHER`.
 
-### 2.3 Validation & Business Rules
+### 4.3 Validation & Business Rules
 
 | Rule | Check | On Fail |
 |------|-------|---------|
@@ -90,7 +194,7 @@ Allowed `label_type`: `BRAND`, `BACK`, `NECK`, `OTHER`.
 | BR-011 | Max 1.5 MB/image; PNG/JPG only | 413/422 |
 | BR-012 | Authorization (if enabled) | 401/403 |
 
-### 2.4 Idempotency Flow
+### 4.4 Idempotency Flow
 
 ```mermaid
 graph TD
@@ -109,12 +213,12 @@ graph TD
     NEG -->|No| HTML_201[201 Created + HTML]
 ```
 
-### 2.5 Responses
+### 4.5 Responses
 
 | Status | Trigger | JSON Body |
 |--------|---------|-----------|
-| 201 | New application created | `{ "success": true, "id": 123, "message": "Application imported." }` |
-| 200 | Idempotent duplicate | `{ "success": true, "id": 123, "message": "Application imported (idempotent)." }` |
+| 201 | New application created | `{ "success": true, "id": 123, "message": "Application created." }` |
+| 200 | Idempotent duplicate | `{ "success": true, "id": 123, "message": "Application created (idempotent)." }` |
 | 400 | Invalid JSON / missing payload | `{ "success": false, "reason": "missing_payload", ... }` |
 | 409 | Duplicate `ttb_id` with differing data | `{ "success": false, "reason": "duplicate", "failing_field": "ttb_id", ... }` |
 | 413 | File too large | `{ "success": false, "reason": "file_too_large", ... }` |
@@ -124,118 +228,33 @@ graph TD
 
 ---
 
-## 3. GET `/application` — List / Search / Schema / Form
+## 5. GET `/application/{id}` — Detail View with Lock Acquisition
 
-### 3.1 Query Parameters
-
-| Param | Type | Default | Notes |
-|-------|------|---------|-------|
-| `q` | string | — | Search `brand_name`, `fanciful_name`, `applicant_name`, `ttb_id` (icontains, max 200 chars) |
-| `status` | string | — | Must be in `ALLOWED_STATUSES` |
-| `product_type` | string | — | Must be in `ALLOWED_PRODUCT_TYPES` |
-| `page` | int ≥ 1 | 1 | — |
-| `limit` | int [1, 100] | 20 | — |
-| `sort_by` | string | `date_of_application` | Must be in `ALLOWED_SORT_FIELDS` |
-| `order` | string | `desc` | `asc` or `desc` |
-
-`ALLOWED_STATUSES`: `RECEIVED`, `APPROVED`, `VERIFIED`, `IN_REVIEW`, `CONDITIONALLY_APPROVED`, `NEEDS_CORRECTION`, `REJECTED`, `SURRENDERED`, `WITHDRAWN`  
-`ALLOWED_PRODUCT_TYPES`: `WINE`, `DISTILLED_SPIRITS`, `MALT_BEVERAGES`  
-`ALLOWED_SORT_FIELDS`: `date_of_application`, `created_at`, `brand_name`
-
-### 3.2 Lock Handling in List Query
-
-Expired `IN_REVIEW` locks (older than **15 minutes**) are **excluded** from the default queryset but remain visible in the DB so the next agent can see and take them over.
-
-```python
-lock_cutoff = now() - timedelta(minutes=15)
-queryset = ColaApplication.objects.exclude(
-    status='IN_REVIEW', review_started_at__lt=lock_cutoff
-).all()
-```
-
-### 3.3 Content Negotiation
-
-| Accept / HX-Request | Response |
-|---------------------|----------|
-| `Accept: application/json` (no `?schema=1`) | Paginated JSON list |
-| `Accept: application/json` + `?schema=1` | JSON Schema for import payload |
-| `HX-Request: true` (HTMX) | Partial HTML — `<tbody>` rows + pagination strip |
-| Default (`text/html`) | Full dashboard HTML |
-
-### 3.4 JSON Response Envelope
-
-```json
-{
-  "success": true,
-  "count": 142,
-  "next": "/application?page=2&q=blue",
-  "previous": null,
-  "results": [
-    {
-      "id": "uuid-v7",
-      "cola_application_id": 102548,
-      "ttb_id": "COLA-2026-004587",
-      "applicant_name": "Blue Ridge Cellars LLC",
-      "product_type": "WINE",
-      "brand_name": "Blue Ridge Reserve",
-      "fanciful_name": "Moonlit Harvest",
-      "status": "RECEIVED",
-      "date_of_application": "2026-03-12"
-    }
-  ]
-}
-```
-
-### 3.5 HTMX Wiring (Dashboard)
-
-```html
-<!-- Search input -->
-<input id="search-input"
-       name="q"
-       hx-get="/application"
-       hx-target="#results-body"
-       hx-trigger="keyup changed delay:300ms"
-       hx-include="#filter-form">
-
-<!-- Status filter -->
-<select name="status"
-        hx-get="/application"
-        hx-target="#results-body"
-        hx-trigger="change"
-        hx-include="#filter-form">
-```
-
----
-
-## 4. GET `/application/{id}` — Detail View with Lock Acquisition
-
-### 4.1 Lock Logic (inside `transaction.atomic()`)
+### 5.1 Lock Logic (inside `transaction.atomic()`)
 
 ```mermaid
 flowchart TD
     FETCH[Fetch ColaApplication by id] --> STATUS{Current status?}
-    
+
     STATUS -->|RECEIVED or VERIFIED| ACQUIRE[Acquire lock: status=IN_REVIEW, review_started_at=now, review_by=user, prior_status=old]
-    
     STATUS -->|IN_REVIEW| AGE{lock age > 15 min?}
     AGE -->|Yes| ACQUIRE
     AGE -->|No| OWNER{review_by == current user?}
     OWNER -->|Yes| REFRESH[Refresh lease: review_started_at=now]
     OWNER -->|No| WARN[Return 200 with takeover_warning=true]
-    
     STATUS -->|APPROVED, REJECTED, etc.| READONLY[Read-only view, no lock mutation]
-    
+
     ACQUIRE --> SERIALIZE[Serialize full app + label_images]
     REFRESH --> SERIALIZE
     READONLY --> SERIALIZE
     WARN --> SERIALIZE
-    
+
     SERIALIZE --> NEG{Accept: application/json?}
     NEG -->|Yes| JSON_DETAIL[200 JSON Detail]
     NEG -->|No| HTML_DETAIL[200 Side-by-Side Verification Screen]
 ```
 
-### 4.2 JSON Detail Response
+### 5.2 JSON Detail Response
 
 ```json
 {
@@ -260,25 +279,13 @@ flowchart TD
     "review_started_at": "2026-07-01T14:30:00Z",
     "review_by": "agent@example.com",
     "prior_status": "RECEIVED",
-    "label_images": [
-      {
-        "id": 550001,
-        "label_type": "BRAND",
-        "file_name": "front_label.png",
-        "file_path": "/storage/cola/2026/03/COLA-2026-004587/front_label.png",
-        "file_size_bytes": 2845912,
-        "width_px": 2400,
-        "height_px": 3600,
-        "image_format": "PNG",
-        "created_at": "2026-03-12T14:22:33Z"
-      }
-    ]
+    "take_over_warning": false
   },
-  "takeover_warning": false
+  "take_over_warning": false
 }
 ```
 
-### 4.3 HTML Verification Screen
+### 5.3 HTML Verification Screen
 
 Side-by-side layout:
 - **Left**: Label images (click to enlarge)
@@ -288,31 +295,32 @@ Side-by-side layout:
 
 ---
 
-## 5. POST `/application/{id}/release` — Release Review Lock
+## 6. POST `/application/{id}/release` — Release Review Lock
 
-### 5.1 Invocation
+### 6.1 Invocation
 
 Called by `navigator.sendBeacon` on `window.beforeunload`. Also callable explicitly.
 
 ```javascript
 window.addEventListener('beforeunload', () => {
-    navigator.sendBeacon('/application/{{ application.id }}/release');
+    navigator.sendBeacon('/application/${application.id}/release');
 });
 ```
 
-### 5.2 Logic (inside `transaction.atomic()`)
+### 6.2 Logic (inside `transaction.atomic()`)
 
 ```python
-app = ColaApplication.objects.select_for_update().get(id=id)
-if app.status == 'IN_REVIEW' and app.review_by == request.user:
-    app.status = app.prior_status or 'RECEIVED'
-    app.review_started_at = None
-    app.review_by = None
-    app.prior_status = None
-    app.save()
+with transaction.atomic():
+    app = ColaApplication.objects.select_for_update().get(id=id)
+    if (app.status == 'IN_REVIEW' and app.review_by == request.user):
+        app.status = app.prior_status or 'RECEIVED'
+        app.prior_status = None
+        app.review_started_at = None
+        app.review_by = None
+        app.save()
 ```
 
-### 5.3 Response
+### 6.3 Response
 
 | Status | Condition |
 |--------|-----------|
@@ -323,17 +331,20 @@ Idempotent: safe to call multiple times.
 
 ---
 
-## 6. GET `/application/import` — Legacy Import Form Alias
+## 7. GET `/application/import` — Legacy Import Form Alias
 
 | Route | View | Purpose |
 |-------|------|---------|
-| `GET /application/import` | `application_import` | Renders `cora/import.html` (same as `GET /application` with `Accept: text/html`) |
+| `GET /application/import` | `application_create` | Renders `cora/import.html` (same as `GET /application/new`) |
 
-Retained for backward compatibility and explicit bookmarking.
+> [!IMPORTANT]
+> The `/application/import` route is retained for backward compatibility and explicit bookmarking.
+> For new development, use `GET /application/new` instead.
+> If the `/application/import` route is kept, it should be redirected to `/application/new` in future versions.
 
 ---
 
-## 7. Database Model Summary (Relevant Fields)
+## 8. Database Model Summary (Relevant Fields)
 
 ```python
 class ColaApplication(models.Model):
@@ -373,37 +384,40 @@ class LabelImage(models.Model):
 
 ---
 
-## 8. URL Routing (cora/urls.py)
+## 9. URL Routing (cora/urls.py)
 
 ```python
 urlpatterns = [
     path('', views.landing, name='landing'),
     path('admin/', admin.site.urls),
-    path('application/import/', views.application_import, name='application_import'),
-    path('application/', views.application_list, name='application_list'),
-    re_path(r'^application/(?P<id>[0-9a-f-]{36})/?$', views.application_detail, name='application_detail'),
-    re_path(r'^application/(?P<id>[0-9a-f-]{36})/release/?$', views.application_release, name='application_release'),
+    re_path(r'^application/(?P<id>[0-9a-f-]{36}|\d+)/?$', views.application_detail, name='application_detail'),
+    re_path(r'^application/(?P<id>[0-9a-f-]{36}|\d+)/release/?$', views.application_release, name='application_release'),
+    re_path(r'^ping/?$', views.ping, name='ping'),
+    re_path(r'^application/?$', views.application_list, name='application_list'),
+    path('application/new/', views.application_create, name='application_new'),
+    path('application/import/', views.application_create, name='application_import'),  # Legacy
     path('status/', views.status, name='status'),
 ]
-```
 
-> **Note**: UUID pattern `([0-9a-f-]{36})` precedes the import route to avoid capture conflicts.
+> **Note**: UUID pattern `([0-9a-f-]{36}|\d+)` supports both UUID and numeric IDs for backward compatibility.
+> The `/application/import/` route is legacy and should be redirected to `/application/new/` in future versions.
+```
 
 ---
 
-## 9. Security & Observability
+## 10. Security & Observability
 
 | Concern | Implementation |
 |---------|----------------|
-| Authentication | Django auth (login_required / permission_required on views) |
-| CSRF | `@csrf_exempt` on import endpoints (stateless API); form uses `{% csrf_token %}` |
+| Authentication | Django auth (`login_required` / `permission_required` on views) |
+| CSRF | `@csrf_exempt` on API endpoints (stateless); form uses `{% csrf_token %}` |
 | File validation | MIME type check, 1.5 MB limit, Pillow header parse for dimensions |
 | Audit logging | Structured JSON to `cora.audit` logger on every import/review action |
 | Rate limiting | Not yet implemented (gap — see gaps doc) |
 
 ---
 
-## 10. Test Matrix (Acceptance Criteria)
+## 11. Test Matrix (Acceptance Criteria)
 
 | # | Scenario | Expected |
 |---|----------|----------|
@@ -416,22 +430,24 @@ urlpatterns = [
 | 7 | `POST /application` invalid `label_type` | 422 |
 | 8 | `GET /application` `Accept: application/json` | 200 paginated JSON |
 | 9 | `GET /application?schema=1` `Accept: application/json` | 200 JSON Schema |
-| 10 | `GET /application` `Accept: text/html` | 200 import form HTML |
+| 10 | `GET /application` `Accept: text/html` | 200 application list HTML |
 | 11 | `GET /application?q=blue` | 200 filtered |
 | 12 | `GET /application?status=RECEIVED` | 200 filtered |
 | 13 | `GET /application?page=2&limit=5` | 200 correct slice |
 | 14 | `GET /application` `HX-Request` | 200 partial HTML |
-| 15 | `GET /application/{id}` status=RECEIVED | 200, lock acquired, status=IN_REVIEW |
-| 16 | `GET /application/{id}` expired lock | 200, lock re-acquired |
-| 17 | `GET /application/{id}` active foreign lock | 200, `takeover_warning=true` |
-| 18 | `GET /application/{id}` same agent return | 200, lease refreshed |
-| 19 | `GET /application/9999` | 404 |
-| 20 | `POST /application/{id}/release` by owner | 204, status reverted |
-| 21 | `POST /application/{id}/release` by non-owner | 204 (no-op) |
+| 15 | `GET /application/new` | 200 import form HTML |
+| 16 | `GET /application/{id}` status=RECEIVED | 200, lock acquired, status=IN_REVIEW |
+| 17 | `GET /application/{id}` expired lock | 200, lock re-acquired |
+| 18 | `GET /application/{id}` active foreign lock | 200, `takeover_warning=true` |
+| 19 | `GET /application/{id}` same agent returns | 200, lease refreshed |
+| 20 | `GET /application/9999` | 404 |
+| 21 | `POST /application/{id}/release` by owner | 204, status reverted |
+| 22 | `POST /application/{id}/release` by non-owner | 204 (no-op) |
+| 23 | `GET /application/import` | 200 import form HTML (legacy) |
 
 ---
 
-## 11. Future Enhancements (Out of Scope)
+## 12. Future Enhancements (Out of Scope)
 
 - Cursor-based pagination for very large datasets
 - WebSocket / SSE for real-time status updates

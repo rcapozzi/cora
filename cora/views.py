@@ -21,7 +21,6 @@ from django.db import connection
 from django.utils import timezone
 
 
-
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -147,28 +146,28 @@ def ping(request):
 
     accept = request.headers.get("accept", "")
     if "text/html" in accept and "application/json" not in accept:
-        html = """<!doctype html>
+        html = f"""<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>ping</title>
   <style>
-    body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #0f1117; color: #e6edf3; margin: 0; }
-    main { max-width: 720px; margin: 6rem auto; padding: 0 1.25rem; }
-    h1 { font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6cb6ff; }
-    pre { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 1rem; overflow: auto; }
-    .key { color: #ff7b72; }
-    .str { color: #a5d6ff; }
-    .label { color: #8b949e; font-size: 0.75rem; }
+    body {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #0f1117; color: #e6edf3; margin: 0; }}
+    main {{ max-width: 720px; margin: 6rem auto; padding: 0 1.25rem; }}
+    h1 {{ font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6cb6ff; }}
+    pre {{ background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 1rem; overflow: auto; }}
+    .key {{ color: #ff7b72; }}
+    .str {{ color: #a5d6ff; }}
+    .label {{ color: #8b949e; font-size: 0.75rem; }}
   </style>
 </head>
 <body>
   <main>
     <h1>ping</h1>
-    <pre>{
-"  <span class="key">"current_date"</span>: <span class="str">"</span>$(now.strftime('%Y-%m-%d'))<span class="str">"</span>,
-  <span class="key">"current_time"</span>: <span class="str">"</span>$(now.strftime('%H:%M:%S'))<span class="str">"</span>
-}</pre>
+    <pre>{{
+  "current_date": "{now.strftime("%Y-%m-%d")}",
+  "current_time": "{now.strftime("%H:%M:%S")}"
+}}</pre>
     <p class="label">rendered HTML from Accept: text/html</p>
   </main>
 </body>
@@ -176,6 +175,7 @@ def ping(request):
         return HttpResponse(html, content_type="text/html")
 
     return JsonResponse(payload)
+
 
 def check_idempotent_match(existing_app, app_data, files_metadata):
     """Compares app_data fields and images metadata to verify if it is an exact match."""
@@ -240,6 +240,7 @@ def check_idempotent_match(existing_app, app_data, files_metadata):
 
     return True
 
+
 def run_task_async(app_id):
     """Launches the background process in a thread to simulate a background worker."""
     thread = threading.Thread(target=process_application, args=(app_id,))
@@ -251,23 +252,30 @@ def run_task_async(app_id):
 def application_list(request):
     """Handles:
     GET /application?schema=1 with Accept: application/json -> return import schema
-    GET /application with Accept: application/json (no params) -> return import schema
-    GET /application with Accept: text/html (no params) -> return import form
-    GET /application?list=1 with Accept: text/html -> list applications
-    GET /application?q=... or other params -> list applications
+    GET /application with Accept: application/json (no params) -> return application list (JSON)
+    GET /application with Accept: text/html (no params) -> return application list (HTML)
+    GET /application?list=1 with Accept: text/html -> list applications (explicit)
+    GET /application?q=... or other params -> filter/search application list
     POST /application -> import application
     """
-    wants_json = 'application/json' in request.headers.get('Accept', '')
+    wants_json = 'application/json' in request.headers.get('Accept', '').lower()
     is_htmx = request.headers.get('HX-Request') == 'true'
 
     # POST method: handle import/create
     if request.method == 'POST':
         return _handle_application_create(request, wants_json)
 
-    # GET method: return application list by default
+    # GET method: handle list by default
     if request.GET.get('schema') == '1':
         return JsonResponse(IMPORT_PAYLOAD_SCHEMA, safe=False)
+
     return _handle_application_list(request, wants_json, is_htmx)
+
+
+@csrf_exempt
+def application_create(request):
+    """Render the application create / import form."""
+    return render(request, 'cora/import.html')
 
 
 @csrf_exempt
@@ -323,298 +331,66 @@ def _handle_application_list(request, wants_json, is_htmx):
 
     next_url = build_url(page + 1) if offset + limit < total else None
     previous_url = build_url(page - 1) if page > 1 else None
-    allowed_product_types = [{
-            "value": t,  "label": t.replace("_", " ").title(),
-        } for t in sorted(ALLOWED_PRODUCT_TYPES)
+    allowed_product_types = [
+        {
+            "value": t,
+            "label": t.replace("_", " ").title(),
+        }
+        for t in sorted(ALLOWED_PRODUCT_TYPES)
     ]
     context = {
         'applications': results,
-        'total':         total,
-        'page':          page,
-        'limit':         limit,
-        'q':             q,
-        'status':        status,
-        'product_type':  product_type,
-        'sort_by':       sort_by,
-        'order':         order,
-        'next_url':      next_url,
-        'previous_url':  previous_url,
-        'lock_cutoff':   lock_cutoff,
-        'allowed_statuses':      sorted(ALLOWED_STATUSES),
+        'total': total,
+        'page': page,
+        'limit': limit,
+        'q': q,
+        'status': status,
+        'product_type': product_type,
+        'sort_by': sort_by,
+        'order': order,
+        'next_url': next_url,
+        'previous_url': previous_url,
+        'lock_cutoff': lock_cutoff,
+        'allowed_statuses': sorted(ALLOWED_STATUSES),
         'allowed_product_types': allowed_product_types,
     }
 
+    # Check if client wants JSON response (case-insensitive)
+    wants_json = 'application/json' in request.headers.get('Accept', '').lower()
     if wants_json:
         return JsonResponse({
-            'success':  True,
-            'count':    total,
-            'next':     next_url,
+            'success': True,
+            'count': total,
+            'next': next_url,
             'previous': previous_url,
             'results': [
                 {
-                    'id':                  app.id,
+                    'id': app.id,
                     'cola_application_id': app.cola_application_id,
-                    'ttb_id':              app.ttb_id,
-                    'applicant_name':      app.applicant_name,
-                    'product_type':        app.product_type,
-                    'brand_name':          app.brand_name,
-                    'fanciful_name':       app.fanciful_name,
-                    'status':              app.status,
+                    'ttb_id': app.ttb_id,
+                    'applicant_name': app.applicant_name,
+                    'product_type': app.product_type,
+                    'brand_name': app.brand_name,
+                    'fanciful_name': app.fanciful_name,
+                    'status': app.status,
                     'date_of_application': str(app.date_of_application) if app.date_of_application else None,
                 }
                 for app in results
             ],
         })
-
     if is_htmx:
         return render(request, 'cora/partials/application_table.html', context)
-
     return render(request, 'cora/application_list.html', context)
 
 
 @csrf_exempt
-def application_create(request):
-    """Render the application create / import form."""
-    return render(request, 'cora/import.html')
-
-
-@csrf_exempt
-def _handle_application_create(request, wants_json):
-    """Handles POST /application - Import a new application."""
-    if request.method != 'POST':
-        err_msg = "Method not allowed"
-        if wants_json:
-            return JsonResponse({"success": False, "reason": err_msg, "failing_field": "method", "details": err_msg}, status=405)
-        return render(request, 'cora/import_error.html', {
-            "status": 405,
-            "reason": "Method Not Allowed",
-            "details": err_msg
-        }, status=405)
-
-    # For POST, ensure Content-Type is multipart/form-data
-    content_type = request.content_type or ''
-    if 'multipart/form-data' not in content_type:
-        err_msg = "Unsupported media type. Must be multipart/form-data"
-        if wants_json:
-            return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": "content_type", "details": err_msg}, status=415)
-        return render(request, 'cora/import_error.html', {
-            "status": 415,
-            "reason": "Unsupported Media Type",
-            "details": err_msg
-        }, status=415)
-
-    # Use TemporaryFileUploadHandler for streaming large uploads cleanly
-    request.upload_handlers = [TemporaryFileUploadHandler(request)]
-
-    # 1. Extract payload json
-    payload_str = request.POST.get('payload')
-    if not payload_str:
-        err_msg = "Missing 'payload' text field"
-        if wants_json:
-            return JsonResponse({"success": False, "reason": "missing_payload", "failing_field": "payload", "details": err_msg}, status=400)
-        return render(request, 'cora/import_error.html', {
-            "status": 400,
-            "reason": "Missing Payload",
-            "details": err_msg
-        }, status=400)
-
-    try:
-        data = json.loads(payload_str)
-    except json.JSONDecodeError as e:
-        err_msg = f"Invalid JSON in 'payload': {str(e)}"
-        if wants_json:
-            return JsonResponse({"success": False, "reason": "invalid_json", "failing_field": "payload", "details": err_msg}, status=400)
-        return render(request, 'cora/import_error.html', {
-            "status": 400,
-            "reason": "Invalid JSON",
-            "details": err_msg
-        }, status=400)
-
-    # 2. Validate against schema
-    try:
-        jsonschema.validate(instance=data, schema=IMPORT_PAYLOAD_SCHEMA)
-    except jsonschema.ValidationError as e:
-        # Include the failing field path for easier debugging
-        field_path = ".".join(str(p) for p in e.path) if e.path else "unknown"
-        err_msg = f"Validation failed on field '{field_path}': {e.message}"
-        if wants_json:
-            return JsonResponse({"success": False, "reason": "validation_failed", "failing_field": field_path, "details": err_msg}, status=422)
-        return render(request, 'cora/import_error.html', {
-            "status": 422,
-            "reason": f"Validation Failed on '{field_path}'",
-            "details": err_msg
-        }, status=422)
-
-    cola_app_data = data['cola_application']
-    ttb_id = cola_app_data['ttb_id']
-    files_metadata = cola_app_data.get('label_images', [])
-
-    # 3. Check duplicate (ttb_id uniqueness)
-    existing_app = ColaApplication.objects.filter(ttb_id=ttb_id).first()
-    if existing_app:
-        # Check if it matches exactly for idempotent retry
-        if check_idempotent_match(existing_app, cola_app_data, files_metadata):
-            if wants_json:
-                return JsonResponse({
-                    "success": True,
-                    "id": existing_app.id,
-                    "message": "Application imported (idempotent)."
-                }, status=200)
-            return render(request, 'cora/import_success.html', {
-                "application": existing_app,
-                "is_idempotent": True
-            })
-        else:
-            err_msg = f"An application with TTB ID '{ttb_id}' already exists and the submitted data does not match exactly."
-            if wants_json:
-                return JsonResponse({"success": False, "reason": "duplicate", "failing_field": "ttb_id", "details": err_msg}, status=409)
-            return render(request, 'cora/import_error.html', {
-                "status": 409,
-                "reason": "Duplicate Record Found",
-                "details": err_msg
-            }, status=409)
-
-    # 4. Perform image file validation checks before starting transaction
-    matched_files = []
-    for img_meta in files_metadata:
-        file_name = img_meta.get('file_name')
-        
-        # Find corresponding file in request.FILES by checking .name
-        uploaded_file = None
-        for f in request.FILES.values():
-            if f.name == file_name:
-                uploaded_file = f
-                break
-
-        if not uploaded_file:
-            err_msg = f"Missing uploaded file for filename '{file_name}'"
-            if wants_json:
-                return JsonResponse({"success": False, "reason": "missing_file", "failing_field": "label_images", "details": err_msg}, status=422)
-            return render(request, 'cora/import_error.html', {
-                "status": 422,
-                "reason": "Missing File",
-                "details": err_msg
-            }, status=422)
-
-        # Validate file size (max 1.5MB = 1572864 bytes)
-        if uploaded_file.size > 1.5 * 1024 * 1024:
-            err_msg = f"File {file_name} exceeds 1.5MB limit"
-            if wants_json:
-                return JsonResponse({"success": False, "reason": "payload_too_large", "failing_field": "label_images", "details": err_msg}, status=413)
-            return render(request, 'cora/import_error.html', {
-                "status": 413,
-                "reason": "File Too Large",
-                "details": err_msg
-            }, status=413)
-
-        # Validate image format using Pillow
-        try:
-            img = Image.open(uploaded_file)
-            img_format = img.format  # PNG, JPEG
-            if img_format not in ['PNG', 'JPEG', 'JPG']:
-                err_msg = f"Unsupported image format: {img_format}. Allowed: PNG, JPEG, JPG"
-                if wants_json:
-                    return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=415)
-                return render(request, 'cora/import_error.html', {
-                    "status": 415,
-                    "reason": "Unsupported Media Type",
-                    "details": err_msg
-                }, status=415)
-            
-            width, height = img.size
-            # Reset seek position of the file stream so Django can save it
-            uploaded_file.seek(0)
-        except Exception as e:
-            err_msg = f"Invalid image file {file_name}: {str(e)}"
-            if wants_json:
-                return JsonResponse({"success": False, "reason": "invalid_image", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=422)
-            return render(request, 'cora/import_error.html', {
-                "status": 422,
-                "reason": "Invalid Image",
-                "details": err_msg
-            }, status=422)
-
-        matched_files.append((img_meta, uploaded_file, width, height, img_format))
-
-    # 5. Insert to database in a single atomic transaction
-    try:
-        with transaction.atomic():
-            # Strip server-managed fields
-            app_fields = {
-                "cola_application_id": cola_app_data.get("cola_application_id"),
-                "ttb_id": ttb_id,
-                "applicant_name": cola_app_data.get("applicant_name"),
-                "product_type": cola_app_data.get("product_type"),
-                "brand_name": cola_app_data.get("brand_name"),
-                "fanciful_name": cola_app_data.get("fanciful_name"),
-                "grape_varietals": cola_app_data.get("grape_varietals"),
-                "wine_appellation": cola_app_data.get("wine_appellation"),
-                "distinctive_bottle_capacity": cola_app_data.get("distinctive_bottle_capacity"),
-                "ttb_authorized_signature": cola_app_data.get("ttb_authorized_signature"),
-                "status": cola_app_data.get("cola_status", "RECEIVED") or "RECEIVED",
-            }
-            # Parse dates
-            for d_field in ["date_of_application", "date_issued"]:
-                val = cola_app_data.get(d_field)
-                if val:
-                    app_fields[d_field] = datetime.strptime(val, "%Y-%m-%d").date()
-
-            app = ColaApplication.objects.create(**app_fields)
-
-            # Save label images
-            for img_meta, uploaded_file, width, height, img_format in matched_files:
-                # Store the record
-                label_img = LabelImage(
-                    cola_application=app,
-                    label_type=img_meta.get("label_type"),
-                    file_name=uploaded_file.name,
-                    file_path=f"cola/{app.ttb_id}/{uploaded_file.name}",
-                    file_size_bytes=uploaded_file.size,
-                    width_px=width,
-                    height_px=height,
-                    image_format=img_format,
-                )
-                # Assign the file to the FileField
-                label_img.image.save(uploaded_file.name, uploaded_file, save=False)
-                label_img.save()
-
-            # Enqueue background task after successful commit
-            transaction.on_commit(lambda: run_task_async(app.id))
-
-        # 6. Structured audit log entry
-        audit_log = {
-            "timestamp": timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "level": "INFO",
-            "event": "application_imported",
-            "ttb_id": app.ttb_id,
-            "applicant_name": app.applicant_name,
-            "fanciful_name": app.fanciful_name,
-            "cola_application_id": app.cola_application_id,
-        }
-        logger.info(json.dumps(audit_log))
-
-        # 7. Negotiated success response
-        if wants_json:
-            return JsonResponse({
-                "success": True,
-                "id": app.id,
-                "message": "Application imported."
-            }, status=201)
-
-        return render(request, 'cora/import_success.html', {
-            "application": app,
-            "is_idempotent": False
-        })
-
-    except Exception as e:
-        err_msg = f"Server database error during import: {str(e)}"
-        if wants_json:
-            return JsonResponse({"success": False, "reason": "server_error", "details": err_msg}, status=500)
-        return HttpResponse(f"<h1>500 Internal Server Error</h1><p>{err_msg}</p>", status=500)
-
-
 def application_detail(request, id):
     """Handles GET /application/{id} - application detail view using a state machine."""
+    import json
+    from django.http import JsonResponse, HttpResponse
+    from django.shortcuts import get_object_or_404
+    requires_json = request.headers.get('Accept') == 'application/json'
+
     now = timezone.now()
     app = get_object_or_404(ColaApplication, id=id)
 
@@ -626,6 +402,9 @@ def application_detail(request, id):
             lock_acquisition_needed = False
             current_user = request.user if request.user.is_authenticated else None
 
+            # Re-fetch inside transaction for lock safety
+            app = ColaApplication.objects.select_for_update().get(id=id)
+
             # A. Acquisition when needed: Attempting to lock the record for review
             if app.status in ('RECEIVED', 'VERIFIED') and current_user:
                 app.prior_status = app.status
@@ -634,7 +413,7 @@ def application_detail(request, id):
                 app.review_by = current_user
                 app.save()
                 lock_acquisition_needed = True
-            
+
             # B. Time-based and Agent Check when already IN_REVIEW
             elif app.status == 'IN_REVIEW':
                 review_started_at = getattr(app, 'review_started_at', None)
@@ -643,17 +422,18 @@ def application_detail(request, id):
 
                 lock_age = now - review_started_at
                 if lock_age > timedelta(minutes=LOCK_TIMEOUT_MINUTES):
-                    # Expired lock - restore previous status and release
-                    app.status = previous_status
-                    app.prior_status = None
-                    app.review_started_at = None
-                    app.review_by = None
+                    # Expired lock - re-acquire lock
+                    app.prior_status = previous_status
+                    app.status = 'IN_REVIEW'
+                    app.review_started_at = timezone.now()
+                    app.review_by = current_user
                     app.save()
+                    lock_acquisition_needed = True
                 elif app.review_by != current_user and current_user:
-                     # Active foreign lock detected - warn only
-                    take_over_warning = True 
+                    # Active foreign lock detected - warn only
+                    take_over_warning = True
                 elif app.review_by == current_user and not lock_acquisition_needed:
-                     # Self-refresh check - extend lease without state change
+                    # Self-refresh check - extend lease without state change
                     app.review_started_at = timezone.now()
                     app.save()
             # C. No Lock Mutation necessary (Read Only)
@@ -662,20 +442,60 @@ def application_detail(request, id):
 
     except Exception as e:
         logger.error(f"Error in app_detail business logic: {e}")
-        return JsonResponse({"success": False, "reason": "internal_server_error", "details": str(e)}, status=500)
-
-    finally:
-        if take_over_warning:
-            logger.warning(f"Warning: {getattr(app, 'ttb_id', 'Unknown')} is under another agent's lock.")
+        return JsonResponse({
+            "success": False,
+            "reason": "internal_server_error",
+            "details": str(e)
+        }, status=500)
 
     # --- 2. Serialization and Rendering ---
     try:
-        context = {"application": app, "label_images": app.label_images.all()}
-        # Assumes the template context provides 'render()' function access
-        return render(request, 'cora/application_detail.html', context) 
+        context = {
+            "application": app,
+            "label_images": app.label_images.all(),
+            "take_over_warning": take_over_warning,
+        }
+
+        if requires_json:
+            return JsonResponse({
+                "success": True,
+                "application": {
+                    "id": app.id,
+                    "ttb_id": app.ttb_id,
+                    "brand_name": app.brand_name,
+                    "applicant_name": app.applicant_name,
+                    "product_type": app.product_type,
+                    "fanciful_name": app.fanciful_name,
+                    "wine_appellation": app.wine_appellation,
+                    "distinctive_bottle_capacity": app.distinctive_bottle_capacity,
+                    "grape_varietals": app.grape_varietals,
+                    "status": app.status,
+                    "date_of_application": str(app.date_of_application) if app.date_of_application else None,
+                    "date_issued": str(app.date_issued) if app.date_issued else None,
+                    "take_over_warning": take_over_warning,
+                },
+                "label_images": [
+                    {
+                        "id": img.id,
+                        "label_type": img.label_type,
+                        "file_name": img.file_name,
+                        "width_px": img.width_px,
+                        "height_px": img.height_px,
+                        "image_format": img.image_format,
+                    }
+                    for img in context["label_images"]
+                ],
+            })
+
+        return render(request, 'cora/application_detail.html', context)
     except Exception as e:
         logger.error(f"Error processing application detail response: {e}")
-        return JsonResponse({"success": False, "reason": "rendering_failed", "details": str(e)}, status=500)
+        return JsonResponse({
+            "success": False,
+            "reason": "rendering_failed",
+            "details": str(e)
+        }, status=500)
+
 
 @csrf_exempt
 def application_release(request, id):
@@ -685,20 +505,31 @@ def application_release(request, id):
             app = ColaApplication.objects.select_for_update().get(id=id)
             current_user = request.user if request.user.is_authenticated else None
 
-            # Check owner and state consistency 
             if (app.status == 'IN_REVIEW' and app.review_by == current_user):
-                original_status = app.prior_status or app.status
-                app.status = original_status 
+                original_status = app.prior_status or 'RECEIVED'
+                app.status = original_status
+                app.prior_status = None
                 app.review_started_at = None
                 app.review_by = None
-                # CRITICAL step: Clear the lock fields after state change.
                 app.save()
-                return JsonResponse({"success": True, "message": f"Application successfully reverted from IN_REVIEW to {original_status}"}, status=204)
+                return JsonResponse({
+                    "success": True,
+                    "message": f"Application successfully reverted from IN_REVIEW to {original_status}"
+                }, status=200)
             else:
-                # Safe exit for unauthorized or correct status (Idempotent No-op case) 
-                return JsonResponse({"success": True, "message": "No action required."}, status=204)
+                return JsonResponse({
+                    "success": True,
+                    "message": "No action required."
+                }, status=200)
     except ColaApplication.DoesNotExist:
-        return JsonResponse({"success": False, "reason": "not_found"}, status=404)
+        return JsonResponse({
+            "success": False,
+            "reason": "not_found"
+        }, status=404)
     except Exception as e:
         logger.error(f"Error releasing application {id}: {e}")
-        return JsonResponse({"success": False, "reason": "server_error", "details": str(e)}, status=500);
+        return JsonResponse({
+            "success": False,
+            "reason": "server_error",
+            "details": str(e)
+        }, status=500)
