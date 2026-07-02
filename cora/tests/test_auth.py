@@ -13,11 +13,31 @@ from rest_framework.test import APIClient
 from cora.authentication import generate_token
 
 
+def _ensure_permissions():
+    """Create custom permissions if they don't exist."""
+    from django.contrib.contenttypes.models import ContentType
+    ct, _ = ContentType.objects.get_or_create(
+        app_label='cora',
+        model='colaapplication',
+    )
+    Permission.objects.get_or_create(
+        codename='review_application',
+        content_type=ct,
+        defaults={'name': 'Can review COLA applications'},
+    )
+    Permission.objects.get_or_create(
+        codename='import_application',
+        content_type=ct,
+        defaults={'name': 'Can import COLA applications'},
+    )
+
+
 @override_settings(ROOT_URLCONF='cora.urls', CORA_AUTH_REQUIRED=True)
 class ApiTokenAuthenticationTests(TestCase):
     """Test API token authentication."""
 
     def setUp(self):
+        _ensure_permissions()
         self.user = get_user_model().objects.create_user(
             username='testuser',
             password='testpass'
@@ -90,6 +110,7 @@ class SessionAuthenticationTests(TestCase):
     """Test session-based authentication."""
 
     def setUp(self):
+        _ensure_permissions()
         self.user = get_user_model().objects.create_user(
             username='testuser',
             password='testpass'
@@ -140,6 +161,7 @@ class PermissionDecoratorsTests(TestCase):
     """Test permission decorators on views."""
 
     def setUp(self):
+        _ensure_permissions()
         self.user = get_user_model().objects.create_user(
             username='reviewer',
             password='testpass'
@@ -156,6 +178,7 @@ class PermissionDecoratorsTests(TestCase):
             brand_name='Test Brand',
             status='IN_REVIEW',
             review_by=self.user,
+            review_started_at=timezone.now() - timedelta(minutes=20),
         )
 
     def test_takeover_requires_review_perm(self):
@@ -208,6 +231,7 @@ class TokenScopeTests(TestCase):
     """Test token scopes for different operations."""
 
     def setUp(self):
+        _ensure_permissions()
         self.user = get_user_model().objects.create_user(
             username='apiuser',
             password='testpass'
@@ -261,6 +285,7 @@ class TokenScopeTests(TestCase):
             brand_name='Brand',
             status='IN_REVIEW',
             review_by=self.user,
+            review_started_at=timezone.now() - timedelta(minutes=20),
         )
         
         response = client.post(

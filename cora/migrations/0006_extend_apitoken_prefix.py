@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='apitoken',
             name='prefix',
-            field=models.CharField(db_index=True, help_text='First 8 chars for lookup', max_length=8),
+            field=models.CharField(db_index=True, help_text='First 16 chars for lookup', max_length=16),
         ),
     ]

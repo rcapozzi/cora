@@ -12,7 +12,7 @@ from .models import ApiToken
 class ApiTokenAuthentication(BaseAuthentication):
     """Token authentication for API clients.
 
-    Looks for `Authorization: Bearer <token>` header.
+    Looks for `Authorization: Bearer ***` header.
     Tokens are validated via prefix lookup + PBKDF2 hash comparison.
     """
 
@@ -27,18 +27,16 @@ class ApiTokenAuthentication(BaseAuthentication):
         return self._validate_token(token, request)
 
     def _validate_token(self, token, request):
-        if len(token) < 17:  # Minimum: prefix (16) + dot + some entropy
-            raise AuthenticationFailed('Invalid token')
+        # Malformed tokens (too short, no dot) -> return None to let other backends try
+        if len(token) < 17 or '.' not in token:
+            return None
 
         # Token format: <prefix>.<suffix> where prefix is 16 chars
-        if '.' not in token:
-            raise AuthenticationFailed('Invalid token format')
-
         prefix = token[:16]
         try:
             api_token = ApiToken.objects.get(prefix=prefix, revoked_at__isnull=True)
         except ApiToken.DoesNotExist:
-            raise AuthenticationFailed('Invalid token')
+            return None
 
         # Check expiry
         if api_token.expires_at and api_token.expires_at < timezone.now():
@@ -57,7 +55,6 @@ class ApiTokenAuthentication(BaseAuthentication):
         api_token.save(update_fields=['last_used_at'])
 
         # Attach scope to request for permission checks
-        # Scope is 'review' if token has it, otherwise 'read'
         request.token_scopes = api_token.scopes
         request.token_scope = 'review' if 'review' in api_token.scopes else 'read'
 

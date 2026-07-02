@@ -15,7 +15,7 @@ class ApiToken(models.Model):
     """
     name = models.CharField(max_length=100, help_text="Human-readable label for the token")
     token_hash = models.CharField(max_length=128, help_text="PBKDF2-SHA256 hash of the full token")
-    prefix = models.CharField(max_length=8, db_index=True, help_text="First 8 chars for token lookup")
+    prefix = models.CharField(max_length=16, db_index=True, help_text="First 16 chars for token lookup")
     scopes = models.JSONField(default=list, help_text="List of scopes: ['read'], ['write'], or ['review']")
     created_by = models.ForeignKey(
         'auth.User',

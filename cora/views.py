@@ -16,7 +16,8 @@ import jsonschema
 
 from .models import ColaApplication, LabelImage
 from .tasks import process_application
-from .decorators import auth_required, require_review_permission, require_write_permission
+from .decorators import auth_required, require_review_permission, require_write_permission, require_read_permission
+from django.conf import settings
 from django.db import connection
 
 
@@ -248,8 +249,6 @@ def run_task_async(app_id):
 
 
 @csrf_exempt
-@auth_required
-@require_write_permission
 def application_list(request):
     """Handles:
     GET /application?schema=1 with Accept: application/json -> return import schema
@@ -262,14 +261,209 @@ def application_list(request):
     wants_json = 'application/json' in request.headers.get('Accept', '').lower()
     is_htmx = request.headers.get('HX-Request') == 'true'
 
-    # POST method: handle import/create
+    # POST method: handle import/create - requires write permission
     if request.method == 'POST':
-        return _handle_application_create(request, wants_json)
+        return _handle_application_create_with_auth(request, wants_json)
 
-    # GET method: handle list by default
+    # GET method: handle list by default - requires read permission
     if request.GET.get('schema') == '1':
-        return JsonResponse(IMPORT_PAYLOAD_SCHEMA, safe=False)
+        return _handle_schema_request(request, wants_json)
 
+    return _handle_application_list_with_auth(request, wants_json, is_htmx)
+
+
+@csrf_exempt
+@auth_required
+@require_write_permission
+def _handle_application_create_with_auth(request, wants_json):
+    """Wrapper for POST /application that enforces write permission."""
+    return _handle_application_create(request, wants_json)
+
+
+@csrf_exempt
+def _handle_application_create(request, wants_json):
+    """Handles POST /application - Import a new application."""
+    if request.method != 'POST':
+        err_msg = "Method not allowed"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": err_msg, "failing_field": "method", "details": err_msg}, status=405)
+        return render(request, 'cora/import_error.html', {"status": 405, "reason": "Method Not Allowed", "details": err_msg}, status=405)
+
+    # For POST, ensure Content-Type is multipart/form-data
+    content_type = request.content_type or ''
+    if 'multipart/form-data' not in content_type:
+        err_msg = "Unsupported media type. Must be multipart/form-data"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": "content_type", "details": err_msg}, status=415)
+        return render(request, 'cora/import_error.html', {"status": 415, "reason": "Unsupported Media Type", "details": err_msg}, status=415)
+
+    # Use TemporaryFileUploadHandler for streaming large uploads cleanly
+    request.upload_handlers = [TemporaryFileUploadHandler(request)]
+
+    # 1. Extract payload json
+    payload_str = request.POST.get('payload')
+    if not payload_str:
+        err_msg = "Missing 'payload' text field"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "missing_payload", "failing_field": "payload", "details": err_msg}, status=400)
+        return render(request, 'cora/import_error.html', {"status": 400, "reason": "Missing Payload", "details": err_msg}, status=400)
+
+    try:
+        data = json.loads(payload_str)
+    except json.JSONDecodeError as e:
+        err_msg = f"Invalid JSON in 'payload': {str(e)}"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "invalid_json", "failing_field": "payload", "details": err_msg}, status=400)
+        return render(request, 'cora/import_error.html', {"status": 400, "reason": "Invalid JSON", "details": err_msg}, status=400)
+
+    # 2. Validate against schema
+    try:
+        jsonschema.validate(instance=data, schema=IMPORT_PAYLOAD_SCHEMA)
+    except jsonschema.ValidationError as e:
+        field_path = ".".join(str(p) for p in e.path) if e.path else "unknown"
+        err_msg = f"Validation failed on field '{field_path}': {e.message}"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "validation_failed", "failing_field": field_path, "details": err_msg}, status=422)
+        return render(request, 'cora/import_error.html', {"status": 422, "reason": f"Validation Failed on '{field_path}'", "details": err_msg}, status=422)
+
+    cola_app_data = data['cola_application']
+    ttb_id = cola_app_data['ttb_id']
+    files_metadata = cola_app_data.get('label_images', [])
+
+    # 3. Check duplicate (ttb_id uniqueness)
+    existing_app = ColaApplication.objects.filter(ttb_id=ttb_id).first()
+    if existing_app:
+        if check_idempotent_match(existing_app, cola_app_data, files_metadata):
+            if wants_json:
+                return JsonResponse({"success": True, "id": existing_app.id, "message": "Application imported (idempotent)."}, status=200)
+            return render(request, 'cora/import_success.html', {"application": existing_app, "is_idempotent": True})
+        else:
+            err_msg = f"An application with TTB ID '{ttb_id}' already exists and the submitted data does not match exactly."
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "duplicate", "failing_field": "ttb_id", "details": err_msg}, status=409)
+            return render(request, 'cora/import_error.html', {"status": 409, "reason": "Duplicate Record Found", "details": err_msg}, status=409)
+
+    # 4. Perform image file validation checks before starting transaction
+    matched_files = []
+    for img_meta in files_metadata:
+        file_name = img_meta.get('file_name')
+
+        uploaded_file = None
+        for f in request.FILES.values():
+            if f.name == file_name:
+                uploaded_file = f
+                break
+
+        if not uploaded_file:
+            err_msg = f"Missing uploaded file for filename '{file_name}'"
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "missing_file", "failing_field": "label_images", "details": err_msg}, status=422)
+            return render(request, 'cora/import_error.html', {"status": 422, "reason": "Missing File", "details": err_msg}, status=422)
+
+        if uploaded_file.size > 1.5 * 1024 * 1024:
+            err_msg = f"File {file_name} exceeds 1.5MB limit"
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "payload_too_large", "failing_field": "label_images", "details": err_msg}, status=413)
+            return render(request, 'cora/import_error.html', {"status": 413, "reason": "File Too Large", "details": err_msg}, status=413)
+
+        try:
+            img = Image.open(uploaded_file)
+            img_format = img.format
+            if img_format not in ['PNG', 'JPEG', 'JPG']:
+                err_msg = f"Unsupported image format: {img_format}. Allowed: PNG, JPEG, JPG"
+                if wants_json:
+                    return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=415)
+                return render(request, 'cora/import_error.html', {"status": 415, "reason": "Unsupported Media Type", "details": err_msg}, status=415)
+
+            width, height = img.size
+            uploaded_file.seek(0)
+        except Exception as e:
+            err_msg = f"Invalid image file {file_name}: {str(e)}"
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "invalid_image", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=422)
+            return render(request, 'cora/import_error.html', {"status": 422, "reason": "Invalid Image", "details": err_msg}, status=422)
+
+        matched_files.append((img_meta, uploaded_file, width, height, img_format))
+
+    # 5. Insert to database in a single atomic transaction
+    try:
+        with transaction.atomic():
+            app_fields = {
+                "cola_application_id": cola_app_data.get("cola_application_id"),
+                "ttb_id": ttb_id,
+                "applicant_name": cola_app_data.get("applicant_name"),
+                "product_type": cola_app_data.get("product_type"),
+                "brand_name": cola_app_data.get("brand_name"),
+                "fanciful_name": cola_app_data.get("fanciful_name"),
+                "grape_varietals": cola_app_data.get("grape_varietals"),
+                "wine_appellation": cola_app_data.get("wine_appellation"),
+                "distinctive_bottle_capacity": cola_app_data.get("distinctive_bottle_capacity"),
+                "ttb_authorized_signature": cola_app_data.get("ttb_authorized_signature"),
+                "status": cola_app_data.get("cola_status", "RECEIVED") or "RECEIVED",
+            }
+            for d_field in ["date_of_application", "date_issued"]:
+                val = cola_app_data.get(d_field)
+                if val:
+                    app_fields[d_field] = datetime.strptime(val, "%Y-%m-%d").date()
+
+            app = ColaApplication.objects.create(**app_fields)
+
+            for img_meta, uploaded_file, width, height, img_format in matched_files:
+                label_img = LabelImage(
+                    cola_application=app,
+                    label_type=img_meta.get("label_type"),
+                    file_name=uploaded_file.name,
+                    file_path=f"cola/{app.ttb_id}/{uploaded_file.name}",
+                    file_size_bytes=uploaded_file.size,
+                    width_px=width,
+                    height_px=height,
+                    image_format=img_format,
+                )
+                label_img.image.save(uploaded_file.name, uploaded_file, save=False)
+                label_img.save()
+
+            transaction.on_commit(lambda: run_task_async(app.id))
+
+        audit_log = {
+            "timestamp": timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "level": "INFO",
+            "event": "application_imported",
+            "ttb_id": app.ttb_id,
+            "applicant_name": app.applicant_name,
+            "fanciful_name": app.fanciful_name,
+            "cola_application_id": app.cola_application_id,
+        }
+        logger.info(json.dumps(audit_log))
+
+        if wants_json:
+            return JsonResponse({"success": True, "id": app.id, "message": "Application imported."}, status=201)
+
+        return render(request, 'cora/import_success.html', {"application": app, "is_idempotent": False})
+
+    except Exception as e:
+        err_msg = f"Server database error during import: {str(e)}"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "server_error", "details": err_msg}, status=500)
+        return HttpResponse(f"<h1>500 Internal Server Error</h1><p>{err_msg}</p>", status=500)
+
+
+@csrf_exempt
+def _handle_schema_request(request, wants_json):
+    """Handle schema request - requires read permission when auth is enabled."""
+    if getattr(settings, 'CORA_AUTH_REQUIRED', False):
+        if not (request.user.is_authenticated or getattr(request, 'token_scope', None) in ('read', 'write', 'review')):
+            return JsonResponse(
+                {'success': False, 'reason': 'permission_denied', 'detail': 'Read permission required'},
+                status=403
+            )
+    return JsonResponse(IMPORT_PAYLOAD_SCHEMA, safe=False)
+
+
+@csrf_exempt
+@auth_required
+@require_read_permission
+def _handle_application_list_with_auth(request, wants_json, is_htmx):
+    """Wrapper for GET /application that enforces read permission."""
     return _handle_application_list(request, wants_json, is_htmx)
 
 
@@ -382,6 +576,242 @@ def _handle_application_list(request, wants_json, is_htmx):
     if is_htmx:
         return render(request, 'cora/partials/application_table.html', context)
     return render(request, 'cora/application_list.html', context)
+
+
+def _handle_application_create(request, wants_json):
+    """Handles POST /application - Import a new application."""
+    if request.method != 'POST':
+        err_msg = "Method not allowed"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": err_msg, "failing_field": "method", "details": err_msg}, status=405)
+        return render(request, 'cora/import_error.html', {
+            "status": 405,
+            "reason": "Method Not Allowed",
+            "details": err_msg
+        }, status=405)
+
+    # For POST, ensure Content-Type is multipart/form-data
+    content_type = request.content_type or ''
+    if 'multipart/form-data' not in content_type:
+        err_msg = "Unsupported media type. Must be multipart/form-data"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": "content_type", "details": err_msg}, status=415)
+        return render(request, 'cora/import_error.html', {
+            "status": 415,
+            "reason": "Unsupported Media Type",
+            "details": err_msg
+        }, status=415)
+
+    # Use TemporaryFileUploadHandler for streaming large uploads cleanly
+    request.upload_handlers = [TemporaryFileUploadHandler(request)]
+
+    # 1. Extract payload json
+    payload_str = request.POST.get('payload')
+    if not payload_str:
+        err_msg = "Missing 'payload' text field"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "missing_payload", "failing_field": "payload", "details": err_msg}, status=400)
+        return render(request, 'cora/import_error.html', {
+            "status": 400,
+            "reason": "Missing Payload",
+            "details": err_msg
+        }, status=400)
+
+    try:
+        data = json.loads(payload_str)
+    except json.JSONDecodeError as e:
+        err_msg = f"Invalid JSON in 'payload': {str(e)}"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "invalid_json", "failing_field": "payload", "details": err_msg}, status=400)
+        return render(request, 'cora/import_error.html', {
+            "status": 400,
+            "reason": "Invalid JSON",
+            "details": err_msg
+        }, status=400)
+
+    # 2. Validate against schema
+    try:
+        jsonschema.validate(instance=data, schema=IMPORT_PAYLOAD_SCHEMA)
+    except jsonschema.ValidationError as e:
+        # Include the failing field path for easier debugging
+        field_path = ".".join(str(p) for p in e.path) if e.path else "unknown"
+        err_msg = f"Validation failed on field '{field_path}': {e.message}"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "validation_failed", "failing_field": field_path, "details": err_msg}, status=422)
+        return render(request, 'cora/import_error.html', {
+            "status": 422,
+            "reason": f"Validation Failed on '{field_path}'",
+            "details": err_msg
+        }, status=422)
+
+    cola_app_data = data['cola_application']
+    ttb_id = cola_app_data['ttb_id']
+    files_metadata = cola_app_data.get('label_images', [])
+
+    # 3. Check duplicate (ttb_id uniqueness)
+    existing_app = ColaApplication.objects.filter(ttb_id=ttb_id).first()
+    if existing_app:
+        # Check if it matches exactly for idempotent retry
+        if check_idempotent_match(existing_app, cola_app_data, files_metadata):
+            if wants_json:
+                return JsonResponse({
+                    "success": True,
+                    "id": existing_app.id,
+                    "message": "Application imported (idempotent)."
+                }, status=200)
+            return render(request, 'cora/import_success.html', {
+                "application": existing_app,
+                "is_idempotent": True
+            })
+        else:
+            err_msg = f"An application with TTB ID '{ttb_id}' already exists and the submitted data does not match exactly."
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "duplicate", "failing_field": "ttb_id", "details": err_msg}, status=409)
+            return render(request, 'cora/import_error.html', {
+                "status": 409,
+                "reason": "Duplicate Record Found",
+                "details": err_msg
+            }, status=409)
+
+    # 4. Perform image file validation checks before starting transaction
+    matched_files = []
+    for img_meta in files_metadata:
+        file_name = img_meta.get('file_name')
+        
+        # Find corresponding file in request.FILES by checking .name
+        uploaded_file = None
+        for f in request.FILES.values():
+            if f.name == file_name:
+                uploaded_file = f
+                break
+
+        if not uploaded_file:
+            err_msg = f"Missing uploaded file for filename '{file_name}'"
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "missing_file", "failing_field": "label_images", "details": err_msg}, status=422)
+            return render(request, 'cora/import_error.html', {
+                "status": 422,
+                "reason": "Missing File",
+                "details": err_msg
+            }, status=422)
+
+        # Validate file size (max 1.5MB = 1572864 bytes)
+        if uploaded_file.size > 1.5 * 1024 * 1024:
+            err_msg = f"File {file_name} exceeds 1.5MB limit"
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "payload_too_large", "failing_field": "label_images", "details": err_msg}, status=413)
+            return render(request, 'cora/import_error.html', {
+                "status": 413,
+                "reason": "File Too Large",
+                "details": err_msg
+            }, status=413)
+
+        # Validate image format using Pillow
+        try:
+            img = Image.open(uploaded_file)
+            img_format = img.format  # PNG, JPEG
+            if img_format not in ['PNG', 'JPEG', 'JPG']:
+                err_msg = f"Unsupported image format: {img_format}. Allowed: PNG, JPEG, JPG"
+                if wants_json:
+                    return JsonResponse({"success": False, "reason": "unsupported_media_type", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=415)
+                return render(request, 'cora/import_error.html', {
+                    "status": 415,
+                    "reason": "Unsupported Media Type",
+                    "details": err_msg
+                }, status=415)
+            
+            width, height = img.size
+            # Reset seek position of the file stream so Django can save it
+            uploaded_file.seek(0)
+        except Exception as e:
+            err_msg = f"Invalid image file {file_name}: {str(e)}"
+            if wants_json:
+                return JsonResponse({"success": False, "reason": "invalid_image", "failing_field": f"label_images.{file_name}", "details": err_msg}, status=422)
+            return render(request, 'cora/import_error.html', {
+                "status": 422,
+                "reason": "Invalid Image",
+                "details": err_msg
+            }, status=422)
+
+        matched_files.append((img_meta, uploaded_file, width, height, img_format))
+
+    # 5. Insert to database in a single atomic transaction
+    try:
+        with transaction.atomic():
+            # Strip server-managed fields
+            app_fields = {
+                "cola_application_id": cola_app_data.get("cola_application_id"),
+                "ttb_id": ttb_id,
+                "applicant_name": cola_app_data.get("applicant_name"),
+                "product_type": cola_app_data.get("product_type"),
+                "brand_name": cola_app_data.get("brand_name"),
+                "fanciful_name": cola_app_data.get("fanciful_name"),
+                "grape_varietals": cola_app_data.get("grape_varietals"),
+                "wine_appellation": cola_app_data.get("wine_appellation"),
+                "distinctive_bottle_capacity": cola_app_data.get("distinctive_bottle_capacity"),
+                "ttb_authorized_signature": cola_app_data.get("ttb_authorized_signature"),
+                "status": cola_app_data.get("cola_status", "RECEIVED") or "RECEIVED",
+            }
+            # Parse dates
+            for d_field in ["date_of_application", "date_issued"]:
+                val = cola_app_data.get(d_field)
+                if val:
+                    app_fields[d_field] = datetime.strptime(val, "%Y-%m-%d").date()
+
+            app = ColaApplication.objects.create(**app_fields)
+
+            # Save label images
+            for img_meta, uploaded_file, width, height, img_format in matched_files:
+                # Store the record
+                label_img = LabelImage(
+                    cola_application=app,
+                    label_type=img_meta.get("label_type"),
+                    file_name=uploaded_file.name,
+                    file_path=f"cola/{app.ttb_id}/{uploaded_file.name}",
+                    file_size_bytes=uploaded_file.size,
+                    width_px=width,
+                    height_px=height,
+                    image_format=img_format,
+                )
+                # Assign the file to the FileField
+                label_img.image.save(uploaded_file.name, uploaded_file, save=False)
+                label_img.save()
+
+            # Enqueue background task after successful commit
+            transaction.on_commit(lambda: run_task_async(app.id))
+
+        # 6. Structured audit log entry
+        audit_log = {
+            "timestamp": timezone.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "level": "INFO",
+            "event": "application_imported",
+            "ttb_id": app.ttb_id,
+            "applicant_name": app.applicant_name,
+            "fanciful_name": app.fanciful_name,
+            "cola_application_id": app.cola_application_id,
+        }
+        logger.info(json.dumps(audit_log))
+
+        # 7. Negotiated success response
+        if wants_json:
+            return JsonResponse({
+                "success": True,
+                "id": app.id,
+                "message": "Application imported."
+            }, status=201)
+
+        return render(request, 'cora/import_success.html', {
+            "application": app,
+            "is_idempotent": False
+        })
+
+    except Exception as e:
+        err_msg = f"Server database error during import: {str(e)}"
+        if wants_json:
+            return JsonResponse({"success": False, "reason": "server_error", "details": err_msg}, status=500)
+        return HttpResponse(f"<h1>500 Internal Server Error</h1><p>{err_msg}</p>", status=500)
+
+
 
 
 @csrf_exempt

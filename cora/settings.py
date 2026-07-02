@@ -21,13 +21,10 @@ SECRET_KEY = 'django-insecure-#dafxl36c8kf@gk671@onn8&f&95^avdl!mem8_$!2*k4or@1+
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = os.environ.get('CORA_ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
-    'cora',
+    'cora.apps.CoraConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

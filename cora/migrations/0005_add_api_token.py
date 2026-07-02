@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(help_text='Human-readable label for this token', max_length=100)),
                 ('token_hash', models.CharField(help_text='PBKDF2 hash of the full token', max_length=128)),
-                ('prefix', models.CharField(help_text='First 8 chars for lookup', max_length=8)),
+                ('prefix', models.CharField(help_text='First 16 chars for lookup', max_length=16)),
                 ('scopes', models.JSONField(default=list, help_text='List of scopes: read, write, review')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('expires_at', models.DateTimeField(blank=True, null=True)),

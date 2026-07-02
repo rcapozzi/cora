@@ -2,6 +2,7 @@ from functools import wraps
 
 from django.conf import settings
 from django.http import JsonResponse
+from rest_framework.exceptions import AuthenticationFailed
 
 from .authentication import ApiTokenAuthentication
 
@@ -20,7 +21,14 @@ def auth_required(view_func):
 
         # Try token auth first
         auth = ApiTokenAuthentication()
-        auth_result = auth.authenticate(request)
+        try:
+            auth_result = auth.authenticate(request)
+        except AuthenticationFailed as e:
+            return JsonResponse(
+                {'success': False, 'reason': 'authentication_required', 'detail': str(e)},
+                status=401,
+            )
+
         if auth_result:
             request.user, request.auth = auth_result
             return view_func(request, *args, **kwargs)
@@ -73,7 +81,7 @@ def require_review_permission(view_func):
 
 
 def require_write_permission(view_func):
-    """Ensure user has write access (authenticated session or token write scope).
+    """Ensure user has cora.import_application or token write scope.
 
     When CORA_AUTH_REQUIRED is False, requests pass through.
     """
@@ -83,9 +91,10 @@ def require_write_permission(view_func):
         if not getattr(settings, 'CORA_AUTH_REQUIRED', False):
             return view_func(request, *args, **kwargs)
 
-        # Session auth: authenticated users have write access
+        # Session auth: must have import_application permission
         if request.user.is_authenticated:
-            return view_func(request, *args, **kwargs)
+            if request.user.has_perm('cora.import_application'):
+                return view_func(request, *args, **kwargs)
 
         # Token auth: must have write scope
         has_scope = 'write' in getattr(request, 'token_scopes', []) or getattr(request, 'token_scope', None) == 'write'
@@ -96,6 +105,39 @@ def require_write_permission(view_func):
                     'success': False,
                     'reason': 'permission_denied',
                     'detail': 'Write permission required',
+                },
+                status=403,
+            )
+        return view_func(request, *args, **kwargs)
+
+    return wrapper
+
+
+def require_read_permission(view_func):
+    """Ensure user has read access (authenticated session or token read/review scope).
+
+    When CORA_AUTH_REQUIRED is False, requests pass through.
+    """
+
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not getattr(settings, 'CORA_AUTH_REQUIRED', False):
+            return view_func(request, *args, **kwargs)
+
+        if request.user.is_authenticated:
+            return view_func(request, *args, **kwargs)
+
+        # Allow both 'read' and 'review' scopes (review implies read)
+        token_scopes = getattr(request, 'token_scopes', [])
+        token_scope = getattr(request, 'token_scope', None)
+        has_scope = 'read' in token_scopes or 'review' in token_scopes or token_scope in ('read', 'review')
+
+        if not has_scope:
+            return JsonResponse(
+                {
+                    'success': False,
+                    'reason': 'permission_denied',
+                    'detail': 'Read permission required',
                 },
                 status=403,
             )

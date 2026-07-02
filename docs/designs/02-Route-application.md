@@ -406,12 +406,67 @@ urlpatterns = [
 
 ## 10. Security & Observability
 
+### Authentication Flow
+
+CORA uses a dual-auth system:
+- **Session auth**: Django session for browser/HTMX clients
+- **Token auth**: Bearer tokens for programmatic API access
+
+Auth enforcement is controlled by `CORA_AUTH_REQUIRED`:
+- `False` (development): all endpoints are accessible without auth
+- `True` (staging/production): endpoints enforce auth checks
+
+### Auth Matrix
+
+| Endpoint | Method | Auth Required | Permission / Scope |
+|----------|--------|---------------|-------------------|
+| `/application` | GET | Yes (when `CORA_AUTH_REQUIRED=True`) | Read scope (`read`, `write`, or `review`) or authenticated session |
+| `/application` | POST | Yes (when `CORA_AUTH_REQUIRED=True`) | `cora.import_application` perm or token `write` scope |
+| `/application?schema=1` | GET | Yes (when `CORA_AUTH_REQUIRED=True`) | Read scope / authenticated session |
+| `/application/{id}` | GET | Yes (when `CORA_AUTH_REQUIRED=True`) | Read scope / authenticated session |
+| `/application/{id}/release` | POST | Yes (when `CORA_AUTH_REQUIRED=True`) | `cora.review_application` perm or token `review` scope |
+| `/application/{id}/takeover` | POST | Yes (when `CORA_AUTH_REQUIRED=True`) | `cora.review_application` perm or token `review` scope |
+| `/application/new/` | GET | No | Public form |
+| `/application/import/` | GET | No | Public form (legacy) |
+
+### Token Format
+
+Tokens follow the pattern: `cora_<prefix>.<suffix>`
+- **Prefix**: 16 chars, indexed for lookup
+- **Suffix**: 32 random chars
+- **Storage**: Hash stored using PBKDF2-SHA256 with `CORA_TOKEN_PBKDF2_ITERATIONS` (default: 100,000)
+- **Scopes**: JSON array of strings (`read`, `write`, `review`)
+
+### Permission Decorators
+
+| Decorator | Scope |
+|-----------|-------|
+| `@auth_required` | Valid session OR valid Bearer token |
+| `@require_read_permission` | Session auth OR token `read`/`review` scope |
+| `@require_write_permission` | `cora.import_application` perm OR token `write` scope |
+| `@require_review_permission` | `cora.review_application` perm OR token `review` scope |
+
+### CSRF & Headers
+
+- API endpoints are `@csrf_exempt` (stateless token auth)
+- Form endpoints use `{% csrf_token %}`
+- Token clients must send `Authorization: Bearer ***` header
+
+### Audit Logging
+
+Structured JSON audit log entries are emitted for:
+- Successful imports (event: `application_imported`)
+- Lock acquisition/release (via review actions)
+- Failed auth attempts (401 responses)
+
+### Observability
+
 | Concern | Implementation |
 |---------|----------------|
-| Authentication | Django auth (`login_required` / `permission_required` on views) |
-| CSRF | `@csrf_exempt` on API endpoints (stateless); form uses `{% csrf_token %}` |
-| File validation | MIME type check, 1.5 MB limit, Pillow header parse for dimensions |
-| Audit logging | Structured JSON to `cora.audit` logger on every import/review action |
+| Authentication | Dual session + Bearer token via DRF + decorators |
+| CSRF | `@csrf_exempt` on API endpoints; `{% csrf_token %}` on forms |
+| File validation | MIME type, 1.5 MB limit, Pillow header parse |
+| Audit logging | Structured JSON to `cora.audit` logger |
 | Rate limiting | Not yet implemented (gap — see gaps doc) |
 
 ---
