@@ -533,3 +533,65 @@ def application_release(request, id):
             "reason": "server_error",
             "details": str(e)
         }, status=500)
+
+
+@require_POST
+@csrf_exempt
+def application_takeover(request, id):
+    """Handles POST /application/{id}/takeover - forcefully transfer lock ownership.
+    
+    Allows a user to takeover an IN_REVIEW lock that is older than LOCK_TIMEOUT_MINUTES.
+    Returns 200 on success, 404 if not found, 409 if cannot takeover (active lock).
+    """
+    try:
+        with transaction.atomic():
+            app = ColaApplication.objects.select_for_update().get(id=id)
+            current_user = request.user if request.user.is_authenticated else None
+
+            if app.status != 'IN_REVIEW':
+                return JsonResponse({
+                    "success": False,
+                    "reason": "cannot_takeover",
+                    "details": "Application is not currently in IN_REVIEW status"
+                }, status=409)
+
+            # Check if lock has expired
+            review_started_at = app.review_started_at
+            if review_started_at is None:
+                return JsonResponse({
+                    "success": False,
+                    "reason": "cannot_takeover",
+                    "details": "Missing review start time"
+                }, status=409)
+
+            lock_age = timezone.now() - review_started_at
+            if lock_age <= timedelta(minutes=LOCK_TIMEOUT_MINUTES):
+                return JsonResponse({
+                    "success": False,
+                    "reason": "cannot_takeover",
+                    "details": "Lock is still active (not expired)"
+                }, status=409)
+
+            # Take over the lock
+            app.status = 'IN_REVIEW'
+            app.prior_status = None
+            app.review_started_at = timezone.now()
+            app.review_by = current_user
+            app.save()
+
+            return JsonResponse({
+                "success": True,
+                "message": "Lock successfully taken over"
+            }, status=200)
+    except ColaApplication.DoesNotExist:
+        return JsonResponse({
+            "success": False,
+            "reason": "not_found"
+        }, status=404)
+    except Exception as e:
+        logger.error(f"Error taking over application {id}: {e}")
+        return JsonResponse({
+            "success": False,
+            "reason": "server_error",
+            "details": str(e)
+        }, status=500)
