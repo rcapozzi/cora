@@ -16,9 +16,8 @@ import jsonschema
 
 from .models import ColaApplication, LabelImage
 from .tasks import process_application
+from .decorators import auth_required, require_review_permission, require_write_permission
 from django.db import connection
-
-from django.utils import timezone
 
 
 # ---------------------------------------------------------------------------
@@ -249,6 +248,8 @@ def run_task_async(app_id):
 
 
 @csrf_exempt
+@auth_required
+@require_write_permission
 def application_list(request):
     """Handles:
     GET /application?schema=1 with Accept: application/json -> return import schema
@@ -498,6 +499,8 @@ def application_detail(request, id):
 
 
 @csrf_exempt
+@auth_required
+@require_review_permission
 def application_release(request, id):
     """Handles POST /application/{id}/release - endpoint called on beforeunload event."""
     try:
@@ -535,8 +538,10 @@ def application_release(request, id):
         }, status=500)
 
 
-@require_POST
 @csrf_exempt
+@require_POST
+@auth_required
+@require_review_permission
 def application_takeover(request, id):
     """Handles POST /application/{id}/takeover - forcefully transfer lock ownership.
     
