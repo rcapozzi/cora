@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
         ),
         migrations.RunSQL(
             sql="""
+                CREATE EXTENSION IF NOT EXISTS pgmq CASCADE;
                 -- Create queue if it doesn't exist
                 SELECT pgmq.create('q_label_images');
             """,

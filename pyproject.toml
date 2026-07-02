@@ -15,6 +15,13 @@ dependencies = [
     "postgres>=4.0",
     "psycopg2-binary>=2.9.12",
     "pytest>=9.1.1",
+    "pytest-django>=4.9.0",
     "setuptools>=82.0.1",
     "uuid6>=1.10",
 ]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "cora.settings"
+python_files = ["test_*.py"]
+python_classes = ["Test*", "*Tests"]
+addopts = "-v"
