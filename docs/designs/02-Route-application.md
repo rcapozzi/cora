@@ -6,7 +6,6 @@ This document consolidates all behavior specification describes the complete `/a
 - **POST** `/application` — Create a new COLA application (with label images)
 - **GET** `/application/{id}` — Detail view with review lock acquisition
 - **POST** `/application/{id}/release` — Release review lock on unload/abandon
-- **GET** `/application/import` — Alias for HTML form (legacy route, consider removing)
 
 All routes share a single URL pattern (`/application`) with method/content-type dispatch.
 
@@ -22,7 +21,7 @@ graph TD
     B -->|application/json| C[Return JSON List]
     B -->|text/html| D[Render Application List HTML]
 
-    A -->|GET /application/new| E[Render Import Form]
+    A -->|GET /application/new| E[Render Create Form]
 
     A -->|POST /application| F{Content-Type}
     F -->|multipart/form-data| G[Create Application]

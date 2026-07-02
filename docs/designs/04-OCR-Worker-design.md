@@ -1,26 +1,25 @@
 # OCR Worker Design
 
-## Basis
-`scripts/demo_ocr_async.py` defines the target async worker shape: an event-loop-driven pool of N worker coroutines, each calling `pgmq.read` with a visibility timeout, invoking the OCR provider, then `pgmq.delete` on success. This design reflects that pattern and maps it into the app.
+## Entrypoint
+`cora/management/commands/ocr_worker.py` — management command, not `scripts/run_ocr_worker.py`.
 
-## Goal
-Process label-image OCR jobs from `q_label_images` with bounded concurrency, automatic retry on failure, and no side effects unless the job succeeds.
+## Concurrency Model
+Concurrency is bounded by the `OCR_WORKERS` environment variable. The command spawns that many long-running **coroutines** via `asyncio.gather(*worker_pool)`. Each coroutine (`ocr_worker(worker_id)`) loops forever and processes one queue message at a time in sequential order inside that coroutine.
 
-## Current state
-- `cora/pgmq.py` provides `ensure_queue` and `enqueue_application`.
-- `cora/tasks.py` has a synchronous `process_application` stub.
-- No standalone worker process exists yet.
+## Important detail
+`pgmq` helpers and `process_ocr_job` are **synchronous** because they touch Django ORM and raw DB cursor I/O. The async wrapper offloads them with `asyncio.to_thread()`, so the worker pool does not make DB/queue calls async; it merely keeps the event loop responsive while bound worker threads run the actual I/O.
 
-## Design
-- Process model: long-running worker process, not a per-request thread.
-- Concurrency: fixed-size async worker pool (`OCR_WORKERS`).
-- Queue read: `pgmq.read(queue, vt=OCR_VISIBILITY_TIMEOUT, qty=1)`.
-- Retry: if OCR or write-back fails, do **not** delete the message. It reappears after `vt`.
-- Success path:
-  - Run OCR provider call against image bytes.
-  - Update `LabelImage` with OCR fields.
-  - `pgmq.delete(queue, msg_id)`.
-- Empty queue: backoff sleep before next read.
+## Visibility-timeout / retry
+On success the message is deleted. On failure the exception is caught per-message, the message is **not** deleted, and it reappears after `VISIBILITY_TIMEOUT` expires. There is no explicit backoff jitter; backoff is `EMPTY_QUEUE_BACKOFF` seconds after both empty reads and message-loop completion.
+
+## Graceful shutdown
+`handle()` wraps `asyncio.run(self.main())` and catches `KeyboardInterrupt` to exit cleanly. Default `KeyboardInterrupt` stops the event loop; there is no custom SIGTERM handler or in-flight drain logic.
+
+## Config
+| Env var | Default | Purpose |
+|---------|---------|---------|
+| `OCR_WORKERS` | `1` | Number of coroutines in the worker pool |curl -s -X POST 'http://localhost:8001/application/import -H Accept: text/html -F 'somefield=value'
+
 
 ```mermaid
 sequenceDiagram
@@ -99,12 +98,3 @@ sequenceDiagram
 - `OCR_EMPTY_QUEUE_BACKOFF`
 - `OCR_PROVIDER`
 
-## Files to touch
-- `cora/pgmq.py`: add async-capable read/delete helpers if needed, or keep sync helpers.
-- `cora/tasks.py`: add `process_ocr_job(app_id, image_id)` used by worker.
-- `scripts/run_ocr_worker.py`: async worker loop modeled on `demo_ocr_async.py`.
-- `scripts/demo_ocr_async.py`: evolving reference implementation.
-
-## Verification
-- Ad-hoc script enqueues a message and asserts worker updates DB.
-- Script simulates OCR failure and asserts message is not deleted.
